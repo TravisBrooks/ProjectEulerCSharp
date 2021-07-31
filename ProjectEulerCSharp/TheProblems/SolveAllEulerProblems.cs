@@ -8,15 +8,15 @@ using NUnit.Framework;
 namespace TheProblems
 {
     [TestFixture]
-    public class RunAllSolutions
+    public class SolveAllEulerProblems
     {
+        private Stopwatch _stopwatch;
+
         [OneTimeSetUp]
         public void FixtureSetup()
         {
             _stopwatch = new Stopwatch();
         }
-
-        private Stopwatch _stopwatch;
 
         [TestCaseSource(nameof(_AllSolutions))]
         public void EulerSolution(ISolution objectSolution)
