@@ -30,9 +30,11 @@ namespace TheProblems
             Assert.NotNull(expectedMethod);
             Assert.NotNull(actualMethod);
 
-            var expected = expectedMethod.Invoke(objectSolution, null);
+            // The use of dynamic here is mostly because I was playing with dynamic dispatch for a print method based on type T in ISolution<T>
+            // Suffice to say the type info isn't lost when method is called via reflection from a ref ISolution missing the T param, or the object type when getting method.
+            dynamic expected = expectedMethod.Invoke(objectSolution, null);
             _stopwatch.Restart();
-            var actual = actualMethod.Invoke(objectSolution, null);
+            dynamic actual = actualMethod.Invoke(objectSolution, null);
             _stopwatch.Stop();
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
