@@ -82,7 +82,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 71636269561882670428252483600823257530420752963450";
             var digitArr = bunchOfDigits
                 .Where(char.IsDigit)
-                .Select(c => (long) c - 48)
+                .Select(c => c - 48L)
                 .ToArray();
             var offset = 0;
             var maxProduct = 0L;
