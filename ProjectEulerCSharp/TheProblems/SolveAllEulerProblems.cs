@@ -56,23 +56,38 @@ namespace TheProblems
             Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
 
             Console.WriteLine(eulerAttribute.Title);
-            Console.WriteLine();
             Console.WriteLine(eulerAttribute.Description);
+            // TODO: come with some pretty print to make a border around the Title and Description in the output
+            //Console.WriteLine("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
             Console.WriteLine();
-            Console.WriteLine($"Calculated solution: {bruteForceSolution}");
-            Console.WriteLine();
+            Console.WriteLine($"Brute force solution: {bruteForceSolution}");
             Console.WriteLine($"Time spent calculating brute force solution: {bruteForceElapsed}");
 
             if (objectSolution.HaveImplementedAnalyticSolution)
             {
                 Console.WriteLine();
+                Console.WriteLine($"Analytic solution: {bruteForceSolution}");
                 Console.WriteLine($"Time spent calculating analytic solution: {analyticElapsed}");
+                Console.WriteLine();
+
+                if (bruteForceElapsed < analyticElapsed)
+                {
+                    Console.WriteLine("Brute force wins! This time anyway...");
+                }
+                else if (analyticElapsed < bruteForceElapsed)
+                {
+                    Console.WriteLine("The analytical solution wins! This time anyway...");
+                }
+                else
+                {
+                    Console.WriteLine("An exact tie between brute force and analytic solutions! Inconceivable!");
+                }
             }
 
-            Assert.That(bruteForceSolution, Is.EqualTo(expected));
+            Assert.That(bruteForceSolution, Is.EqualTo(expected), "brute force solution was incorrect");
             if (objectSolution.HaveImplementedAnalyticSolution)
             {
-                Assert.That(analyticSolution, Is.EqualTo(expected));
+                Assert.That(analyticSolution, Is.EqualTo(expected), "analytic solution was incorrect");
             }
         }
 
