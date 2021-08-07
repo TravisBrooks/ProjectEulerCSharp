@@ -59,22 +59,25 @@ What is the value of the first triangle number to have over five hundred divisor
         private static int _DivisorCount(int currentTriangle)
         {
             var cnt = 2;
-            int currentPrime;
+            int currentDivisor;
+            var currentDivisorSquared = 0;
             var maxDivisor = Math.Floor(Math.Sqrt(currentTriangle));
-            for (currentPrime = 2; currentPrime <= maxDivisor; currentPrime++)
+
+            for (currentDivisor = 2; currentDivisor <= maxDivisor; currentDivisor++)
             {
-                if (currentPrime * currentPrime >= currentTriangle)
+                currentDivisorSquared = currentDivisor * currentDivisor;
+                if (currentDivisorSquared >= currentTriangle)
                 {
                     break;
                 }
 
-                if (currentTriangle % currentPrime == 0)
+                if (currentTriangle % currentDivisor == 0)
                 {
                     cnt += 2;
                 }
             }
 
-            if (currentPrime * currentPrime == currentTriangle)
+            if (currentDivisorSquared == currentTriangle)
             {
                 cnt += 1;
             }
