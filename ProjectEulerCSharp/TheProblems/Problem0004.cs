@@ -12,7 +12,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
          * A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
          * Find the largest palindrome made from the product of two 3-digit numbers.
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             var max = 0;
             for (var i = 900; i < 1000; i++)
@@ -28,6 +28,13 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
             }
 
             return max;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new System.NotImplementedException();
         }
 
         public int ExpectedSolution()

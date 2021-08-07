@@ -17,7 +17,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
          * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
          * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             var divisors = Enumerable.Range(1, 20)
                 .Where(n => n > 1)
@@ -43,6 +43,13 @@ What is the smallest positive number that is evenly divisible by all of the numb
             }
 
             return guess;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new System.NotImplementedException();
         }
 
         public int ExpectedSolution()

@@ -5,11 +5,13 @@
     /// </summary>
     public interface ISolution
     {
+        bool HaveImplementedAnalyticSolution { get; }
     }
 
     public interface ISolution<out T> : ISolution
     {
-        T TheSolution();
+        T BruteForceSolution();
+        T AnalyticSolution();
         T ExpectedSolution();
     }
 }

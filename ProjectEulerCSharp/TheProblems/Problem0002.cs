@@ -16,7 +16,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
          *      1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
          * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
          ****************************************************************************************************/
-        public long TheSolution()
+        public long BruteForceSolution()
         {
             // This is the more readable version, but runs about 2x slower than the for loop
             //return Fibonacci.Sequence()
@@ -41,6 +41,13 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
             }
 
             return total;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public long AnalyticSolution()
+        {
+            throw new System.NotImplementedException();
         }
 
         public long ExpectedSolution()

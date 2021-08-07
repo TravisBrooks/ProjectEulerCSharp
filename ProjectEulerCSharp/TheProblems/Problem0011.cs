@@ -60,7 +60,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
          * The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
          * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             int[,] grid =
             {
@@ -121,6 +121,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 
             return maxProduct;
         }
+        
 
         /// <summary>
         /// [0,0][0,1][0,2][0,3]
@@ -177,6 +178,13 @@ What is the greatest product of four adjacent numbers in the same direction (up,
         private static int _DiagonalLeftProduct(int x, int y, int[,] grid)
         {
             return grid[x, y] * grid[x + 1, y - 1] * grid[x + 2, y - 2] * grid[x + 3, y - 3];
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new NotImplementedException();
         }
 
         public int ExpectedSolution()

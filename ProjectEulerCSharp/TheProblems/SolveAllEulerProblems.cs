@@ -10,13 +10,13 @@ namespace TheProblems
     [TestFixture]
     public class SolveAllEulerProblems
     {
-        private Stopwatch _stopwatch;
-
         [OneTimeSetUp]
         public void FixtureSetup()
         {
             _stopwatch = new Stopwatch();
         }
+
+        private Stopwatch _stopwatch;
 
         [TestCaseSource(nameof(_AllSolutions))]
         public void EulerSolution(ISolution objectSolution)
@@ -25,15 +25,32 @@ namespace TheProblems
             // then use reflection to get to the methods defined for ISolution<T> for whatever T is bound to for the given problem class.
 
             var expectedMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.ExpectedSolution));
-            var actualMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.TheSolution));
+            var bruteForceMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.BruteForceSolution));
+            var analyticMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.AnalyticSolution));
 
             Assert.NotNull(expectedMethod);
-            Assert.NotNull(actualMethod);
+            Assert.NotNull(bruteForceMethod);
+            Assert.NotNull(analyticMethod);
+
+            TimeSpan bruteForceElapsed;
+            TimeSpan analyticElapsed = default(TimeSpan);
+            dynamic bruteForceSolution;
+            dynamic analyticSolution = null;
 
             var expected = expectedMethod.Invoke(objectSolution, null);
             _stopwatch.Restart();
-            var actual = actualMethod.Invoke(objectSolution, null);
+
+            bruteForceSolution = bruteForceMethod.Invoke(objectSolution, null);
             _stopwatch.Stop();
+            bruteForceElapsed = _stopwatch.Elapsed;
+
+            if (objectSolution.HaveImplementedAnalyticSolution)
+            {
+                _stopwatch.Restart();
+                analyticSolution = analyticMethod.Invoke(objectSolution, null);
+                _stopwatch.Stop();
+                analyticElapsed = _stopwatch.Elapsed;
+            }
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
             Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
@@ -42,10 +59,21 @@ namespace TheProblems
             Console.WriteLine();
             Console.WriteLine(eulerAttribute.Description);
             Console.WriteLine();
-            Console.WriteLine($"Calculated solution: {actual}");
+            Console.WriteLine($"Calculated solution: {bruteForceSolution}");
             Console.WriteLine();
-            Console.WriteLine($"Time spent calculating solution: {_stopwatch.Elapsed}");
-            Assert.That(actual, Is.EqualTo(expected));
+            Console.WriteLine($"Time spent calculating brute force solution: {bruteForceElapsed}");
+
+            if (objectSolution.HaveImplementedAnalyticSolution)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Time spent calculating analytic solution: {analyticElapsed}");
+            }
+
+            Assert.That(bruteForceSolution, Is.EqualTo(expected));
+            if (objectSolution.HaveImplementedAnalyticSolution)
+            {
+                Assert.That(analyticSolution, Is.EqualTo(expected));
+            }
         }
 
         private static IEnumerable<TestCaseData> _AllSolutions()

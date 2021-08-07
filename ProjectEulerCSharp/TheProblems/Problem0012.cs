@@ -35,7 +35,7 @@ What is the value of the first triangle number to have over five hundred divisor
          * We can see that 28 is the first triangle number to have over five divisors.
          * What is the value of the first triangle number to have over five hundred divisors?
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             var currentTriangle = 0;
             var loopCnt = 1;
@@ -49,6 +49,13 @@ What is the value of the first triangle number to have over five hundred divisor
             }
 
             return currentTriangle;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new NotImplementedException();
         }
 
         public int ExpectedSolution()

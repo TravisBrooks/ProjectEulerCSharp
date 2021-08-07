@@ -25,10 +25,17 @@ Find the difference between the sum of the squares of the first one hundred natu
          *      3025 - 385 = 2640
          * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             var range = Enumerable.Range(1, 100).ToArray();
             return SquareOfSum(range) - SumOfSquares(range);
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new System.NotImplementedException();
         }
 
         public int ExpectedSolution()

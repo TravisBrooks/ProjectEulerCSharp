@@ -21,7 +21,7 @@ Find the product abc.
          * There exists exactly one Pythagorean triplet for which a + b + c = 1000.
          * Find the product abc.
          ****************************************************************************************************/
-        public int TheSolution()
+        public int BruteForceSolution()
         {
             var a = 1;
             var b = 0;
@@ -64,6 +64,13 @@ Find the product abc.
             }
 
             return a * b * c;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public int AnalyticSolution()
+        {
+            throw new NotImplementedException();
         }
 
         public int ExpectedSolution()

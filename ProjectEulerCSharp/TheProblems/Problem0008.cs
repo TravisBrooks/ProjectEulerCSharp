@@ -57,7 +57,7 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
          *
          * Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
          ****************************************************************************************************/
-        public long TheSolution()
+        public long BruteForceSolution()
         {
             var bunchOfDigits = @"
 73167176531330624919225119674426574742355349194934
@@ -105,6 +105,13 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
             }
 
             return maxProduct;
+        }
+
+        public bool HaveImplementedAnalyticSolution => false;
+
+        public long AnalyticSolution()
+        {
+            throw new NotImplementedException();
         }
 
         public long ExpectedSolution()
