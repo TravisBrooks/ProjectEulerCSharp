@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using NUnit.Framework;
+using TheProblems.PrettyPrint;
 
 namespace TheProblems
 {
     [TestFixture]
     public class SolveAllEulerProblems
     {
-        [OneTimeSetUp]
-        public void FixtureSetup()
-        {
-            _stopwatch = new Stopwatch();
-        }
-
-        private Stopwatch _stopwatch;
+        private readonly Stopwatch _stopwatch = new();
 
         [TestCaseSource(nameof(_AllSolutions))]
         public void EulerSolution(ISolution objectSolution)
@@ -32,17 +28,15 @@ namespace TheProblems
             Assert.NotNull(bruteForceMethod);
             Assert.NotNull(analyticMethod);
 
-            TimeSpan bruteForceElapsed;
-            TimeSpan analyticElapsed = default(TimeSpan);
-            dynamic bruteForceSolution;
-            dynamic analyticSolution = null;
+            var analyticElapsed = default(TimeSpan);
+            dynamic? analyticSolution = null;
 
             var expected = expectedMethod.Invoke(objectSolution, null);
             _stopwatch.Restart();
 
-            bruteForceSolution = bruteForceMethod.Invoke(objectSolution, null);
+            dynamic bruteForceSolution = bruteForceMethod.Invoke(objectSolution, null);
             _stopwatch.Stop();
-            bruteForceElapsed = _stopwatch.Elapsed;
+            var bruteForceElapsed = _stopwatch.Elapsed;
 
             if (objectSolution.HaveImplementedAnalyticSolution)
             {
@@ -52,37 +46,61 @@ namespace TheProblems
                 analyticElapsed = _stopwatch.Elapsed;
             }
 
+            var eulerReport = new SimpleReport(BorderStyle.Solid, BorderDisplay.Left | BorderDisplay.Top | BorderDisplay.Right);
+
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
             Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
 
-            Console.WriteLine(eulerAttribute.Title);
-            Console.WriteLine(eulerAttribute.Description);
-            // TODO: come with some pretty print to make a border around the Title and Description in the output
-            //Console.WriteLine("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
-            Console.WriteLine();
-            Console.WriteLine($"Brute force solution: {bruteForceSolution}");
-            Console.WriteLine($"Time spent calculating brute force solution: {bruteForceElapsed}");
+            eulerReport.AddContainer(eulerAttribute.Title);
+            eulerReport.AddContainer(eulerAttribute.Description);
+
+            var builder = new StringBuilder();
+            builder.AppendLine($"Brute force solution: {bruteForceSolution}");
+            builder.Append($"Time spent calculating brute force solution: {bruteForceElapsed}");
 
             if (objectSolution.HaveImplementedAnalyticSolution)
             {
-                Console.WriteLine();
-                Console.WriteLine($"Analytic solution: {bruteForceSolution}");
-                Console.WriteLine($"Time spent calculating analytic solution: {analyticElapsed}");
-                Console.WriteLine();
+                eulerReport.AddContainer(builder.ToString());
+            }
+            else
+            {
+                eulerReport.AddContainer(new TextContainer(
+                    text: builder.ToString(),
+                    borderStyle: BorderStyle.Solid,
+                    borderDisplay: BorderDisplay.All));
+            }
 
+            // reset builder
+            builder = new StringBuilder();
+
+            if (objectSolution.HaveImplementedAnalyticSolution)
+            {
+                builder.AppendLine($"Analytic solution: {bruteForceSolution}");
+                builder.Append($"Time spent calculating analytic solution: {analyticElapsed}");
+                eulerReport.AddContainer(builder.ToString());
+
+                // reset
+                string text = string.Empty;
                 if (bruteForceElapsed < analyticElapsed)
                 {
-                    Console.WriteLine("Brute force wins! This time anyway...");
+                    text = "Brute force wins! This time anyway...";
                 }
                 else if (analyticElapsed < bruteForceElapsed)
                 {
-                    Console.WriteLine("The analytical solution wins! This time anyway...");
+                    text = "The analytical solution wins! This time anyway...";
                 }
                 else
                 {
-                    Console.WriteLine("An exact tie between brute force and analytic solutions! Inconceivable!");
+                    text = "An exact tie between brute force and analytic solutions! Inconceivable!";
                 }
+
+                eulerReport.AddContainer(new TextContainer(
+                    text: text,
+                    borderStyle: BorderStyle.Solid,
+                    borderDisplay: BorderDisplay.All));
             }
+
+            Console.Write(eulerReport.PrettyPrintString());
 
             Assert.That(bruteForceSolution, Is.EqualTo(expected), "brute force solution was incorrect");
             if (objectSolution.HaveImplementedAnalyticSolution)
