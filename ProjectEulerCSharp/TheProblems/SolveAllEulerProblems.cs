@@ -46,7 +46,7 @@ namespace TheProblems
                 analyticElapsed = _stopwatch.Elapsed;
             }
 
-            var eulerReport = new SimpleReport(minTextWidthInChars: 100);
+            var eulerReport = new SimpleReport(minTextWidthInChars: 80);
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
             Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
