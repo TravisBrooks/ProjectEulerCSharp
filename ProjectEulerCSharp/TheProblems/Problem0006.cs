@@ -34,8 +34,6 @@ natural numbers and the square of the sum.")]
             return SquareOfSum(range) - SumOfSquares(range);
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new System.NotImplementedException();

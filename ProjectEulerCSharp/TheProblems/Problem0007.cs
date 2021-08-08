@@ -27,8 +27,6 @@ What is the 10_001st prime number?")]
             return bunchOfPrimes[10000];
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new System.NotImplementedException();

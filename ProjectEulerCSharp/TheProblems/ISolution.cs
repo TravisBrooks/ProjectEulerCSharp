@@ -5,7 +5,10 @@
     /// </summary>
     public interface ISolution
     {
-        bool HaveImplementedAnalyticSolution { get; }
+        /// <summary>
+        /// Defaults to false
+        /// </summary>
+        bool HaveImplementedAnalyticSolution => false;
     }
 
     public interface ISolution<out T> : ISolution

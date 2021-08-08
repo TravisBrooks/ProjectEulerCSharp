@@ -47,7 +47,7 @@ namespace TheProblems.PrettyPrint
                 .SelectMany(str => str.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.None))
                 .Max(str => str.Length);
 
-            // the chars for either the left or right border + white space
+            // the char for either the left or right border + white space
             var charsForBorder = 2;
             var totalCharsPerLine = Math.Max(maxMessageLineChars, MinTextWidthInChars) + charsForBorder + charsForBorder;
 

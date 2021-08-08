@@ -48,8 +48,6 @@ from 1 to 20?")]
             return guess;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new System.NotImplementedException();

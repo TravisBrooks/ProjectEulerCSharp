@@ -15,14 +15,14 @@ namespace TheProblems
         private readonly Stopwatch _stopwatch = new();
 
         [TestCaseSource(nameof(_AllSolutions))]
-        public void EulerSolution(ISolution objectSolution)
+        public void EulerSolution(ISolution solutionInstance)
         {
             // NUnit has real problems dealing with TestCaseSource and generic types, so I introduced marker interface ISolution to get around that
             // then use reflection to get to the methods defined for ISolution<T> for whatever T is bound to for the given problem class.
 
-            var expectedMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.ExpectedSolution));
-            var bruteForceMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.BruteForceSolution));
-            var analyticMethod = objectSolution.GetType().GetMethod(nameof(ISolution<object>.AnalyticSolution));
+            var expectedMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.ExpectedSolution));
+            var bruteForceMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.BruteForceSolution));
+            var analyticMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.AnalyticSolution));
 
             Assert.NotNull(expectedMethod);
             Assert.NotNull(bruteForceMethod);
@@ -31,25 +31,25 @@ namespace TheProblems
             var analyticElapsed = default(TimeSpan);
             dynamic analyticSolution = null;
 
-            var expected = expectedMethod.Invoke(objectSolution, null);
+            var expected = expectedMethod.Invoke(solutionInstance, null);
             _stopwatch.Restart();
 
-            dynamic bruteForceSolution = bruteForceMethod.Invoke(objectSolution, null);
+            dynamic bruteForceSolution = bruteForceMethod.Invoke(solutionInstance, null);
             _stopwatch.Stop();
             var bruteForceElapsed = _stopwatch.Elapsed;
 
-            if (objectSolution.HaveImplementedAnalyticSolution)
+            if (solutionInstance.HaveImplementedAnalyticSolution)
             {
                 _stopwatch.Restart();
-                analyticSolution = analyticMethod.Invoke(objectSolution, null);
+                analyticSolution = analyticMethod.Invoke(solutionInstance, null);
                 _stopwatch.Stop();
                 analyticElapsed = _stopwatch.Elapsed;
             }
 
             var eulerReport = new SimpleReport(minTextWidthInChars: 80);
 
-            var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
-            Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
+            var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
+            Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
 
             eulerReport.AddContainer(eulerAttribute.Title);
             eulerReport.AddContainer(eulerAttribute.Description);
@@ -58,7 +58,7 @@ namespace TheProblems
             builder.AppendLine($"Brute force solution: {bruteForceSolution}");
             builder.Append($"Time spent calculating brute force solution: {bruteForceElapsed}");
 
-            if (objectSolution.HaveImplementedAnalyticSolution)
+            if (solutionInstance.HaveImplementedAnalyticSolution)
             {
                 eulerReport.AddContainer(builder.ToString());
             }
@@ -70,7 +70,7 @@ namespace TheProblems
             // reset builder
             builder = new StringBuilder();
 
-            if (objectSolution.HaveImplementedAnalyticSolution)
+            if (solutionInstance.HaveImplementedAnalyticSolution)
             {
                 builder.AppendLine($"Analytic solution: {bruteForceSolution}");
                 builder.Append($"Time spent calculating analytic solution: {analyticElapsed}");
@@ -94,7 +94,7 @@ namespace TheProblems
             Console.Write(eulerReport.PrettyPrintString());
 
             Assert.That(bruteForceSolution, Is.EqualTo(expected), "brute force solution was incorrect");
-            if (objectSolution.HaveImplementedAnalyticSolution)
+            if (solutionInstance.HaveImplementedAnalyticSolution)
             {
                 Assert.That(analyticSolution, Is.EqualTo(expected), "analytic solution was incorrect");
             }

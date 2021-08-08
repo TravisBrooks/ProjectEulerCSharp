@@ -32,8 +32,6 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
             return max;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new System.NotImplementedException();

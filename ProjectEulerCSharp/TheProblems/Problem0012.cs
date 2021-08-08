@@ -54,8 +54,6 @@ What is the value of the first triangle number to have over five hundred divisor
             return currentTriangle;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new NotImplementedException();

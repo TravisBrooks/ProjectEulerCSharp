@@ -183,8 +183,6 @@ What is the greatest product of four adjacent numbers in the same direction
             return grid[x, y] * grid[x + 1, y - 1] * grid[x + 2, y - 2] * grid[x + 3, y - 3];
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new NotImplementedException();

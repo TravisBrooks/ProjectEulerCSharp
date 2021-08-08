@@ -25,8 +25,6 @@ What is the largest prime factor of the number 600851475143 ?")]
             return factors.Max();
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new NotImplementedException();

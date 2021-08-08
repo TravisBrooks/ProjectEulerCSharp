@@ -24,8 +24,6 @@ Find the sum of all the primes below two million.")]
             return sum;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public long AnalyticSolution()
         {
             throw new NotImplementedException();

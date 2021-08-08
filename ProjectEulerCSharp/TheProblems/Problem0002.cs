@@ -46,8 +46,6 @@ find the sum of the even-valued terms.")]
             return total;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public long AnalyticSolution()
         {
             throw new System.NotImplementedException();

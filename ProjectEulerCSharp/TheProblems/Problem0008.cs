@@ -111,8 +111,6 @@ product. What is the value of this product?")]
             return maxProduct;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public long AnalyticSolution()
         {
             throw new NotImplementedException();

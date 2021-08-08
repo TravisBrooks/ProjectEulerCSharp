@@ -67,8 +67,6 @@ Find the product abc.
             return a * b * c;
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
-
         public int AnalyticSolution()
         {
             throw new NotImplementedException();
