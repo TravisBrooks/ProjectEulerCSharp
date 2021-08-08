@@ -29,7 +29,7 @@ namespace TheProblems
             Assert.NotNull(analyticMethod);
 
             var analyticElapsed = default(TimeSpan);
-            dynamic? analyticSolution = null;
+            dynamic analyticSolution = null;
 
             var expected = expectedMethod.Invoke(objectSolution, null);
             _stopwatch.Restart();
@@ -46,7 +46,7 @@ namespace TheProblems
                 analyticElapsed = _stopwatch.Elapsed;
             }
 
-            var eulerReport = new SimpleReport(BorderStyle.Solid, BorderDisplay.Left | BorderDisplay.Top | BorderDisplay.Right);
+            var eulerReport = new SimpleReport(minTextWidthInChars: 100);
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(objectSolution.GetType(), typeof(EulerAttribute));
             Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {objectSolution.GetType().Name}");
@@ -64,10 +64,7 @@ namespace TheProblems
             }
             else
             {
-                eulerReport.AddContainer(new TextContainer(
-                    text: builder.ToString(),
-                    borderStyle: BorderStyle.Solid,
-                    borderDisplay: BorderDisplay.All));
+                eulerReport.AddContainer(builder.ToString());
             }
 
             // reset builder
@@ -79,25 +76,19 @@ namespace TheProblems
                 builder.Append($"Time spent calculating analytic solution: {analyticElapsed}");
                 eulerReport.AddContainer(builder.ToString());
 
-                // reset
-                string text = string.Empty;
                 if (bruteForceElapsed < analyticElapsed)
                 {
-                    text = "Brute force wins! This time anyway...";
+                    eulerReport.AddContainer("Brute force wins! This time anyway...");
                 }
                 else if (analyticElapsed < bruteForceElapsed)
                 {
-                    text = "The analytical solution wins! This time anyway...";
+                    eulerReport.AddContainer("The analytical solution wins! This time anyway...");
                 }
                 else
                 {
-                    text = "An exact tie between brute force and analytic solutions! Inconceivable!";
+                    eulerReport.AddContainer("An exact tie between brute force and analytic solutions! Inconceivable!");
                 }
 
-                eulerReport.AddContainer(new TextContainer(
-                    text: text,
-                    borderStyle: BorderStyle.Solid,
-                    borderDisplay: BorderDisplay.All));
             }
 
             Console.Write(eulerReport.PrettyPrintString());
