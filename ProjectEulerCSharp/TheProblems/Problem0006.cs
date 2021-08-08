@@ -31,8 +31,10 @@ natural numbers and the square of the sum.")]
         public int BruteForceSolution()
         {
             var range = Enumerable.Range(1, 100).ToArray();
-            return SquareOfSum(range) - SumOfSquares(range);
+            return _SquareOfSum(range) - _SumOfSquares(range);
         }
+
+        public bool HaveImplementedAnalyticSolution => false;
 
         public int AnalyticSolution()
         {
@@ -44,12 +46,12 @@ natural numbers and the square of the sum.")]
             return 25164150;
         }
 
-        private static int SumOfSquares(IEnumerable<int> range)
+        private static int _SumOfSquares(IEnumerable<int> range)
         {
             return range.Select(n => n * n).Sum();
         }
 
-        private static int SquareOfSum(IEnumerable<int> range)
+        private static int _SquareOfSum(IEnumerable<int> range)
         {
             var sum = range.Sum();
             return sum * sum;

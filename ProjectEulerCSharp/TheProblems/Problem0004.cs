@@ -22,7 +22,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
                 for (var j = 900; j < 1000; j++)
                 {
                     var prod = i * j;
-                    if (IsPalindrome(prod) && prod > max)
+                    if (_IsPalindrome(prod) && prod > max)
                     {
                         max = prod;
                     }
@@ -31,6 +31,8 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
 
             return max;
         }
+
+        public bool HaveImplementedAnalyticSolution => false;
 
         public int AnalyticSolution()
         {
@@ -42,12 +44,12 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
             return 906609;
         }
 
-        private static bool IsPalindrome(int candidate)
+        private static bool _IsPalindrome(int candidate)
         {
-            return candidate == ReverseInt(candidate);
+            return candidate == _ReverseInt(candidate);
         }
 
-        private static int ReverseInt(int number)
+        private static int _ReverseInt(int number)
         {
             var result = 0;
             while (number > 0)

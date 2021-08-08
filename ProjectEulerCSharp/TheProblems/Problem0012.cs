@@ -17,7 +17,8 @@ The first ten terms would be:
 28: 1, 2, 4, 7, 14, 28
 We can see that 28 is the first triangle number to have over five divisors.
 
-What is the value of the first triangle number to have over five hundred divisors?")]
+What is the value of the first triangle number to have over five hundred
+divisors?")]
     // ReSharper disable once UnusedMember.Global
     public class Problem0012 : ISolution<int>
     {
@@ -53,6 +54,8 @@ What is the value of the first triangle number to have over five hundred divisor
 
             return currentTriangle;
         }
+
+        public bool HaveImplementedAnalyticSolution => false;
 
         public int AnalyticSolution()
         {

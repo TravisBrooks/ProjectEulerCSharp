@@ -6,8 +6,8 @@ namespace TheProblems
         @"2520 is the smallest number that can be divided by each of the numbers from 1 to
 10 without any remainder.
 
-What is the smallest positive number that is evenly divisible by all of the numbers
-from 1 to 20?")]
+What is the smallest positive number that is evenly divisible by all of the
+numbers from 1 to 20?")]
     // ReSharper disable once UnusedMember.Global
     public class Problem0005 : ISolution<int>
     {
@@ -47,6 +47,8 @@ from 1 to 20?")]
 
             return guess;
         }
+
+        public bool HaveImplementedAnalyticSolution => false;
 
         public int AnalyticSolution()
         {

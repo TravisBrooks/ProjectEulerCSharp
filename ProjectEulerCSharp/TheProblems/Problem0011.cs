@@ -3,8 +3,9 @@
 namespace TheProblems
 {
     [Euler("Largest product in a grid",
-        @"In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
-(sorry, my pretty print output is black and white, numbers listed below grid -Travis)
+        @"In the 20×20 grid below, four numbers along a diagonal line have been marked in
+red. (Sorry, my pretty print output is black and white, numbers listed below
+grid -Travis)
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -182,6 +183,8 @@ What is the greatest product of four adjacent numbers in the same direction
         {
             return grid[x, y] * grid[x + 1, y - 1] * grid[x + 2, y - 2] * grid[x + 3, y - 3];
         }
+
+        public bool HaveImplementedAnalyticSolution => false;
 
         public int AnalyticSolution()
         {

@@ -8,7 +8,7 @@
         /// <summary>
         /// Defaults to false
         /// </summary>
-        bool HaveImplementedAnalyticSolution => false;
+        bool HaveImplementedAnalyticSolution { get; }
     }
 
     public interface ISolution<out T> : ISolution
