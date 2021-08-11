@@ -20,16 +20,19 @@ What is the largest prime factor of the number 600851475143 ?")]
         {
             var number = 600851475143L;
             var sqrt = (int)Math.Sqrt(number);
-            var primes = Primes.Calculate(sqrt);
-            var factors = primes.Where(p => number % p == 0);
-            return factors.Max();
+
+            return Primes.Calculate(sqrt)
+                .Where(p => number % p == 0)
+                .Max();
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public int AnalyticSolution()
         {
-            throw new NotImplementedException();
+            var number = 600851475143L;
+            var factors = PrimeFactor64.Factors(number);
+            return (int)factors[^1].Factor;
         }
 
         public int ExpectedSolution()
