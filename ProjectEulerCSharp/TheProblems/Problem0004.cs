@@ -1,4 +1,6 @@
-﻿namespace TheProblems
+﻿using System;
+
+namespace TheProblems
 {
     [Euler("Largest palindrome product",
         @"A palindromic number reads the same both ways. The largest palindrome made from
@@ -19,7 +21,8 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
             var max = 0;
             for (var i = 900; i < 1000; i++)
             {
-                for (var j = 900; j < 1000; j++)
+                // can set j to i rather than starting from 900 each time. when i = 900 j will on 2nd loop be 901, so no reason to recalc 901 * 900 on 2nd loop of i
+                for (var j = i; j < 1000; j++)
                 {
                     var prod = i * j;
                     if (_IsPalindrome(prod) && prod > max)
@@ -36,7 +39,18 @@ Find the largest palindrome made from the product of two 3-digit numbers.")]
 
         public int AnalyticSolution()
         {
-            throw new System.NotImplementedException();
+            /****************************************************************************************************
+             * If we take the largest possible product of two 3-digit-numbers we have 999^2=998_001, so we know
+             * we're dealing with a 6 digit number. We can represent the digits as xyzzyx, or multiplying each
+             * digit by the necessary power of 10 for each digit's position:
+             *      = x*10^5 + y*10^4 + z*10^3 + z*10^2 + y*10^1 + x*10^0
+             *      = 100_000x + 10_000y + 1000z + 100z + 10y + x
+             *      = 100_001x + 10_010y + 1100z
+             *      = 11(9091x + 910y + 100z)
+             * This formula itself doesn't tell us much useful beyond the fact that 11 is a factor of 1 of the
+             * 2 numbers in the product.
+            ****************************************************************************************************/
+            throw new NotImplementedException("Not sure I have a good/reasonable proof yet for an analytical solution. Not anything better than the brute force solution.");
         }
 
         public int ExpectedSolution()
