@@ -72,7 +72,7 @@ namespace TheProblems
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
-                builder.AppendLine($"Analytic solution: {bruteForceSolution}");
+                builder.AppendLine($"Analytic solution: {analyticSolution}");
                 builder.Append($"Time spent calculating analytic solution: {analyticElapsed}");
                 eulerReport.AddContainer(builder.ToString());
 
