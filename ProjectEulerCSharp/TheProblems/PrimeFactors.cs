@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TheProblems
 {
@@ -6,6 +7,10 @@ namespace TheProblems
     {
         public static IList<PrimeFactor32> Factors(int n)
         {
+            if (n < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(n), "must be at least 2 to find factors");
+            }
             var factors = new List<PrimeFactor32>();
             var factor = 2;
             var power = 0;
