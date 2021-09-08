@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 
-namespace TheProblems
+namespace TheProblems.UnitTests
 {
     [TestFixture]
     public class FibonacciTest
