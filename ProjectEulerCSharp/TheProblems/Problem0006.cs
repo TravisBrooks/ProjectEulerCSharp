@@ -34,11 +34,20 @@ natural numbers and the square of the sum.")]
             return _SquareOfSum(range) - _SumOfSquares(range);
         }
 
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public int AnalyticSolution()
         {
-            throw new System.NotImplementedException();
+            // I found the formulas for the analytic solution first at:
+            // https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF
+            // for the _AnalyticSumOfInts, there were enough keywords in the wiki article to lead me to the better guide that also
+            // gave the formula for _AnalyticSumOfSquares
+            // https://brilliant.org/wiki/sum-of-n-n2-or-n3/
+            // The wiki link does a good job of how the sum relates to triangle numbers, while the brilliant.org link describes the 
+            // generalization of the sum of a series raised to whatever power (here we did sum of ints to power of 1 and to 2)
+            var sum = _AnalyticSumOfInts(100);
+            var sumOfSquares = _AnalyticSumOfSquares(100);
+            return sum * sum - sumOfSquares;
         }
 
         public int ExpectedSolution()
@@ -55,6 +64,17 @@ natural numbers and the square of the sum.")]
         {
             var sum = range.Sum();
             return sum * sum;
+        }
+
+        private int _AnalyticSumOfInts(int n)
+        {
+            // this formula was apparently known by the Pythagoreans in 600BC
+            return (n * (n + 1)) >> 1;
+        }
+
+        private int _AnalyticSumOfSquares(int n)
+        {
+            return (n * (n + 1) * (2 * n + 1)) / 6;
         }
     }
 }
