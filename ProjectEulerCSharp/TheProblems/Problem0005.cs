@@ -22,10 +22,8 @@ numbers from 1 to 20?")]
          ****************************************************************************************************/
         public int BruteForceSolution()
         {
-            var divisors = Enumerable.Range(1, 20)
-                .Where(n => n > 1)
-                .Reverse() // reverse does slight optimization in divisor test, many numbers pass beginning of range but not many are divisible by 19 and 17
-                .ToArray();
+            // reverse does slight optimization in divisor test, many numbers pass beginning of range but not many are divisible by 19 and 17
+            var divisors = new[] { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             // initial guess is product of all primes less than 20
             var guess = 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19;
             // Lets increment the guess until it is evenly divisible by 20, then we can increment it by 20 in loop below saving us from testing a bunch of numbers.
