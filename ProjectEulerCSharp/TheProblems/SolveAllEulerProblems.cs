@@ -19,22 +19,24 @@ namespace TheProblems
         {
             // NUnit has real problems dealing with TestCaseSource and generic types, so I introduced marker interface ISolution to get around that
             // then use reflection to get to the methods defined for ISolution<T> for whatever T is bound to for the given problem class.
+            // see https://github.com/nunit/nunit/issues/693
+            // Charlie claimed that this bug was fixed back in 3.0Beta3 but it sure seems to still be happening
 
-            var expectedMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.ExpectedSolution));
-            var bruteForceMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.BruteForceSolution));
-            var analyticMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<object>.AnalyticSolution));
+            var expectedMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.ExpectedSolution));
+            var bruteForceMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.BruteForceSolution));
+            var analyticMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.AnalyticSolution));
 
             Assert.NotNull(expectedMethod);
             Assert.NotNull(bruteForceMethod);
             Assert.NotNull(analyticMethod);
 
             var analyticElapsed = default(TimeSpan);
-            dynamic analyticSolution = null;
+            object analyticSolution = null;
 
             var expected = expectedMethod.Invoke(solutionInstance, null);
             _stopwatch.Restart();
 
-            dynamic bruteForceSolution = bruteForceMethod.Invoke(solutionInstance, null);
+            object bruteForceSolution = bruteForceMethod.Invoke(solutionInstance, null);
             _stopwatch.Stop();
             var bruteForceElapsed = _stopwatch.Elapsed;
 
@@ -104,18 +106,19 @@ namespace TheProblems
         {
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => t.IsClass && typeof(ISolution).IsAssignableFrom(t))
+                .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISolution<>)))
                 .ToArray();
 
             var testCases = new List<TestCaseData>();
 
             foreach (var solutionType in solutionTypes.OrderBy(st => st.Name))
             {
-                var instance = (ISolution) Activator.CreateInstance(solutionType);
+                var instance = Activator.CreateInstance(solutionType);
                 testCases.Add(new TestCaseData(instance));
             }
 
             return testCases.ToArray();
         }
+
     }
 }
