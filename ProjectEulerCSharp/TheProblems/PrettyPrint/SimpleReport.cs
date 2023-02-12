@@ -71,7 +71,7 @@ namespace TheProblems.PrettyPrint
                 {
                     var lineCharCnt = 2;
                     builder.Append(BorderLeftChar);
-                    builder.Append(" ");
+                    builder.Append(' ');
 
                     builder.Append(line);
                     lineCharCnt += line.Length;

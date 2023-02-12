@@ -47,7 +47,7 @@ namespace TheProblems
             var eulerReport = new SimpleReport(minTextWidthInChars: 80);
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
-            Assert.True(eulerAttribute is not null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
+            Debug.Assert(eulerAttribute is not null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
 
             eulerReport.AddContainer(eulerAttribute.Title);
             eulerReport.AddContainer(eulerAttribute.Description);

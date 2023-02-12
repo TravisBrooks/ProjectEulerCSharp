@@ -10,9 +10,9 @@ namespace TheProblems.UnitTests
         [MemberData(nameof(PrimeFactorData))]
         public void PrimeFactors(PrimeFactorsTestData testData)
         {
-            var (N, FactorsExpected) = testData;
-            var factorsActual = PrimeFactor32.Factors(N);
-            Assert.Equivalent(FactorsExpected, factorsActual, userMessage: "unexpected factors for " + N);
+            var (n, factorsExpected) = testData;
+            var factorsActual = PrimeFactor32.Factors(n);
+            Assert.Equivalent(factorsExpected, factorsActual, userMessage: "unexpected factors for " + n);
         }
 
         public record PrimeFactorsTestData(int N, IEnumerable<PrimeFactor32> FactorsExpected);
