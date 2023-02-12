@@ -2,48 +2,44 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
-using NUnit.Framework;
 using TheProblems.PrettyPrint;
+using Xunit;
+using Xunit.Abstractions;
+using Assert = XunitAssertMessages.AssertM;
 
 namespace TheProblems
 {
-    [TestFixture]
     public class SolveAllEulerProblems
     {
         private readonly Stopwatch _stopwatch = new();
+        private readonly ITestOutputHelper _testOutputHelper;
 
-        [TestCaseSource(nameof(_AllSolutions))]
-        public void EulerSolution(ISolution solutionInstance)
+        public SolveAllEulerProblems(ITestOutputHelper testOutputHelper)
         {
-            // NUnit has real problems dealing with TestCaseSource and generic types, so I introduced marker interface ISolution to get around that
-            // then use reflection to get to the methods defined for ISolution<T> for whatever T is bound to for the given problem class.
-            // see https://github.com/nunit/nunit/issues/693
-            // Charlie claimed that this bug was fixed back in 3.0Beta3 but it sure seems to still be happening
+            _testOutputHelper = testOutputHelper;
+        }
 
-            var expectedMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.ExpectedSolution));
-            var bruteForceMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.BruteForceSolution));
-            var analyticMethod = solutionInstance.GetType().GetMethod(nameof(ISolution<int>.AnalyticSolution));
-
-            Assert.NotNull(expectedMethod);
-            Assert.NotNull(bruteForceMethod);
-            Assert.NotNull(analyticMethod);
-
+        [Theory]
+        [MemberData(nameof(AllSolutionInstances))]
+        public void EulerSolution<T>(ISolution<T> solutionInstance) where T : INumber<T>
+        {
             var analyticElapsed = default(TimeSpan);
-            object analyticSolution = null;
+            T analyticSolution = default(T);
 
-            var expected = expectedMethod.Invoke(solutionInstance, null);
+            var expected = solutionInstance.ExpectedSolution();
             _stopwatch.Restart();
 
-            object bruteForceSolution = bruteForceMethod.Invoke(solutionInstance, null);
+            var bruteForceSolution = solutionInstance.BruteForceSolution();
             _stopwatch.Stop();
             var bruteForceElapsed = _stopwatch.Elapsed;
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
                 _stopwatch.Restart();
-                analyticSolution = analyticMethod.Invoke(solutionInstance, null);
+                analyticSolution = solutionInstance.AnalyticSolution();
                 _stopwatch.Stop();
                 analyticElapsed = _stopwatch.Elapsed;
             }
@@ -51,7 +47,7 @@ namespace TheProblems
             var eulerReport = new SimpleReport(minTextWidthInChars: 80);
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
-            Assert.That(eulerAttribute, Is.Not.Null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
+            Assert.True(eulerAttribute is not null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
 
             eulerReport.AddContainer(eulerAttribute.Title);
             eulerReport.AddContainer(eulerAttribute.Description);
@@ -93,28 +89,29 @@ namespace TheProblems
 
             }
 
-            Console.Write(eulerReport.PrettyPrintString());
+            _testOutputHelper.WriteLine(eulerReport.PrettyPrintString());
+            
+            Assert.Equal(expected, bruteForceSolution, "brute force solution was incorrect");
 
-            Assert.That(bruteForceSolution, Is.EqualTo(expected), "brute force solution was incorrect");
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
-                Assert.That(analyticSolution, Is.EqualTo(expected), "analytic solution was incorrect");
+                Assert.Equal(expected, analyticSolution, "analytic solution was incorrect");
             }
         }
 
-        private static IEnumerable<TestCaseData> _AllSolutions()
+        public static IEnumerable<object[]> AllSolutionInstances()
         {
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISolution<>)))
                 .ToArray();
 
-            var testCases = new List<TestCaseData>();
+            var testCases = new List<object[]>();
 
             foreach (var solutionType in solutionTypes.OrderBy(st => st.Name))
             {
                 var instance = Activator.CreateInstance(solutionType);
-                testCases.Add(new TestCaseData(instance));
+                testCases.Add(new []{instance});
             }
 
             return testCases.ToArray();
