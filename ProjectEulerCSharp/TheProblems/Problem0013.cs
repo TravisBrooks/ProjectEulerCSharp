@@ -132,31 +132,24 @@ description: @"Work out the first ten digits of the sum of the following one-hun
         {
             // This is not a truly analytical solution, but I'm curious if calculating a large sum tailored for this problem is faster than the generic BigInteger.
             // This basically does math like you would by hand, the only thing weird being converting an ascii value for 0-9 requires subtracting by 48 to get the numeric value.
-            var sums = new int[50];
-            short carry = 0;
-            const short asciiToIntegralDelta = 48;
+            var columnSums = new char[50];
+            var carry = 0;
+            var asciiToIntegralDelta = 48;
             var allNumbers = AllTheNumbers();
             for (var i = 49; i >= 0; i--)
             {
                 foreach (var numberStr in allNumbers)
                 {
-                    var columnDigit = Convert.ToInt16(numberStr[i]);
-                    // ordinarily short math returns an int, unless we do something sneaky with += and -= that preserves the short type
-                    columnDigit -= asciiToIntegralDelta;
+                    var columnDigit = numberStr[i] - asciiToIntegralDelta;
                     carry += columnDigit;
                 }
-                sums[i] = carry % 10;
+                columnSums[i] = (char)(carry % 10 + asciiToIntegralDelta);
                 carry /= 10;
             }
 
-            var sumsStr = string.Empty;
-            foreach (var digit in sums)
-            {
-                sumsStr += digit;
-            }
-            var totalSum = carry + sumsStr;
-
-            return long.Parse(totalSum.Substring(0, 10));
+            var sumStr = carry + new string(columnSums);
+            var answer = long.Parse(sumStr.Substring(0, 10));
+            return answer;
         }
 
         public long ExpectedSolution()
