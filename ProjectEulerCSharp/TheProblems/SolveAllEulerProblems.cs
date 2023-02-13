@@ -104,11 +104,13 @@ namespace TheProblems
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISolution<>)))
+                // reverse ordering by name is a hack to get the tests to display correctly in built in VS test explorer. Resharper test runner goes in parallel so the displayed test order is a bit random.
+                .OrderByDescending(t => t.Name)
                 .ToArray();
 
             var testCases = new List<object[]>();
 
-            foreach (var solutionType in solutionTypes.OrderBy(st => st.Name))
+            foreach (var solutionType in solutionTypes)
             {
                 var instance = Activator.CreateInstance(solutionType);
                 testCases.Add(new []{instance});
