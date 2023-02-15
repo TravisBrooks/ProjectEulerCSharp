@@ -20,6 +20,8 @@ namespace TheProblems
         public SolveAllEulerProblems(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
+            // load the factorials eagerly, otherwise the Factorial static ctor makes the first solution that uses Factorial look way slower than it really is
+            _ = Factorial.Of(10);
         }
 
         [Theory]
