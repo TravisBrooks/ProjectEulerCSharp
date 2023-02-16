@@ -17,12 +17,12 @@ What is the sum of the digits of the number 2^1000?"
         public int BruteForceSolution()
         {
             // Because we're dealing with powers of 2 its very easy to represent this number in binary: 1 "1" and 1000 "0s", a total of 1001 bits.
-            // I'll lean on the BigInteger class to go from base10 to base2 so the binary will be little endian.
+            // I'll lean on the BigInteger class to go from base2 to base10 so the binary will be little endian because thats BigInteger's default.
             var numberOfBytesNeeded = (int)Math.Ceiling(1001.0 / 8.0);
             var byteArr = new byte[numberOfBytesNeeded];
-            byteArr[numberOfBytesNeeded - 1] = 1;
+            byteArr[numberOfBytesNeeded - 1] = 1; // and just like that we have 2^1000 in binary...
             var bigInt = new BigInteger(byteArr);
-            int sum = 0;
+            var sum = 0;
             foreach (var intChar in bigInt.ToString())
             {
                 var i = int.Parse(intChar.ToString());
