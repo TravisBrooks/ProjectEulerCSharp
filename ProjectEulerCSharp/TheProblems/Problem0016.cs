@@ -12,7 +12,7 @@ What is the sum of the digits of the number 2^1000?"
     // ReSharper disable once UnusedMember.Global
     public class Problem0016 : ISolution<int>
     {
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public int BruteForceSolution()
         {
@@ -34,7 +34,18 @@ What is the sum of the digits of the number 2^1000?"
 
         public int AnalyticSolution()
         {
-            throw new NotImplementedException();
+            // this is a pretty weak analytic solution, its a slightly more optimized version of the first thing I thought of for BruteForceSolution
+            var byteArr = new byte[126];
+            byteArr[125] = 1;
+            var bigInt = new BigInteger(byteArr);
+            var sum = 0;
+            foreach (var intChar in bigInt.ToString())
+            {
+                int i = intChar.ToIntFast();
+                sum += i;
+            }
+
+            return sum;
         }
 
         public int ExpectedSolution()

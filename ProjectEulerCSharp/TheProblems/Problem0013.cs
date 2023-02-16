@@ -134,16 +134,15 @@ description: @"Work out the first ten digits of the sum of the following one-hun
             // This basically does math like you would by hand, the only thing weird being converting an ascii value for 0-9 requires subtracting by 48 to get the numeric value.
             var columnSums = new char[50];
             var carry = 0;
-            var asciiToIntegralDelta = 48;
             var allNumbers = AllTheNumbers();
             for (var i = 49; i >= 0; i--)
             {
                 foreach (var numberStr in allNumbers)
                 {
-                    var columnDigit = numberStr[i] - asciiToIntegralDelta;
+                    int columnDigit = numberStr[i].ToIntFast();
                     carry += columnDigit;
                 }
-                columnSums[i] = (char)(carry % 10 + asciiToIntegralDelta);
+                columnSums[i] = (carry % 10 ).ToCharFast();
                 carry /= 10;
             }
 
