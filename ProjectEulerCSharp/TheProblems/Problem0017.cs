@@ -156,20 +156,20 @@ British usage."
             return sum;
         }
 
-        private static readonly int[] tensAndTeens = { 0, "one".Length, "two".Length, "three".Length, "four".Length, "five".Length, "six".Length, "seven".Length, "eight".Length, "nine".Length, "ten".Length, "eleven".Length, "twelve".Length, "thirteen".Length, "fourteen".Length, "fifteen".Length, "sixteen".Length, "seventeen".Length, "eighteen".Length, "nineteen".Length };
-        private static readonly int[] subHundred = { 0, 0, "twenty".Length, "thirty".Length, "forty".Length, "fifty".Length, "sixty".Length, "seventy".Length, "eighty".Length, "ninety".Length };
+        private static readonly int[] TensAndTeens = { 0, "one".Length, "two".Length, "three".Length, "four".Length, "five".Length, "six".Length, "seven".Length, "eight".Length, "nine".Length, "ten".Length, "eleven".Length, "twelve".Length, "thirteen".Length, "fourteen".Length, "fifteen".Length, "sixteen".Length, "seventeen".Length, "eighteen".Length, "nineteen".Length };
+        private static readonly int[] SubHundred = { 0, 0, "twenty".Length, "thirty".Length, "forty".Length, "fifty".Length, "sixty".Length, "seventy".Length, "eighty".Length, "ninety".Length };
         private static int NumberToEnglishWordLength(int number)
         {
             if (number == 1000)
             {
-                return "onethousand".Length;
+                return "OneThousand".Length;
             }
 
             var len = 0;
             if (number >= 100)
             {
                 var remainder = number % 100;
-                len = tensAndTeens[(number - remainder) / 100] + "hundred".Length;
+                len = TensAndTeens[(number - remainder) / 100] + "hundred".Length;
                 if (remainder != 0)
                 {
                     len += "and".Length;
@@ -180,13 +180,13 @@ British usage."
             if (number >= 20)
             {
                 var remainder = number % 10;
-                len += subHundred[(number - remainder) / 10];
+                len += SubHundred[(number - remainder) / 10];
                 number = remainder;
             }
 
             if (number > 0)
             {
-                len += tensAndTeens[number];
+                len += TensAndTeens[number];
             }
             return len;
         }
