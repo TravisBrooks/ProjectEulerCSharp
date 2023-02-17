@@ -45,49 +45,29 @@ British usage."
             const string nine = "nine";
             const string hundred = "hundred";
             const string and = "and";
-            switch (number)
+            return number switch
             {
-                case 1000:
-                    return one + "thousand";
-                case > 900:
-                    return nine + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 900:
-                    return nine + hundred;
-                case > 800:
-                    return eight + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 800:
-                    return eight + hundred;
-                case > 700:
-                    return seven + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 700:
-                    return seven + hundred;
-                case > 600:
-                    return six + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 600:
-                    return six + hundred;
-                case > 500:
-                    return five + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 500:
-                    return five + hundred;
-                case > 400:
-                    return four + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 400:
-                    return four + hundred;
-                case > 300:
-                    return three + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 300:
-                    return three + hundred;
-                case > 200:
-                    return two + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 200:
-                    return two + hundred;
-                case > 100:
-                    return one + hundred + and + SubHundredToEnglish(DropHundred(number));
-                case 100:
-                    return one + hundred;
-                default:
-                    return SubHundredToEnglish(number);
-            }
+                1000 => one + "thousand",
+                > 900 => nine + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                900 => nine + hundred,
+                > 800 => eight + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                800 => eight + hundred,
+                > 700 => seven + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                700 => seven + hundred,
+                > 600 => six + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                600 => six + hundred,
+                > 500 => five + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                500 => five + hundred,
+                > 400 => four + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                400 => four + hundred,
+                > 300 => three + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                300 => three + hundred,
+                > 200 => two + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                200 => two + hundred,
+                > 100 => one + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                100 => one + hundred,
+                _ => SubHundredToEnglish(number),
+            };
 
             static string SubHundredToEnglish(int n)
             {
