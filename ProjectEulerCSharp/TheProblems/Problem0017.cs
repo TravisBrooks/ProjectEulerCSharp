@@ -32,6 +32,12 @@ British usage."
             return sum;
         }
 
+        /// <summary>
+        /// Could probably come up with something more clever but this was the first idea I had and it seemed to work
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         private static string NumberToEnglish(int number)
         {
             const string one = "one";
@@ -48,23 +54,23 @@ British usage."
             return number switch
             {
                 1000 => one + "thousand",
-                > 900 => nine + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 900 => nine + hundred + and + SubHundredToEnglish(number % 100),
                 900 => nine + hundred,
-                > 800 => eight + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 800 => eight + hundred + and + SubHundredToEnglish(number % 100),
                 800 => eight + hundred,
-                > 700 => seven + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 700 => seven + hundred + and + SubHundredToEnglish(number % 100),
                 700 => seven + hundred,
-                > 600 => six + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 600 => six + hundred + and + SubHundredToEnglish(number % 100),
                 600 => six + hundred,
-                > 500 => five + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 500 => five + hundred + and + SubHundredToEnglish(number % 100),
                 500 => five + hundred,
-                > 400 => four + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 400 => four + hundred + and + SubHundredToEnglish(number % 100),
                 400 => four + hundred,
-                > 300 => three + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 300 => three + hundred + and + SubHundredToEnglish(number % 100),
                 300 => three + hundred,
-                > 200 => two + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 200 => two + hundred + and + SubHundredToEnglish(number % 100),
                 200 => two + hundred,
-                > 100 => one + hundred + and + SubHundredToEnglish(DropHundred(number)),
+                > 100 => one + hundred + and + SubHundredToEnglish(number % 100),
                 100 => one + hundred,
                 _ => SubHundredToEnglish(number),
             };
@@ -82,21 +88,21 @@ British usage."
 
                 return n switch
                 {
-                    > 90 => ninety + DigitToEnglish(DropTen(n)),
+                    > 90 => ninety + DigitToEnglish(n % 10),
                     90 => ninety,
-                    > 80 => eighty + DigitToEnglish(DropTen(n)),
+                    > 80 => eighty + DigitToEnglish(n % 10),
                     80 => eighty,
-                    > 70 => seventy + DigitToEnglish(DropTen(n)),
+                    > 70 => seventy + DigitToEnglish(n % 10),
                     70 => seventy,
-                    > 60 => sixty + DigitToEnglish(DropTen(n)),
+                    > 60 => sixty + DigitToEnglish(n % 10),
                     60 => sixty,
-                    > 50 => fifty + DigitToEnglish(DropTen(n)),
+                    > 50 => fifty + DigitToEnglish(n % 10),
                     50 => fifty,
-                    > 40 => forty + DigitToEnglish(DropTen(n)),
+                    > 40 => forty + DigitToEnglish(n % 10),
                     40 => forty,
-                    > 30 => thirty + DigitToEnglish(DropTen(n)),
+                    > 30 => thirty + DigitToEnglish(n % 10),
                     30 => thirty,
-                    > 20 => twenty + DigitToEnglish(DropTen(n)),
+                    > 20 => twenty + DigitToEnglish(n % 10),
                     20 => twenty,
                     > 10 => TeenToEnglish(n),
                     _ => DigitToEnglish(n)
@@ -135,40 +141,6 @@ British usage."
                     9 => "nine",
                     10 => "ten",
                     _ => throw new ArgumentOutOfRangeException(nameof(n), $"Parameter must be > 0 and <= 10 but was {n}")
-                };
-            }
-
-            static int DropHundred(int n)
-            {
-                return n switch
-                {
-                    > 900 => n - 900,
-                    > 800 => n - 800,
-                    > 700 => n - 700,
-                    > 600 => n - 600,
-                    > 500 => n - 500,
-                    > 400 => n - 400,
-                    > 300 => n - 300,
-                    > 200 => n - 200,
-                    > 100 => n - 100,
-                    _ => throw new ArgumentOutOfRangeException(nameof(n), $"Parameter must be > 100, < 1000, and cannot be evenly divided by 10 but was {n}")
-                };
-            }
-
-            static int DropTen(int n)
-            {
-                return n switch
-                {
-                    > 90 => n - 90,
-                    > 80 => n - 80,
-                    > 70 => n - 70,
-                    > 60 => n - 60,
-                    > 50 => n - 50,
-                    > 40 => n - 40,
-                    > 30 => n - 30,
-                    > 20 => n - 20,
-                    > 10 => n - 10,
-                    _ => throw new ArgumentOutOfRangeException(nameof(n), $"Parameter must be > 10, < 100, and cannot be evenly divided by 10 but was {n}")
                 };
             }
         }
