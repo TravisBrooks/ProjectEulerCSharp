@@ -19,7 +19,7 @@ British usage."
     // ReSharper disable once UnusedMember.Global
     public class Problem0017 : ISolution<int>
     {
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public int BruteForceSolution()
         {
@@ -147,7 +147,48 @@ British usage."
 
         public int AnalyticSolution()
         {
-            throw new NotImplementedException();
+            // this is really more of a succinct brute force method than analytic. Relies on some stupid array indexing tricks.
+            var sum = 0;
+            foreach (var number in Enumerable.Range(1, 1000))
+            {
+                sum += NumberToEnglishWordLength(number);
+            }
+            return sum;
+        }
+
+        private static readonly int[] tensAndTeens = { 0, "one".Length, "two".Length, "three".Length, "four".Length, "five".Length, "six".Length, "seven".Length, "eight".Length, "nine".Length, "ten".Length, "eleven".Length, "twelve".Length, "thirteen".Length, "fourteen".Length, "fifteen".Length, "sixteen".Length, "seventeen".Length, "eighteen".Length, "nineteen".Length };
+        private static readonly int[] subHundred = { 0, 0, "twenty".Length, "thirty".Length, "forty".Length, "fifty".Length, "sixty".Length, "seventy".Length, "eighty".Length, "ninety".Length };
+        private static int NumberToEnglishWordLength(int number)
+        {
+            if (number == 1000)
+            {
+                return "onethousand".Length;
+            }
+
+            var len = 0;
+            if (number >= 100)
+            {
+                var remainder = number % 100;
+                len = tensAndTeens[(number - remainder) / 100] + "hundred".Length;
+                if (remainder != 0)
+                {
+                    len += "and".Length;
+                }
+                number = remainder;
+            }
+
+            if (number >= 20)
+            {
+                var remainder = number % 10;
+                len += subHundred[(number - remainder) / 10];
+                number = remainder;
+            }
+
+            if (number > 0)
+            {
+                len += tensAndTeens[number];
+            }
+            return len;
         }
 
         public int ExpectedSolution()
