@@ -45,77 +45,79 @@ clever method! ;o)"
 
         public int BruteForceSolution()
         {
-            // the most brute force way I can think to do this is to have a crap ton of loops to find every possible path
-
-            int[][] triangle =
-            {
-                new[]{75}, // 0 a
-                new[]{95, 64}, // 1 b
-                new[]{17, 47, 82}, // 2 c
-                new[]{18, 35, 87, 10}, //3 d
-                new[]{20, 04, 82, 47, 65}, // 4 e
-                new[]{19, 01, 23, 75, 03, 34}, // 5 f
-                new[]{88, 02, 77, 73, 07, 63, 67}, // 6 g
-                new[]{99, 65, 04, 28, 06, 16, 70, 92}, // 7 h
-                new[]{41, 41, 26, 56, 83, 40, 80, 70, 33}, // 8 i
-                new[]{41, 48, 72, 33, 47, 32, 37, 16, 94, 29}, // 9 j
-                new[]{53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14}, // 10 k
-                new[]{70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57}, // 11 l
-                new[]{91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48}, // 12 m
-                new[]{63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31}, // 13 n
-                new[]{04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23}, // 14 o
-            };
-
-            var maxLen = 0;
-
+            // Hey, its called a brute force solution...
             // One of the dumbest nested loops I've ever written. Basic idea is the 2 branches that can be traveled in the
             // triangle from a given row [a, b] can go to [a+1, b] or [a+1, b+1]. This big ugly loop goes down both paths
             // and figures out the distance for both, keeping the larger. It looks dumb as hell but is surprisingly fast.
-            for (var a=0; a < triangle[0].Length; a++)
+
+            int[][] triangle =
             {
-                for (var b = a; b <= a + 1; b++)
+                new[]{75}, 
+                new[]{95, 64}, 
+                new[]{17, 47, 82},
+                new[]{18, 35, 87, 10},
+                new[]{20, 04, 82, 47, 65},
+                new[]{19, 01, 23, 75, 03, 34},
+                new[]{88, 02, 77, 73, 07, 63, 67},
+                new[]{99, 65, 04, 28, 06, 16, 70, 92},
+                new[]{41, 41, 26, 56, 83, 40, 80, 70, 33},
+                new[]{41, 48, 72, 33, 47, 32, 37, 16, 94, 29},
+                new[]{53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14},
+                new[]{70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57},
+                new[]{91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48},
+                new[]{63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31},
+                new[]{04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23},
+            };
+
+
+            var maxLen = 0;
+
+            for (var idx0 = 0; idx0 < triangle[0].Length; idx0++)
+            {
+                for (var idx1 = idx0; idx1 <= idx0 + 1; idx1++)
                 {
-                    for (var c = b; c <= b + 1; c++)
+                    for (var idx2 = idx1; idx2 <= idx1 + 1; idx2++)
                     {
-                        for (var d = c; d <= c + 1; d++)
+                        for (var idx3 = idx2; idx3 <= idx2 + 1; idx3++)
                         {
-                            for (var e = d; e <= d + 1; e++)
+                            for (var idx4 = idx3; idx4 <= idx3 + 1; idx4++)
                             {
-                                for (var f = e; f <= e + 1; f++)
+                                for (var idx5 = idx4; idx5 <= idx4 + 1; idx5++)
                                 {
-                                    for (var g = f; g <= f + 1; g++)
+                                    for (var idx6 = idx5; idx6 <= idx5 + 1; idx6++)
                                     {
-                                        for (var h = g; h <= g + 1; h++)
+                                        for (var idx7 = idx6; idx7 <= idx6 + 1; idx7++)
                                         {
-                                            for (var i = h; i <= h + 1; i++)
+                                            for (var idx8 = idx7; idx8 <= idx7 + 1; idx8++)
                                             {
-                                                for (var j = i; j <= i + 1; j++)
+                                                for (var idx9 = idx8; idx9 <= idx8 + 1; idx9++)
                                                 {
-                                                    for (var k = j; k <= j + 1; k++)
+                                                    for (var idx10 = idx9; idx10 <= idx9 + 1; idx10++)
                                                     {
-                                                        for (var l = k; l <= k + 1; l++)
+                                                        for (var idx11 = idx10; idx11 <= idx10 + 1; idx11++)
                                                         {
-                                                            for (var m = l; m <= l + 1; m++)
+                                                            for (var idx12 = idx11; idx12 <= idx11 + 1; idx12++)
                                                             {
-                                                                for (var n = m; n <= m + 1; n++)
+                                                                for (var idx13 = idx12; idx13 <= idx12 + 1; idx13++)
                                                                 {
-                                                                    for (var o = n; o <= n + 1; o++)
+                                                                    for (var idx14 = idx13; idx14 <= idx13 + 1; idx14++)
                                                                     {
-                                                                        var len = triangle[00][a] +
-                                                                                  triangle[01][b] +
-                                                                                  triangle[02][c] +
-                                                                                  triangle[03][d] +
-                                                                                  triangle[04][e] +
-                                                                                  triangle[05][f] +
-                                                                                  triangle[06][g] +
-                                                                                  triangle[07][h] +
-                                                                                  triangle[08][i] +
-                                                                                  triangle[09][j] +
-                                                                                  triangle[10][k] +
-                                                                                  triangle[11][l] +
-                                                                                  triangle[12][m] +
-                                                                                  triangle[13][n] +
-                                                                                  triangle[14][o];
+                                                                        var len =
+                                                                            triangle[0][idx0] +
+                                                                            triangle[1][idx1] +
+                                                                            triangle[2][idx2] +
+                                                                            triangle[3][idx3] +
+                                                                            triangle[4][idx4] +
+                                                                            triangle[5][idx5] +
+                                                                            triangle[6][idx6] +
+                                                                            triangle[7][idx7] +
+                                                                            triangle[8][idx8] +
+                                                                            triangle[9][idx9] +
+                                                                            triangle[10][idx10] +
+                                                                            triangle[11][idx11] +
+                                                                            triangle[12][idx12] +
+                                                                            triangle[13][idx13] +
+                                                                            triangle[14][idx14];
                                                                         if (len > maxLen)
                                                                         {
                                                                             maxLen = len;
@@ -135,7 +137,6 @@ clever method! ;o)"
                     }
                 }
             }
-
             return maxLen;
         }
 
