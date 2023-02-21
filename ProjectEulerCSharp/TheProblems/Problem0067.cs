@@ -5,7 +5,7 @@ using System.Reflection;
 namespace TheProblems
 {
     [Euler(
-        title: "Maximum path sum 2",
+        title: "Maximum path sum Part II",
         description: @"
 By starting at the top of the triangle below and moving to adjacent numbers on
 the row below, the maximum total from top to bottom is 23.
@@ -17,8 +17,8 @@ the row below, the maximum total from top to bottom is 23.
 
 That is, 3 + 7 + 4 + 9 = 23.
 
-Find the maximum total from top to bottom in triangle.txt (right click and
-'Save Link/Target As...'), a 15K text file containing a triangle with
+Find the maximum total from top to bottom in triangle.txt (file embedded as
+/ProblemData/p067_triangle.txt), a 15K text file containing a triangle with
 one-hundred rows.
 
 NOTE: This is a much more difficult version of Problem 18. It is not possible
