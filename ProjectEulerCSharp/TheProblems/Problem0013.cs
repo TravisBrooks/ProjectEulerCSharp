@@ -259,10 +259,7 @@ description: @"Work out the first ten digits of the sum of the following one-hun
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690";
 
-            return bigStr.Split(
-                new[] { "\r\n", "\r", "\n" },
-                StringSplitOptions.RemoveEmptyEntries|StringSplitOptions.TrimEntries
-            );
+            return bigStr.SplitOnNewLines();
         }
     }
 }

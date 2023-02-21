@@ -104,7 +104,6 @@ greatest product. What is the value of this product?")]
                 if (product > maxProduct)
                 {
                     maxProduct = product;
-                    //Array.Copy(digits, maxDigits, 13);
                 }
             }
 
