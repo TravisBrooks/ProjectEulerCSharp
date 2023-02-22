@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TheProblems;
+namespace TheProblems.EulerMath;
 
 public record PrimeFactor32(int Factor, int Power)
 {

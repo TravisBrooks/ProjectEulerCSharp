@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TheProblems
+namespace TheProblems.EulerMath
 {
     internal static class ExtensionMethods
     {

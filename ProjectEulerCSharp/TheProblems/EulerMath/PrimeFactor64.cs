@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheProblems
+namespace TheProblems.EulerMath
 {
     public record PrimeFactor64(long Factor, long Power)
     {

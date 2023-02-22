@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace TheProblems;
+namespace TheProblems.EulerMath;
 
 /// <summary>
 /// A class to solve problems #18 and #67
 /// </summary>
-public class TrianglePathProblem
+public class TrianglePath
 {
     private readonly int[][] _triangle;
     private readonly int[][] _pathLengths;
 
-    public TrianglePathProblem(int[][] triangleData)
+    public TrianglePath(int[][] triangleData)
     {
         _triangle = triangleData;
         _pathLengths = new int[_triangle.Length][];

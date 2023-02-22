@@ -2,7 +2,7 @@
 using Xunit;
 using Assert = XunitAssertMessages.AssertM;
 
-namespace TheProblems.UnitTests
+namespace TheProblems.EulerMath.UnitTests
 {
     public class PrimeFactorsTest
     {

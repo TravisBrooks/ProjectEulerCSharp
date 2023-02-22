@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace TheProblems
+namespace TheProblems.EulerMath
 {
     public static class Primes
     {

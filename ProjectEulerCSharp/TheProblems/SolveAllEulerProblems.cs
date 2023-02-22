@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
+using TheProblems.EulerMath;
 using TheProblems.PrettyPrint;
 using Xunit;
 using Xunit.Abstractions;

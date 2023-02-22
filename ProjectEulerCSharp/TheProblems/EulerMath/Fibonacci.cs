@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheProblems
+namespace TheProblems.EulerMath
 {
     public static class Fibonacci
     {

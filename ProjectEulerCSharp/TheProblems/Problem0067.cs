@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using TheProblems.EulerMath;
 
 namespace TheProblems
 {
@@ -18,7 +19,7 @@ the row below, the maximum total from top to bottom is 23.
 That is, 3 + 7 + 4 + 9 = 23.
 
 Find the maximum total from top to bottom in triangle.txt (file embedded as
-/ProblemData/p067_triangle.txt), a 15K text file containing a triangle with
+/EulerData/p067_triangle.txt), a 15K text file containing a triangle with
 one-hundred rows.
 
 NOTE: This is a much more difficult version of Problem 18. It is not possible
@@ -35,7 +36,7 @@ billion years to check them all. There is an efficient algorithm to solve it.
         public Problem0067()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("TheProblems.ProblemData.p067_triangle.txt"))
+            using (var stream = assembly.GetManifestResourceStream("TheProblems.EulerData.p067_triangle.txt"))
             {
                 if (stream == null)
                 {
@@ -56,7 +57,7 @@ billion years to check them all. There is an efficient algorithm to solve it.
         {
             // This is really the analytic solution, I attempted my previous brute force solution for #18 and
             // just like the Euler website claims it looked like it was going to run forever.
-            var solver = new TrianglePathProblem(_triangleData);
+            var solver = new TrianglePath(_triangleData);
             var answer = solver.LongestPath();
             return answer;
         }

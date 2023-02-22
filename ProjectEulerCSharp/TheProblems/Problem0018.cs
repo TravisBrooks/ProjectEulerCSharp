@@ -1,4 +1,6 @@
-﻿namespace TheProblems
+﻿using TheProblems.EulerMath;
+
+namespace TheProblems
 {
     [Euler(
 title: "Maximum path sum Part I",
@@ -144,7 +146,7 @@ clever method! ;o)"
 
         public int AnalyticSolution()
         {
-            var solver = new TrianglePathProblem(_triangleData);
+            var solver = new TrianglePath(_triangleData);
             return solver.LongestPath();
         }
 
