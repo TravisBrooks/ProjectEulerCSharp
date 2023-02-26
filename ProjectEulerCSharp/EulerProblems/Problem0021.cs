@@ -37,6 +37,9 @@ Evaluate the sum of all the amicable numbers under 10000."
                 var (number, sum) = kvp;
                 if (number != sum && nToDivisorSum.ContainsKey(sum) && nToDivisorSum[sum] == number)
                 {
+                    // Could just add number here to a running total, but surprisingly this is no faster
+                    // than the HashSet Sum, which seems like a more obvious solution that matches how the
+                    // problem is stated in english.
                     amicableNumbers.Add(number);
                     amicableNumbers.Add(sum);
                 }
