@@ -14,7 +14,13 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         public string Text { get; }
 
-        public static TextContainer BuildContainer(string rawText, int maxCharWidth = 80)
+        /// <summary>
+        /// Will format the given text to add line breaks to fit lines into the maxCharWidth. Will add breaks on whitespace only, if no whitespace is present the line(s) will exceed maxCharWidth.
+        /// </summary>
+        /// <param name="rawText"></param>
+        /// <param name="maxCharWidth"></param>
+        /// <returns></returns>
+        public static TextContainer Build(string rawText, int maxCharWidth = 80)
         {
             if (rawText.Length < maxCharWidth)
             {

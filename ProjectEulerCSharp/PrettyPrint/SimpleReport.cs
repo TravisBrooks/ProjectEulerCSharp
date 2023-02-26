@@ -39,7 +39,7 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         public void AddContainer(string text)
         {
-            _containers.Add(TextContainer.BuildContainer(text));
+            _containers.Add(TextContainer.Build(text));
         }
 
         public string PrettyPrintString()
