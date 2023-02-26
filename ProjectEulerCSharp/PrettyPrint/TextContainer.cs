@@ -7,13 +7,15 @@ namespace ProjectEulerCSharp.PrettyPrint
 {
     public class TextContainer
     {
+        private static readonly Regex ContainsWhitespace = new(@"\s", RegexOptions.Compiled);
+
         public TextContainer(string text)
         {
             Text = text ?? string.Empty;
         }
 
         public string Text { get; }
-
+        
         /// <summary>
         /// Will format the given text to add line breaks to fit lines into the maxCharWidth. Will add breaks on whitespace only, if no whitespace is present the line(s) will exceed maxCharWidth.
         /// </summary>
@@ -28,7 +30,6 @@ namespace ProjectEulerCSharp.PrettyPrint
             }
             var sb = new StringBuilder();
             var lines = rawText.SplitOnNewLines(StringSplitOptions.TrimEntries);
-            var containsWhitespace = new Regex(@"\s");
             foreach (var line in lines)
             {
                 if (string.Equals(line, string.Empty))
@@ -44,7 +45,7 @@ namespace ProjectEulerCSharp.PrettyPrint
                 }
 
                 // if we have a big line of text with no whitespace we'll assume that its important and will let it exceed the maxCharWidth
-                if (!containsWhitespace.IsMatch(line))
+                if (!ContainsWhitespace.IsMatch(line))
                 {
                     sb.AppendLine(line);
                     continue;
@@ -54,9 +55,11 @@ namespace ProjectEulerCSharp.PrettyPrint
                 while (currIdx < line.Length - 1)
                 {
                     var endIndex = currIdx + maxCharWidth - 1;
-                    if (endIndex >= line.Length - 1)
+                    string restOfLine = line.Substring(currIdx);
+                    // if it all fits in 1 line or there is no whitespace in the rest of the line append the rest of the line
+                    if (restOfLine.Length < maxCharWidth || !ContainsWhitespace.IsMatch(restOfLine))
                     {
-                        sb.AppendLine(line.Substring(currIdx));
+                        sb.AppendLine(restOfLine);
                         currIdx = line.Length;
                     }
                     else if (char.IsWhiteSpace(line[endIndex]))
