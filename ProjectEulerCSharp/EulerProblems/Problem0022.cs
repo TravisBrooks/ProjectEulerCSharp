@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace ProjectEulerCSharp.EulerProblems
 {
@@ -27,22 +25,13 @@ What is the total of all the name scores in the file?"
 
         public Problem0022()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("ProjectEulerCSharp.EulerData.p022_names.txt"))
-            {
-                if (stream == null)
+            _names = EulerData.Get.Resource(
+                fileName: "p022_names.txt",
+                fileStr => 
                 {
-                    throw new Exception("Could not find resource for names data!");
-                }
-
-                using (StreamReader reader = new(stream))
-                {
-                    var result = reader.ReadToEnd();
-                    var namesNoQuotes = result.Replace("\"", string.Empty);
-                    _names = namesNoQuotes.Split(',', 
-                        StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-                }
-            }
+                    var namesNoQuotes = fileStr.Replace("\"", string.Empty);
+                    return namesNoQuotes.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                });
         }
 
         public bool HaveImplementedAnalyticSolution => false;

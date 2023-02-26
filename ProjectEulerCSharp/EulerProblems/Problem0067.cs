@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems
@@ -35,20 +33,9 @@ billion years to check them all. There is an efficient algorithm to solve it.
 
         public Problem0067()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("ProjectEulerCSharp.EulerData.p067_triangle.txt"))
-            {
-                if (stream == null)
-                {
-                    throw new Exception("Could not find resource for triangle data!");
-                }
-
-                using (StreamReader reader = new(stream))
-                {
-                    var result = reader.ReadToEnd();
-                    _triangleData = result.TabularDataToJaggedIntArray();
-                }
-            }
+            _triangleData = EulerData.Get.Resource(
+                fileName: "p067_triangle.txt",
+                fileStr => fileStr.TabularDataToJaggedIntArray());
         }
 
         public bool HaveImplementedAnalyticSolution => false;
