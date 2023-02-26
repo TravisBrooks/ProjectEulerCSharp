@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EulerData\p022_names.txt" />
     <None Remove="EulerData\p067_triangle.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="EulerData\p022_names.txt" />
     <EmbeddedResource Include="EulerData\p067_triangle.txt" />
   </ItemGroup>
 
