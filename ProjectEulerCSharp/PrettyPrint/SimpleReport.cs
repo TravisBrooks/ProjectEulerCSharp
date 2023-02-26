@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.PrettyPrint
 {
@@ -38,13 +39,13 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         public void AddContainer(string text)
         {
-            _containers.Add(new TextContainer(text ?? string.Empty));
+            _containers.Add(new TextContainer(text));
         }
 
         public string PrettyPrintString()
         {
             var maxMessageLineChars = _containers.Select(c => c.Text)
-                .SelectMany(str => str.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.None))
+                .SelectMany(str => str.SplitOnNewLines(StringSplitOptions.TrimEntries))
                 .Max(str => str.Length);
 
             // the char for either the left or right border + white space
@@ -66,7 +67,7 @@ namespace ProjectEulerCSharp.PrettyPrint
             foreach (var container in _containers)
             {
                 currentContainer++;
-                var lines = container.Text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.None);
+                var lines = container.Text.SplitOnNewLines(StringSplitOptions.TrimEntries);
                 foreach (var line in lines)
                 {
                     var lineCharCnt = 2;

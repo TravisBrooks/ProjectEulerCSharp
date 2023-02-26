@@ -35,10 +35,17 @@ namespace ProjectEulerCSharp.EulerMath
             return singleDigit.ToCharFast();
         }
 
-        public static string[] SplitOnNewLines(this string str)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="splitOptions">Defaults to TrimEntries|RemoveEmptyEntries</param>
+        /// <returns></returns>
+        public static string[] SplitOnNewLines(
+            this string str,
+            StringSplitOptions splitOptions = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
         {
-            return str.Split(new[] { "\r\n", "\r", "\n" }, 
-                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            return str.Split(new[] { "\r\n", "\r", "\n" }, splitOptions);
         }
 
         public static int[][] TabularDataToJaggedIntArray(this string str)

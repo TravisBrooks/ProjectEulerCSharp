@@ -20,7 +20,7 @@ Find the sum of the digits in the number 100!"
 
         public int BruteForceSolution()
         {
-            return Factorial.Of(100).ToString().Sum(digit => int.Parse(digit.ToString()));
+            return Factorial.Of(100).ToString().Sum(digit => digit.ToIntFast());
         }
 
         public int AnalyticSolution()
