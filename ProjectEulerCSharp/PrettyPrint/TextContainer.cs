@@ -37,6 +37,7 @@ namespace ProjectEulerCSharp.PrettyPrint
                     continue;
                 }
 
+                // if we have a big line of text with no whitespace we'll assume that its important and will let it exceed the maxCharWidth
                 if (!containsWhitespace.IsMatch(line))
                 {
                     sb.AppendLine(line);
