@@ -22,7 +22,7 @@ namespace ProjectEulerCSharp.PrettyPrint
         /// <param name="rawText"></param>
         /// <param name="maxCharWidth"></param>
         /// <returns></returns>
-        public static TextContainer Build(string rawText, int maxCharWidth = 80)
+        public static TextContainer Build(string rawText, int maxCharWidth)
         {
             if (rawText.Length < maxCharWidth)
             {
