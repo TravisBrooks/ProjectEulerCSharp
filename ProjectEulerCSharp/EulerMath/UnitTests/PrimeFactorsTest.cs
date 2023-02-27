@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             var (n, factorsExpected) = testData;
             var factorsActual = PrimeFactor32.Factors(n);
-            Assert.Equivalent(factorsExpected, factorsActual, userMessage: "unexpected factors for " + n);
+            Assert.Equal(factorsExpected, factorsActual, userMessage: "unexpected factors for " + n);
         }
 
         public record PrimeFactorsTestData(int N, IEnumerable<PrimeFactor32> FactorsExpected);

@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             // this is the expected initial sequence from Problem 2, not necessarily the universally expected sequence of Fibonacci numbers
             var expected = new long[] {1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
             var actual = Fibonacci.Sequence().Take(expected.Length);
-            Assert.Equivalent(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

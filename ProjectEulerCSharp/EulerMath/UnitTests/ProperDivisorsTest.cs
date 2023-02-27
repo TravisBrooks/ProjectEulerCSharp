@@ -12,8 +12,8 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         public void Divisors(ProperDivisorsTestData testData)
         {
             var (n, expectedDivisors) = testData;
-            var actualDivisors = ProperDivisors.Of(n);
-            Assert.Equivalent(expectedDivisors, actualDivisors, userMessage: $"unexpected divisors for {n}");
+            var actualDivisors = ProperDivisors.Of(n).OrderBy(n => n).ToArray();
+            Assert.Equal(expectedDivisors.OrderBy(n => n), actualDivisors, userMessage: $"unexpected divisors for {n}");
         }
 
         public record ProperDivisorsTestData(int N, IList<int> Divisors);
@@ -31,6 +31,10 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             yield return new object[]
             {
                 new ProperDivisorsTestData(36, new[]{1, 2, 18, 3, 12, 4, 9, 6})
+            };
+            yield return new object[]
+            {
+                new ProperDivisorsTestData(12, new[]{1, 2, 3, 4, 6})
             };
         }
     }
