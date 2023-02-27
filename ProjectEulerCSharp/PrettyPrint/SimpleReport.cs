@@ -53,6 +53,7 @@ namespace ProjectEulerCSharp.PrettyPrint
             var totalCharsPerLine = Math.Max(maxMessageLineChars, MinTextWidthInChars) + charsForBorder + charsForBorder;
 
             var builder = new StringBuilder();
+            builder.AppendLine();
             var containerCount = _containers.Count;
             var currentContainer = 0;
 
@@ -100,7 +101,8 @@ namespace ProjectEulerCSharp.PrettyPrint
                 builder.Append(Environment.NewLine);
             }
 
-            return builder.ToString();
+            var prettyPrintString = builder.ToString();
+            return prettyPrintString;
         }
     }
 }

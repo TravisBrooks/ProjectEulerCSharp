@@ -27,6 +27,7 @@ namespace ProjectEulerCSharp
         }
 
         [Theory]
+        [Trait("Category", "EulerProblems")]
         [MemberData(nameof(AllSolutionInstances))]
         public void EulerSolution<T>(ISolution<T> solutionInstance) where T : INumber<T>
         {
@@ -108,9 +109,7 @@ namespace ProjectEulerCSharp
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISolution<>)))
-                // reverse ordering by name is a hack to get the tests to display correctly in built in VS test explorer. ReSharper
-                // test runner goes in parallel so the displayed test order is a bit random.
-                .OrderByDescending(t => t.Name)
+                .OrderBy(t => t.Name)
                 .ToArray();
 
             var testCases = new List<object[]>();

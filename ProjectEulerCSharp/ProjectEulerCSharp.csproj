@@ -4,6 +4,7 @@
       <TargetFramework>net7.0</TargetFramework>
       <IsPackable>false</IsPackable>
       <Nullable>disable</Nullable>
+      <RunSettingsFilePath>$(MSBuildProjectDirectory)/RunOnlyProjectEulerTests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="XunitXml.TestLogger" Version="3.0.78" />
   </ItemGroup>
 
 </Project>
