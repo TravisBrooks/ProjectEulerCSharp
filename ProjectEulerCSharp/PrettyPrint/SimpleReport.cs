@@ -27,13 +27,13 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         private readonly List<TextContainer> _containers;
 
-        public SimpleReport(int? minTextWidthInChars = null)
+        public SimpleReport(int? textMaxCharsPerLine = null)
         {
             _containers = new List<TextContainer>();
-            MinTextWidthInChars = minTextWidthInChars ?? 80;
+            TextMaxCharsPerLine = textMaxCharsPerLine ?? 80;
         }
 
-        public int MinTextWidthInChars { get; }
+        public int TextMaxCharsPerLine { get; }
 
         public IList<TextContainer> ChildContainers => _containers.AsReadOnly();
 
@@ -50,7 +50,7 @@ namespace ProjectEulerCSharp.PrettyPrint
 
             // the char for either the left or right border + white space
             var charsForBorder = 2;
-            var totalCharsPerLine = Math.Max(maxMessageLineChars, MinTextWidthInChars) + charsForBorder + charsForBorder;
+            var totalCharsPerLine = Math.Max(maxMessageLineChars, TextMaxCharsPerLine) + charsForBorder + charsForBorder;
 
             var builder = new StringBuilder();
             builder.AppendLine();
