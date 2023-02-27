@@ -49,7 +49,7 @@ namespace ProjectEulerCSharp
                 analyticElapsed = _stopwatch.Elapsed;
             }
 
-            var eulerReport = new SimpleReport(textMaxCharsPerLine: 100);
+            var eulerReport = new SimpleReport(textMaxCharsPerLine: 80);
 
             var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
             Debug.Assert(eulerAttribute is not null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
