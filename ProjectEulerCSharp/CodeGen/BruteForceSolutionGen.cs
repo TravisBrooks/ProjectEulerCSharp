@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
@@ -27,7 +26,7 @@ namespace ProjectEulerCSharp.CodeGen
             _stack.Push("}");
         }
 
-        private void Pop()
+        private void PopAll()
         {
             while (_stack.TryPop(out var result))
             {
@@ -78,11 +77,9 @@ namespace ProjectEulerCSharp.CodeGen
                 }
             }
 
-            _sb.AppendLine(@"if (len > maxLen)
-                             {
-                                maxLen = len;
-                             }");
-            Pop();
+            Push(@"if (len > maxLen)");
+            _sb.AppendLine("maxLen = len;");
+            PopAll();
 
             _sb.Append("return maxLen;");
             return _sb.ToString();
@@ -107,14 +104,13 @@ namespace ProjectEulerCSharp.CodeGen
             }
 
             _sb.AppendLine("numberCount++;");
-            _sb.AppendLine("if(numberCount>=" + haltAfterThisManyDigits + "){");
-            _sb.AppendLine("string numStr = string.Empty + " + string.Join("+", digits.Select(i => $"d{i}")) + ";");
+            Push($"if(numberCount>={haltAfterThisManyDigits})");
+            _sb.AppendLine($"string numStr = string.Empty + {string.Join("+", digits.Select(i => $"d{i}"))};");
             _sb.AppendLine("answer = long.Parse(numStr);");
             // a good old goto seemed like the safest way to get out of the loops, particularly in generated code
             _sb.AppendLine("goto FoundIt;");
-            _sb.AppendLine("}");
 
-            Pop();
+            PopAll();
 
             _sb.AppendLine("FoundIt:");
             _sb.AppendLine("return answer;");

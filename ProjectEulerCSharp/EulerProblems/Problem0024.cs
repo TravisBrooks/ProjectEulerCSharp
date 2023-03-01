@@ -18,7 +18,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 
         public long BruteForceSolution()
         {
-            var digits = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var digits = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var numberCount = 0;
             long answer = 0;
             foreach (var d0 in digits)
