@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems
 {
@@ -14,7 +14,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
     // ReSharper disable once UnusedMember.Global
     public class Problem0024 : ISolution<long>
     {
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public long BruteForceSolution()
         {
@@ -64,7 +64,11 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 
         public long AnalyticSolution()
         {
-            throw new NotImplementedException();
+            var digits = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var answerArr = Permutations.Of(digits, PermutationAlgorithm.Lexicographic).Take(1_000_000).Last();
+            var answerStr = string.Join(string.Empty, answerArr);
+            var answer = long.Parse(answerStr);
+            return answer;
         }
 
         public long ExpectedSolution()
