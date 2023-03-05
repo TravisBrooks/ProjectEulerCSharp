@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace ProjectEulerCSharp.EulerProblems
 {
     [Euler(
-title: "Problem 14: Longest Collatz sequence",
-description: @"The following iterative sequence is defined for the set of positive integers:
+        title: "Problem 14: Longest Collatz sequence",
+        description: @"The following iterative sequence is defined for the set of positive integers:
         n → n/2 (n is even)
         n → 3n + 1 (n is odd)
 Using the rule above and starting with 13, we generate the following sequence:
@@ -74,6 +74,5 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
         {
             return 837799;
         }
-
     }
 }

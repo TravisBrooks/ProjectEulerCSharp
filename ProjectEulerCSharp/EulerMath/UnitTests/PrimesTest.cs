@@ -19,6 +19,5 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             var actualPrimes = Primes.Calculate(1000);
             Assert.Equal(expectedPrimes, actualPrimes);
         }
-
     }
 }

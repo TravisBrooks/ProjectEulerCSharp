@@ -9,12 +9,6 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
     public class PermutationsTest
     {
-        public record PermutationTestData<T>(
-            T[] AnArray,
-            PermutationAlgorithm PermutationAlgorithm,
-            IEnumerable<T[]> ExpectedPermutations
-        );
-
         [Theory]
         [MemberData(nameof(PermutationData))]
         public void PermutationTest<T>(PermutationTestData<T> testData) where T : IComparable<T>
@@ -23,7 +17,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             var copyOfOriginalArray = new T[anArray.Length];
             Array.Copy(anArray, copyOfOriginalArray, anArray.Length);
             var permutationsActual = Permutations.Of(anArray, permutationAlgorithm).ToArray();
-            Assert.Equal(permutationsExpected, permutationsActual, userMessage: "Expected permutations:" + ArrayOfArrayToString(permutationsExpected) + "actual permutations: " + ArrayOfArrayToString(permutationsActual));
+            Assert.Equal(permutationsExpected, permutationsActual, "Expected permutations:" + ArrayOfArrayToString(permutationsExpected) + "actual permutations: " + ArrayOfArrayToString(permutationsActual));
             Assert.Equal(copyOfOriginalArray, anArray, $"The permutation algorithm should not mutate the array it was applied to, original: {{{string.Join(", ", copyOfOriginalArray)}}}, after the Permutation call: {{{string.Join(", ", anArray)}}}");
         }
 
@@ -38,43 +32,43 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             yield return new object[]
             {
-                new PermutationTestData<int>(new[]{5}, PermutationAlgorithm.Heap, new[]{new[]{5}})
+                new PermutationTestData<int>(new[] { 5 }, PermutationAlgorithm.Heap, new[] { new[] { 5 } })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{1, 2},
+                    new[] { 1, 2 },
                     PermutationAlgorithm.Heap,
                     new[]
                     {
-                        new[]{1, 2},
-                        new []{2, 1}
+                        new[] { 1, 2 },
+                        new[] { 2, 1 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{0, 1, 2},
+                    new[] { 0, 1, 2 },
                     PermutationAlgorithm.Heap,
                     new[]
                     {
-                        new []{0, 1, 2},
-                        new []{1, 0, 2},
-                        new []{2, 0, 1},
-                        new []{0, 2, 1},
-                        new []{1, 2, 0},
-                        new []{2, 1, 0},
+                        new[] { 0, 1, 2 },
+                        new[] { 1, 0, 2 },
+                        new[] { 2, 0, 1 },
+                        new[] { 0, 2, 1 },
+                        new[] { 1, 2, 0 },
+                        new[] { 2, 1, 0 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<string>(
-                    new[]{"foo", "bar"}, // note: array is reverse sorted
-                    PermutationAlgorithm.Heap, 
-                    new []
+                    new[] { "foo", "bar" }, // note: array is reverse sorted
+                    PermutationAlgorithm.Heap,
+                    new[]
                     {
-                        new []{"foo", "bar"},
-                        new []{"bar", "foo"}
+                        new[] { "foo", "bar" },
+                        new[] { "bar", "foo" }
                     })
             };
         }
@@ -83,43 +77,43 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             yield return new object[]
             {
-                new PermutationTestData<int>(new[]{5}, PermutationAlgorithm.Heap, new[]{new[]{5}})
+                new PermutationTestData<int>(new[] { 5 }, PermutationAlgorithm.Heap, new[] { new[] { 5 } })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{1, 2},
+                    new[] { 1, 2 },
                     PermutationAlgorithm.QuickPerm03,
                     new[]
                     {
-                        new[]{1, 2},
-                        new []{2, 1}
+                        new[] { 1, 2 },
+                        new[] { 2, 1 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{0, 1, 2},
+                    new[] { 0, 1, 2 },
                     PermutationAlgorithm.QuickPerm03,
                     new[]
                     {
-                        new []{0, 1, 2},
-                        new []{1, 0, 2},
-                        new []{2, 0, 1},
-                        new []{0, 2, 1},
-                        new []{1, 2, 0},
-                        new []{2, 1, 0},
+                        new[] { 0, 1, 2 },
+                        new[] { 1, 0, 2 },
+                        new[] { 2, 0, 1 },
+                        new[] { 0, 2, 1 },
+                        new[] { 1, 2, 0 },
+                        new[] { 2, 1, 0 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<string>(
-                    new[]{"foo", "bar"}, // note: array is reverse sorted
+                    new[] { "foo", "bar" }, // note: array is reverse sorted
                     PermutationAlgorithm.QuickPerm03,
-                    new []
+                    new[]
                     {
-                        new []{"foo", "bar"},
-                        new []{"bar", "foo"}
+                        new[] { "foo", "bar" },
+                        new[] { "bar", "foo" }
                     })
             };
         }
@@ -128,43 +122,43 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             yield return new object[]
             {
-                new PermutationTestData<int>(new[]{5}, PermutationAlgorithm.Lexicographic, new[]{new[]{5}})
+                new PermutationTestData<int>(new[] { 5 }, PermutationAlgorithm.Lexicographic, new[] { new[] { 5 } })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{1, 2},
+                    new[] { 1, 2 },
                     PermutationAlgorithm.Lexicographic,
                     new[]
                     {
-                        new[]{1, 2},
-                        new []{2, 1}
+                        new[] { 1, 2 },
+                        new[] { 2, 1 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<int>(
-                    new[]{0, 1, 2},
+                    new[] { 0, 1, 2 },
                     PermutationAlgorithm.Lexicographic,
                     new[]
                     {
-                        new []{0, 1, 2},
-                        new []{0, 2, 1},
-                        new []{1, 0, 2},
-                        new []{1, 2, 0},
-                        new []{2, 0, 1},
-                        new []{2, 1, 0},
+                        new[] { 0, 1, 2 },
+                        new[] { 0, 2, 1 },
+                        new[] { 1, 0, 2 },
+                        new[] { 1, 2, 0 },
+                        new[] { 2, 0, 1 },
+                        new[] { 2, 1, 0 }
                     })
             };
             yield return new object[]
             {
                 new PermutationTestData<string>(
-                    new[]{"foo", "bar"}, // note: array is reverse sorted
+                    new[] { "foo", "bar" }, // note: array is reverse sorted
                     PermutationAlgorithm.Lexicographic,
-                    new []
+                    new[]
                     {
-                        new []{"bar", "foo"},
-                        new []{"foo", "bar"},
+                        new[] { "bar", "foo" },
+                        new[] { "foo", "bar" }
                     })
             };
         }
@@ -178,8 +172,15 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             {
                 sb.AppendLine("     new []{" + string.Join(", ", permutations) + "},");
             }
+
             sb.AppendLine("}");
             return sb.ToString();
         }
+
+        public record PermutationTestData<T>(
+            T[] AnArray,
+            PermutationAlgorithm PermutationAlgorithm,
+            IEnumerable<T[]> ExpectedPermutations
+        );
     }
 }

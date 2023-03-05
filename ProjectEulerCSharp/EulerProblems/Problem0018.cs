@@ -3,8 +3,8 @@
 namespace ProjectEulerCSharp.EulerProblems
 {
     [Euler(
-title: "Problem 18: Maximum path sum Part I",
-description: @"By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+        title: "Problem 18: Maximum path sum Part I",
+        description: @"By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
 
 3
 7 4
@@ -136,6 +136,7 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
                     }
                 }
             }
+
             return maxLen;
         }
 
@@ -149,6 +150,5 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
         {
             return 1074;
         }
-
     }
 }

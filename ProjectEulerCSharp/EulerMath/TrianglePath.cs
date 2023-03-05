@@ -3,12 +3,12 @@
 namespace ProjectEulerCSharp.EulerMath
 {
     /// <summary>
-    /// A class to solve problems #18 and #67
+    ///     A class to solve problems #18 and #67
     /// </summary>
     public class TrianglePath
     {
-        private readonly int[][] _triangle;
         private readonly int[][] _pathLengths;
+        private readonly int[][] _triangle;
 
         public TrianglePath(int[][] triangleData)
         {
@@ -18,6 +18,7 @@ namespace ProjectEulerCSharp.EulerMath
             {
                 _pathLengths[i] = new int[_triangle[i].Length];
             }
+
             // set the last row of the length data to the node values of the triangle's last row
             _pathLengths[^1] = _triangle[^1];
         }

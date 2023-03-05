@@ -4,8 +4,8 @@ using System.Linq;
 namespace ProjectEulerCSharp.EulerProblems
 {
     [Euler(
-title: "Problem 8: Largest product in a series",
-description: @"The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+        title: "Problem 8: Largest product in a series",
+        description: @"The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -122,6 +122,5 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
         {
             return 23514624000;
         }
-
     }
 }

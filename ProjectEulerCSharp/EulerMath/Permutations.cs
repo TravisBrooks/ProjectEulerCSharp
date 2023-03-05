@@ -7,7 +7,7 @@ namespace ProjectEulerCSharp.EulerMath
     public static class Permutations
     {
         /// <summary>
-        /// All permutations of the given array, the order the permutations appear varies by algorithm.
+        ///     All permutations of the given array, the order the permutations appear varies by algorithm.
         /// </summary>
         /// <typeparam name="T">Must be IComparable to support LexicographicPermutationAlgorithm</typeparam>
         /// <param name="anArray"></param>
@@ -31,9 +31,9 @@ namespace ProjectEulerCSharp.EulerMath
         }
 
         /// <summary>
-        /// All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
-        /// do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on the 3rd
-        /// algorithm example from https://www.quickperm.org/03example.php
+        ///     All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
+        ///     do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on the 3rd
+        ///     algorithm example from https://www.quickperm.org/03example.php
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="anArray"></param>
@@ -79,9 +79,9 @@ namespace ProjectEulerCSharp.EulerMath
         }
 
         /// <summary>
-        /// All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
-        /// do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on Heap's
-        /// algorithm https://en.wikipedia.org/wiki/Heap%27s_algorithm 
+        ///     All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
+        ///     do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on Heap's
+        ///     algorithm https://en.wikipedia.org/wiki/Heap%27s_algorithm
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="anArray"></param>
@@ -121,13 +121,12 @@ namespace ProjectEulerCSharp.EulerMath
                     i++;
                 }
             }
-
         }
 
         /// <summary>
-        /// All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
-        /// do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on Knuth's
-        /// Algorithm L
+        ///     All permutations of a given array. The IEnumerable returned is lazy evaluated, so all permutations
+        ///     do not need to be iterated for the IEnumerable to be reasoned over. Implementation based on Knuth's
+        ///     Algorithm L
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="anArray"></param>
@@ -156,6 +155,7 @@ namespace ProjectEulerCSharp.EulerMath
                 {
                     l--;
                 }
+
                 (arrayOfT[j], arrayOfT[l]) = (arrayOfT[l], arrayOfT[j]);
                 var k = j + 1;
                 l = n - 1;
@@ -169,6 +169,5 @@ namespace ProjectEulerCSharp.EulerMath
                 yield return arrayOfT.ToArray();
             }
         }
-
     }
 }

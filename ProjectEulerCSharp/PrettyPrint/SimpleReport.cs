@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using ProjectEulerCSharp.EulerMath;
 
@@ -39,10 +40,11 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         public void AddContainer(string text)
         {
-            if (!string.Equals(text, System.Security.SecurityElement.Escape(text)))
+            if (!string.Equals(text, SecurityElement.Escape(text)))
             {
                 throw new ArgumentException("There were characters in the text that would get escaped in xml test output, ruining the formatting of the report.");
             }
+
             _containers.Add(TextContainer.Build(text, TextMaxCharsPerLine));
         }
 

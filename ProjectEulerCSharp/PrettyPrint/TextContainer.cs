@@ -15,9 +15,10 @@ namespace ProjectEulerCSharp.PrettyPrint
         }
 
         public string Text { get; }
-        
+
         /// <summary>
-        /// Will format the given text to add line breaks to fit lines into the maxCharWidth. Will add breaks on whitespace only, if no whitespace is present the line(s) will exceed maxCharWidth.
+        ///     Will format the given text to add line breaks to fit lines into the maxCharWidth. Will add breaks on whitespace
+        ///     only, if no whitespace is present the line(s) will exceed maxCharWidth.
         /// </summary>
         /// <param name="rawText"></param>
         /// <param name="maxCharWidth"></param>
@@ -28,6 +29,7 @@ namespace ProjectEulerCSharp.PrettyPrint
             {
                 return new TextContainer(rawText);
             }
+
             var sb = new StringBuilder();
             var lines = rawText.SplitOnNewLines(StringSplitOptions.TrimEntries);
             foreach (var line in lines)
@@ -55,7 +57,7 @@ namespace ProjectEulerCSharp.PrettyPrint
                 while (currIdx < line.Length - 1)
                 {
                     var endIndex = currIdx + maxCharWidth - 1;
-                    string restOfLine = line.Substring(currIdx);
+                    var restOfLine = line.Substring(currIdx);
                     // if it all fits in 1 line or there is no whitespace in the rest of the line append the rest of the line
                     if (restOfLine.Length < maxCharWidth || !ContainsWhitespace.IsMatch(restOfLine))
                     {
@@ -85,6 +87,7 @@ namespace ProjectEulerCSharp.PrettyPrint
                                     sb.AppendLine(line.Substring(currIdx, substrLineLength));
                                     currIdx += substrLineLength;
                                 }
+
                                 break;
                             }
                         }

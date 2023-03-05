@@ -11,6 +11,7 @@ namespace ProjectEulerCSharp.EulerMath
             {
                 throw new ArgumentOutOfRangeException(nameof(n), "must be at least 2 to find factors");
             }
+
             var factors = new List<PrimeFactor32>();
             var factor = 2;
             var power = 0;

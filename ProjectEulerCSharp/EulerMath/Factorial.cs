@@ -122,6 +122,7 @@ namespace ProjectEulerCSharp.EulerMath
             {
                 throw new ArgumentOutOfRangeException(nameof(n), "must be between 1 and 100");
             }
+
             return _factorials[n];
         }
     }

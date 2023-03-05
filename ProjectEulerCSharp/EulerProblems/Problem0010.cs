@@ -5,8 +5,8 @@ using ProjectEulerCSharp.EulerMath;
 namespace ProjectEulerCSharp.EulerProblems
 {
     [Euler(
-title: "Problem 10: Summation of primes",
-description: @"The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+        title: "Problem 10: Summation of primes",
+        description: @"The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.")
     ]

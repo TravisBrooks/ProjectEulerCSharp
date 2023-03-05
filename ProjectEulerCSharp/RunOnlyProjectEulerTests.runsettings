@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <RunSettings>
-  <RunConfiguration>
-    <!-- Use 0 for maximum process-level parallelization. This does not force parallelization within the test DLL (on the thread-level). You can also change it from the Test menu; choose "Run tests in parallel". Unchecked = 1 (only 1), checked = 0 (max). -->
-    <MaxCpuCount>1</MaxCpuCount>
-    <!-- Path relative to directory that contains .runsettings file-->
-    <ResultsDirectory>.\</ResultsDirectory>
-    <TestCaseFilter>Category=EulerProblems</TestCaseFilter>
-  </RunConfiguration>
+    <RunConfiguration>
+        <!-- Use 0 for maximum process-level parallelization. This does not force parallelization within the test DLL (on the thread-level). You can also change it from the Test menu; choose "Run tests in parallel". Unchecked = 1 (only 1), checked = 0 (max). -->
+        <MaxCpuCount>1</MaxCpuCount>
+        <!-- Path relative to directory that contains .runsettings file-->
+        <ResultsDirectory>.\</ResultsDirectory>
+        <TestCaseFilter>Category=EulerProblems</TestCaseFilter>
+    </RunConfiguration>
 
     <!-- Configuration for loggers -->
-  <LoggerRunSettings>
-    <Loggers>
-        <Logger friendlyName="xunit" enabled="True">
-        <Configuration>
-          <LogFileName>.\TestOutputIfYouDoNotHaveReSharper.xml</LogFileName>
-        </Configuration>
-      </Logger>
-    </Loggers>
-  </LoggerRunSettings>
+    <LoggerRunSettings>
+        <Loggers>
+            <Logger friendlyName="xunit" enabled="True">
+                <Configuration>
+                    <LogFileName>.\TestOutputIfYouDoNotHaveReSharper.xml</LogFileName>
+                </Configuration>
+            </Logger>
+        </Loggers>
+    </LoggerRunSettings>
 
 </RunSettings>

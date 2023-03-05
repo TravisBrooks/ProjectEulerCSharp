@@ -44,5 +44,4 @@ namespace ProjectEulerCSharp.EulerMath
             }
         }
     }
-
 }

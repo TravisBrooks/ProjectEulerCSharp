@@ -4,8 +4,8 @@ using System.Linq;
 namespace ProjectEulerCSharp.EulerProblems
 {
     [Euler(
-title: "Problem 17: Number letter counts",
-description: @"If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+        title: "Problem 17: Number letter counts",
+        description: @"If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
 If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
 
@@ -24,6 +24,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
                 var word = NumberToEnglish(number);
                 sum += word.Length;
             }
+
             return sum;
         }
 
@@ -148,11 +149,13 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
             {
                 sum += NumberToEnglishWordLength(number);
             }
+
             return sum;
         }
 
         private static readonly int[] TensAndTeens = { 0, "one".Length, "two".Length, "three".Length, "four".Length, "five".Length, "six".Length, "seven".Length, "eight".Length, "nine".Length, "ten".Length, "eleven".Length, "twelve".Length, "thirteen".Length, "fourteen".Length, "fifteen".Length, "sixteen".Length, "seventeen".Length, "eighteen".Length, "nineteen".Length };
         private static readonly int[] SubHundred = { 0, 0, "twenty".Length, "thirty".Length, "forty".Length, "fifty".Length, "sixty".Length, "seventy".Length, "eighty".Length, "ninety".Length };
+
         private static int NumberToEnglishWordLength(int number)
         {
             if (number == 1000)
@@ -169,6 +172,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
                 {
                     len += "and".Length;
                 }
+
                 number = remainder;
             }
 
@@ -183,6 +187,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
             {
                 len += TensAndTeens[number];
             }
+
             return len;
         }
 

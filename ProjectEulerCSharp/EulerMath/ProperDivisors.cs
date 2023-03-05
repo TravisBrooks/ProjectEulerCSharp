@@ -11,6 +11,7 @@ namespace ProjectEulerCSharp.EulerMath
             {
                 throw new ArgumentOutOfRangeException(nameof(n), $"Can only find divisors for a number greater than 0, was passed in {n}.");
             }
+
             var divisors = new HashSet<int> { 1 };
             for (var i = 2; i <= (int)Math.Ceiling(Math.Sqrt(n)); i++)
             {
@@ -24,6 +25,7 @@ namespace ProjectEulerCSharp.EulerMath
                     }
                 }
             }
+
             return divisors;
         }
     }

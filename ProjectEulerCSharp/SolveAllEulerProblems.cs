@@ -32,7 +32,7 @@ namespace ProjectEulerCSharp
         public void EulerSolution<T>(ISolution<T> solutionInstance) where T : INumber<T>
         {
             var analyticElapsed = default(TimeSpan);
-            T analyticSolution = default(T);
+            var analyticSolution = default(T);
 
             var expected = solutionInstance.ExpectedSolution();
             _stopwatch.Restart();
@@ -51,7 +51,7 @@ namespace ProjectEulerCSharp
 
             var eulerReport = new SimpleReport(textMaxCharsPerLine: 80);
 
-            var eulerAttribute = (EulerAttribute) Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
+            var eulerAttribute = (EulerAttribute)Attribute.GetCustomAttribute(solutionInstance.GetType(), typeof(EulerAttribute));
             Debug.Assert(eulerAttribute is not null, $"Did not find an {nameof(EulerAttribute)} for solution {solutionInstance.GetType().Name}");
 
             eulerReport.AddContainer(eulerAttribute.Title);
@@ -91,11 +91,10 @@ namespace ProjectEulerCSharp
                 {
                     eulerReport.AddContainer("An exact tie between brute force and analytic solutions! Inconceivable!");
                 }
-
             }
 
             _testOutputHelper.WriteLine(eulerReport.PrettyPrintString());
-            
+
             Assert.Equal(expected, bruteForceSolution, "brute force solution was incorrect");
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
@@ -117,11 +116,10 @@ namespace ProjectEulerCSharp
             foreach (var solutionType in solutionTypes)
             {
                 var instance = Activator.CreateInstance(solutionType);
-                testCases.Add(new []{instance});
+                testCases.Add(new[] { instance });
             }
 
             return testCases.ToArray();
         }
-
     }
 }
