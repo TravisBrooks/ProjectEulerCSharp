@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems
@@ -19,57 +20,41 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
         public long BruteForceSolution()
         {
             var digits = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var numberCount = 0;
-            long answer = 0;
-            foreach (var d0 in digits)
-            {
-                foreach (var d1 in digits.Except(new[] { d0 }))
-                {
-                    foreach (var d2 in digits.Except(new[] { d0, d1 }))
-                    {
-                        foreach (var d3 in digits.Except(new[] { d0, d1, d2 }))
-                        {
-                            foreach (var d4 in digits.Except(new[] { d0, d1, d2, d3 }))
-                            {
-                                foreach (var d5 in digits.Except(new[] { d0, d1, d2, d3, d4 }))
-                                {
-                                    foreach (var d6 in digits.Except(new[] { d0, d1, d2, d3, d4, d5 }))
-                                    {
-                                        foreach (var d7 in digits.Except(new[] { d0, d1, d2, d3, d4, d5, d6 }))
-                                        {
-                                            foreach (var d8 in digits.Except(new[] { d0, d1, d2, d3, d4, d5, d6, d7 }))
-                                            {
-                                                foreach (var d9 in digits.Except(new[] { d0, d1, d2, d3, d4, d5, d6, d7, d8 }))
-                                                {
-                                                    numberCount++;
-                                                    if (numberCount >= 1000000)
-                                                    {
-                                                        string numStr = string.Empty + d0 + d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9;
-                                                        answer = long.Parse(numStr);
-                                                        goto FoundIt;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            FoundIt:
+            var answerArr = Permutations.Of(digits, PermutationAlgorithm.Lexicographic).Take(1_000_000).Last();
+            var answerStr = string.Join(string.Empty, answerArr);
+            var answer = long.Parse(answerStr);
             return answer;
         }
 
         public long AnalyticSolution()
         {
-            var digits = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var answerArr = Permutations.Of(digits, PermutationAlgorithm.Lexicographic).Take(1_000_000).Last();
-            var answerStr = string.Join(string.Empty, answerArr);
-            var answer = long.Parse(answerStr);
-            return answer;
+            // see https://en.wikipedia.org/wiki/Factorial_number_system
+            // The factorial number has a bit of a tedious writeup on wikipedia but the concept is head slappingly
+            // simple. When you pick the first digit from the digit pool there are 9! choices, the next digit there
+            // are 8! etc. Its just converting a number from one base to another, but in this case the base is in 
+            // factorials.
+            var digits = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var n = digits.Length;
+            long kth = 1_000_000 - 1;
+            var answerDigits = new List<int>();
+            // converting the kth number to its factoradic representation (Lehmer code) gives the kth permutation
+            for (var i = n - 1; i > 0; i--)
+            {
+                var fact = long.Parse(Factorial.Of(i).ToString());
+                var index = kth / fact;
+                var remainder = kth - (fact * index);
+                var answerDigit = digits[index];
+                answerDigits.Add(answerDigit);
+                digits = digits.Where(d => d != answerDigit).ToArray();
+                kth = remainder;
+            }
+
+            if (digits.Any())
+            {
+                answerDigits.AddRange(digits);
+            }
+            var answerStr = string.Join(string.Empty, answerDigits);
+            return long.Parse(answerStr);
         }
 
         public long ExpectedSolution()

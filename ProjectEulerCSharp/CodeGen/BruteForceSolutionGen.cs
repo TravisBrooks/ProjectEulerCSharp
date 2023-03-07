@@ -46,6 +46,9 @@ namespace ProjectEulerCSharp.CodeGen
             _testOutputHelper.WriteLine(str);
         }
 
+        /// <summary>
+        /// This was my initial brute force solution, but it was too slow even for that.
+        /// </summary>
         [Fact]
         public void CodeGenProblem24()
         {
