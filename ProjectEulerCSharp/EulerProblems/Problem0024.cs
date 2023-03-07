@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ProjectEulerCSharp.EulerMath;
 
@@ -33,19 +34,18 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
             // simple. When you pick the first digit from the digit pool there are 9! choices, the next digit there
             // are 8! etc. Its just converting a number from one base to another, but in this case the base is in 
             // factorials.
-            var digits = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var n = digits.Length;
+            var digits = new [] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.ToList();
+            var n = digits.Count;
             long kth = 1_000_000 - 1;
             var answerDigits = new List<int>();
             // converting the kth number to its factoradic representation (Lehmer code) gives the kth permutation
             for (var i = n - 1; i > 0; i--)
             {
                 var fact = long.Parse(Factorial.Of(i).ToString());
-                var index = kth / fact;
-                var remainder = kth - (fact * index);
-                var answerDigit = digits[index];
-                answerDigits.Add(answerDigit);
-                digits = digits.Where(d => d != answerDigit).ToArray();
+                var index = (int)(kth / fact);
+                var remainder = kth % fact;
+                answerDigits.Add(digits[index]);
+                digits.RemoveAt(index);
                 kth = remainder;
             }
 
