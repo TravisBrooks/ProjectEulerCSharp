@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 
 namespace ProjectEulerCSharp.EulerMath
 {
     public static class Fibonacci
     {
-        public static IEnumerable<long> Sequence()
+        public static IEnumerable<BigInteger> Sequence()
         {
-            var first = 1L;
-            var second = 2L;
+            var first = BigInteger.One;
+            var second = new BigInteger(2);
 
             yield return first;
             yield return second;
@@ -17,12 +18,6 @@ namespace ProjectEulerCSharp.EulerMath
                 var newNumber = first + second;
                 first = second;
                 second = newNumber;
-
-                if (second < first)
-                {
-                    // if we overflowed past the max long and wrapped around to a negative number we've gone too far
-                    yield break;
-                }
 
                 yield return newNumber;
             }

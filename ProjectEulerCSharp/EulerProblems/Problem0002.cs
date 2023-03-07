@@ -24,8 +24,9 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
         public long BruteForceSolution()
         {
             return Fibonacci.Sequence()
-                .Where(n => n < 4_000_000 && n % 2 == 0)
-                .Sum();
+                .TakeWhile(n => n < 4_000_000)
+                .Where(n => n % 2 == 0)
+                .Sum(bi => long.Parse(bi.ToString()));
         }
 
         public bool HaveImplementedAnalyticSolution => true;
@@ -57,21 +58,21 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
              * members of the sequence.
              ****************************************************************************************************/
 
-            long fib_n_minus3 = 2;
-            long fib_n_minus6 = 0;
-            var total = fib_n_minus3 + fib_n_minus6;
+            long fibNMinus3 = 2;
+            long fibNMinus6 = 0;
+            var total = fibNMinus3 + fibNMinus6;
 
-            while (fib_n_minus3 < 4_000_000)
+            while (fibNMinus3 < 4_000_000)
             {
-                var fib_n = 4L * fib_n_minus3 + fib_n_minus6;
-                if (fib_n > 4_000_000)
+                var fibN = 4L * fibNMinus3 + fibNMinus6;
+                if (fibN > 4_000_000)
                 {
                     break;
                 }
 
-                fib_n_minus6 = fib_n_minus3;
-                fib_n_minus3 = fib_n;
-                total += fib_n;
+                fibNMinus6 = fibNMinus3;
+                fibNMinus3 = fibN;
+                total += fibN;
             }
 
             return total;
