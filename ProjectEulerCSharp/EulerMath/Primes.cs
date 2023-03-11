@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ProjectEulerCSharp.EulerMath
@@ -6,6 +7,46 @@ namespace ProjectEulerCSharp.EulerMath
     public static class Primes
     {
         public static IEnumerable<int> Calculate(int upperBounds)
+        {
+            var sieve = _BuildSieve(upperBounds);
+            for (var i = 0; i < sieve.Length; i++)
+            {
+                if (sieve[i])
+                {
+                    yield return i;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Builds a function that checks if a given integer is prime
+        /// </summary>
+        /// <param name="upperBounds">The maximum integer that can be tested </param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static Func<int, bool> IsPrime(int upperBounds)
+        {
+            var sieve = _BuildSieve(upperBounds);
+
+            bool IsPrimeImpl(int n)
+            {
+                if (n > upperBounds)
+                {
+                    throw new ArgumentException($"The maximum integer that can be checked if it is prime is the {nameof(upperBounds)} value {upperBounds}");
+                }
+
+                if (n < 2)
+                {
+                    return false;
+                }
+
+                return sieve[n];
+            }
+
+            return IsPrimeImpl;
+        }
+
+        private static BitArray _BuildSieve(int upperBounds)
         {
             // The sieve is being treated as having a 1 based index
             var sieve = new BitArray(upperBounds + 1, true)
@@ -35,13 +76,7 @@ namespace ProjectEulerCSharp.EulerMath
                 index++;
             }
 
-            for (var i = 0; i < sieve.Length; i++)
-            {
-                if (sieve[i])
-                {
-                    yield return i;
-                }
-            }
+            return sieve;
         }
     }
 }
