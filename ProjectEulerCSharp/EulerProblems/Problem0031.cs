@@ -45,7 +45,7 @@ How many different ways can £2 be made using any number of coins?")]
                 if (coinCounts.TotalChange() == target)
                 {
                     exactChangeSet.Add(coinCounts);
-                    continue;
+                    break;
                 }
                 for (var bCount = 0; bCount <= 100; bCount++)
                 {
@@ -53,12 +53,12 @@ How many different ways can £2 be made using any number of coins?")]
                     var totalChange = coinCounts.TotalChange();
                     if (totalChange > target)
                     {
-                        continue;
+                        break;
                     }
                     if (totalChange == target)
                     {
                         exactChangeSet.Add(coinCounts);
-                        continue;
+                        break;
                     }
 
                     for (var cCount = 0; cCount <= 40; cCount++)
@@ -67,12 +67,12 @@ How many different ways can £2 be made using any number of coins?")]
                         totalChange = coinCounts.TotalChange();
                         if (totalChange > target)
                         {
-                            continue;
+                            break;
                         }
                         if (totalChange == target)
                         {
                             exactChangeSet.Add(coinCounts);
-                            continue;
+                            break;
                         }
                         for (var dCount = 0; dCount <= 20; dCount++)
                         {
@@ -80,12 +80,12 @@ How many different ways can £2 be made using any number of coins?")]
                             totalChange = coinCounts.TotalChange();
                             if (totalChange > target)
                             {
-                                continue;
+                                break;
                             }
                             if (totalChange == target)
                             {
                                 exactChangeSet.Add(coinCounts);
-                                continue;
+                                break;
                             }
                             for (var eCount = 0; eCount <= 10; eCount++)
                             {
@@ -93,12 +93,12 @@ How many different ways can £2 be made using any number of coins?")]
                                 totalChange = coinCounts.TotalChange();
                                 if (totalChange > target)
                                 {
-                                    continue;
+                                    break;
                                 }
                                 if (totalChange == target)
                                 {
                                     exactChangeSet.Add(coinCounts);
-                                    continue;
+                                    break;
                                 }
                                 for (var fCount = 0; fCount <= 4; fCount++)
                                 {
@@ -106,12 +106,12 @@ How many different ways can £2 be made using any number of coins?")]
                                     totalChange = coinCounts.TotalChange();
                                     if (totalChange > target)
                                     {
-                                        continue;
+                                        break;
                                     }
                                     if (totalChange == target)
                                     {
                                         exactChangeSet.Add(coinCounts);
-                                        continue;
+                                        break;
                                     }
                                     for (var gCount = 0; gCount <= 2; gCount++)
                                     {
@@ -119,12 +119,12 @@ How many different ways can £2 be made using any number of coins?")]
                                         totalChange = coinCounts.TotalChange();
                                         if (totalChange > target)
                                         {
-                                            continue;
+                                            break;
                                         }
                                         if (totalChange == target)
                                         {
                                             exactChangeSet.Add(coinCounts);
-                                            continue;
+                                            break;
                                         }
                                         for (var hCount = 0; hCount <= 1; hCount++)
                                         {
@@ -132,11 +132,12 @@ How many different ways can £2 be made using any number of coins?")]
                                             totalChange = coinCounts.TotalChange();
                                             if (totalChange > target)
                                             {
-                                                continue;
+                                                break;
                                             }
                                             if (totalChange == target)
                                             {
                                                 exactChangeSet.Add(coinCounts);
+                                                break;
                                             }
                                         }
                                     }
