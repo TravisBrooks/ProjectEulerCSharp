@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ProjectEulerCSharp.EulerProblems
 {
@@ -17,126 +16,123 @@ How many different ways can £2 be made using any number of coins?")]
     {
         public bool HaveImplementedAnalyticSolution => false;
 
-        private record CoinCountsRec(int ACount, int BCount = 0, int CCount = 0, int DCount = 0, int ECount = 0, int FCount = 0, int GCount = 0, int HCount = 0)
+        //                                      a  b  c   d   e   f    g    h
+        private static readonly int[] Coins = { 1, 2, 5, 10, 20, 50, 100, 200 };
+        private static int TotalChange(
+            int aCount, 
+            int bCount = 0,
+            int cCount = 0,
+            int dCount = 0,
+            int eCount = 0,
+            int fCount = 0,
+            int gCount = 0,
+            int hCount = 0)
         {
-            //                                      a  b  c   d   e   f    g    h
-            private static readonly int[] Coins = { 1, 2, 5, 10, 20, 50, 100, 200 };
-
-            public int TotalChange()
-            {
-                return Coins[0] * ACount +
-                       Coins[1] * BCount +
-                       Coins[2] * CCount +
-                       Coins[3] * DCount +
-                       Coins[4] * ECount +
-                       Coins[5] * FCount +
-                       Coins[6] * GCount +
-                       Coins[7] * HCount;
-            }
+            
+            return Coins[0] * aCount +
+                   Coins[1] * bCount +
+                   Coins[2] * cCount +
+                   Coins[3] * dCount +
+                   Coins[4] * eCount +
+                   Coins[5] * fCount +
+                   Coins[6] * gCount +
+                   Coins[7] * hCount;
         }
 
         public int BruteForceSolution()
         {
             const int target = 200;
-            var exactChangeSet = new HashSet<CoinCountsRec>();
+            var changeCount = 0;
             for (var aCount = 0; aCount <= 200; aCount++)
             {
-                var coinCounts = new CoinCountsRec(aCount);
-                if (coinCounts.TotalChange() == target)
+                if (TotalChange(aCount) == target)
                 {
-                    exactChangeSet.Add(coinCounts);
+                    changeCount++;
                     break;
                 }
                 for (var bCount = 0; bCount <= 100; bCount++)
                 {
-                    coinCounts = new CoinCountsRec(aCount, bCount);
-                    var totalChange = coinCounts.TotalChange();
+                    var totalChange = TotalChange(aCount, bCount);
                     if (totalChange > target)
                     {
                         break;
                     }
                     if (totalChange == target)
                     {
-                        exactChangeSet.Add(coinCounts);
+                        changeCount++;
                         break;
                     }
 
                     for (var cCount = 0; cCount <= 40; cCount++)
                     {
-                        coinCounts = new CoinCountsRec(aCount, bCount, cCount);
-                        totalChange = coinCounts.TotalChange();
+                        totalChange = TotalChange(aCount, bCount, cCount);
                         if (totalChange > target)
                         {
                             break;
                         }
                         if (totalChange == target)
                         {
-                            exactChangeSet.Add(coinCounts);
+                            changeCount++;
                             break;
                         }
                         for (var dCount = 0; dCount <= 20; dCount++)
                         {
-                            coinCounts = new CoinCountsRec(aCount, bCount, cCount, dCount);
-                            totalChange = coinCounts.TotalChange();
+                            totalChange = TotalChange(aCount, bCount, cCount, dCount);
                             if (totalChange > target)
                             {
                                 break;
                             }
                             if (totalChange == target)
                             {
-                                exactChangeSet.Add(coinCounts);
+                                changeCount++;
                                 break;
                             }
                             for (var eCount = 0; eCount <= 10; eCount++)
                             {
-                                coinCounts = new CoinCountsRec(aCount, bCount, cCount, dCount, eCount);
-                                totalChange = coinCounts.TotalChange();
+                                totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount);
                                 if (totalChange > target)
                                 {
                                     break;
                                 }
                                 if (totalChange == target)
                                 {
-                                    exactChangeSet.Add(coinCounts);
+                                    changeCount++;
                                     break;
                                 }
                                 for (var fCount = 0; fCount <= 4; fCount++)
                                 {
-                                    coinCounts = new CoinCountsRec(aCount, bCount, cCount, dCount, eCount, fCount);
-                                    totalChange = coinCounts.TotalChange();
+                                    totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount);
                                     if (totalChange > target)
                                     {
                                         break;
                                     }
                                     if (totalChange == target)
                                     {
-                                        exactChangeSet.Add(coinCounts);
+                                        changeCount++;
                                         break;
                                     }
                                     for (var gCount = 0; gCount <= 2; gCount++)
                                     {
-                                        coinCounts = new CoinCountsRec(aCount, bCount, cCount, dCount, eCount, fCount, gCount);
-                                        totalChange = coinCounts.TotalChange();
+                                        totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount, gCount);
                                         if (totalChange > target)
                                         {
                                             break;
                                         }
                                         if (totalChange == target)
                                         {
-                                            exactChangeSet.Add(coinCounts);
+                                            changeCount++;
                                             break;
                                         }
                                         for (var hCount = 0; hCount <= 1; hCount++)
                                         {
-                                            coinCounts = new CoinCountsRec(aCount, bCount, cCount, dCount, eCount, fCount, gCount, hCount);
-                                            totalChange = coinCounts.TotalChange();
+                                            totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount, gCount, hCount);
                                             if (totalChange > target)
                                             {
                                                 break;
                                             }
                                             if (totalChange == target)
                                             {
-                                                exactChangeSet.Add(coinCounts);
+                                                changeCount++;
                                                 break;
                                             }
                                         }
@@ -147,8 +143,7 @@ How many different ways can £2 be made using any number of coins?")]
                     }
                 }
             }
-
-            return exactChangeSet.Count;
+            return changeCount;
         }
 
         public int AnalyticSolution()
