@@ -16,8 +16,15 @@ How many different ways can £2 be made using any number of coins?")]
     {
         public bool HaveImplementedAnalyticSolution => false;
 
-        //                                      a  b  c   d   e   f    g    h
-        private static readonly int[] Coins = { 1, 2, 5, 10, 20, 50, 100, 200 };
+        private const int aValue = 200;
+        private const int bValue = 100;
+        private const int cValue = 50;
+        private const int dValue = 20;
+        private const int eValue = 10;
+        private const int fValue = 5;
+        private const int gValue = 2;
+        private const int hValue = 1;
+
         private static int TotalChange(
             int aCount, 
             int bCount = 0,
@@ -29,28 +36,28 @@ How many different ways can £2 be made using any number of coins?")]
             int hCount = 0)
         {
             
-            return Coins[0] * aCount +
-                   Coins[1] * bCount +
-                   Coins[2] * cCount +
-                   Coins[3] * dCount +
-                   Coins[4] * eCount +
-                   Coins[5] * fCount +
-                   Coins[6] * gCount +
-                   Coins[7] * hCount;
+            return aValue * aCount +
+                   bValue * bCount +
+                   cValue * cCount +
+                   dValue * dCount +
+                   eValue * eCount +
+                   fValue * fCount +
+                   gValue * gCount +
+                   hValue * hCount;
         }
 
         public int BruteForceSolution()
         {
             const int target = 200;
             var changeCount = 0;
-            for (var aCount = 0; aCount <= 200; aCount++)
+            for (var aCount = 0; aCount * aValue <= target; aCount++)
             {
                 if (TotalChange(aCount) == target)
                 {
                     changeCount++;
                     break;
                 }
-                for (var bCount = 0; bCount <= 100; bCount++)
+                for (var bCount = 0; bCount * bValue <= target; bCount++)
                 {
                     var totalChange = TotalChange(aCount, bCount);
                     if (totalChange > target)
@@ -63,7 +70,7 @@ How many different ways can £2 be made using any number of coins?")]
                         break;
                     }
 
-                    for (var cCount = 0; cCount <= 40; cCount++)
+                    for (var cCount = 0; cCount * cValue <= target; cCount++)
                     {
                         totalChange = TotalChange(aCount, bCount, cCount);
                         if (totalChange > target)
@@ -75,7 +82,7 @@ How many different ways can £2 be made using any number of coins?")]
                             changeCount++;
                             break;
                         }
-                        for (var dCount = 0; dCount <= 20; dCount++)
+                        for (var dCount = 0; dCount * dValue <= target; dCount++)
                         {
                             totalChange = TotalChange(aCount, bCount, cCount, dCount);
                             if (totalChange > target)
@@ -87,7 +94,7 @@ How many different ways can £2 be made using any number of coins?")]
                                 changeCount++;
                                 break;
                             }
-                            for (var eCount = 0; eCount <= 10; eCount++)
+                            for (var eCount = 0; eCount * eValue <= target; eCount++)
                             {
                                 totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount);
                                 if (totalChange > target)
@@ -99,7 +106,7 @@ How many different ways can £2 be made using any number of coins?")]
                                     changeCount++;
                                     break;
                                 }
-                                for (var fCount = 0; fCount <= 4; fCount++)
+                                for (var fCount = 0; fCount * fValue <= target; fCount++)
                                 {
                                     totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount);
                                     if (totalChange > target)
@@ -111,7 +118,7 @@ How many different ways can £2 be made using any number of coins?")]
                                         changeCount++;
                                         break;
                                     }
-                                    for (var gCount = 0; gCount <= 2; gCount++)
+                                    for (var gCount = 0; gCount * gValue <= target; gCount++)
                                     {
                                         totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount, gCount);
                                         if (totalChange > target)
@@ -123,7 +130,7 @@ How many different ways can £2 be made using any number of coins?")]
                                             changeCount++;
                                             break;
                                         }
-                                        for (var hCount = 0; hCount <= 1; hCount++)
+                                        for (var hCount = 0; hCount * hValue <= target; hCount++)
                                         {
                                             totalChange = TotalChange(aCount, bCount, cCount, dCount, eCount, fCount, gCount, hCount);
                                             if (totalChange > target)
