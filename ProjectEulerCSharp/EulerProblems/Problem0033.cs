@@ -25,11 +25,8 @@ If the product of these four fractions is given in its lowest common terms, find
             {
                 for (var d = n+1; d<=99; d++)
                 {
+                    // these would be the "trivial examples"
                     if (n % 10 == 0 || d % 10 == 0)
-                    {
-                        continue;
-                    }
-                    if (n % 11 == 0 || d % 11 == 0)
                     {
                         continue;
                     }
