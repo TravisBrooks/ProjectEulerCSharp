@@ -13,6 +13,7 @@ namespace ProjectEulerCSharp.EulerMath
             // No reason to calculate this stuff, factorials are well known so just cache the ones I'm most likely to use.
             _factorials = new Dictionary<int, BigInteger>
             {
+                [0] = BigInteger.One,
                 [1] = BigInteger.One,
                 [2] = BigInteger.Parse("2"),
                 [3] = BigInteger.Parse("6"),

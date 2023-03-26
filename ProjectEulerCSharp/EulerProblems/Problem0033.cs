@@ -23,7 +23,7 @@ If the product of these four fractions is given in its lowest common terms, find
             Fraction fractionProduct = null;
             for (var n = 10; n <= 98; n++)
             {
-                for (var d = n+1; d<=99; d++)
+                for (var d = n + 1; d <= 99; d++)
                 {
                     // these would be the "trivial examples"
                     if (n % 10 == 0 || d % 10 == 0)
