@@ -96,5 +96,28 @@ namespace ProjectEulerCSharp.EulerMath
             // ye olde log trick
             return (int)(Math.Floor(Math.Log10(n)) + 1);
         }
+
+        /// <summary>
+        /// Greatest common divisor
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static int GCD(this int a, int b)
+        {
+            // TODO: if I need a gcd for more than just int convert this to use IBinaryInteger<T>
+            // this is just Euclidean Algorithm for GCD
+            while (true)
+            {
+                if (b == 0)
+                {
+                    return a;
+                }
+
+                var a1 = a;
+                a = b;
+                b = a1 % b;
+            }
+        }
     }
 }
