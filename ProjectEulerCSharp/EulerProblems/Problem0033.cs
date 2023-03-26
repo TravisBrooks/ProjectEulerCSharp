@@ -34,39 +34,19 @@ If the product of these four fractions is given in its lowest common terms, find
                     var dDigits = d.GetDigits();
                     if (nDigits[0] == dDigits[0])
                     {
-                        var f1 = new Fraction(n, d);
-                        var f2 = new Fraction(nDigits[1], dDigits[1]);
-                        if (f1.Equivalent(f2))
-                        {
-                            fractionProduct = _FractionProduct(f1, fractionProduct);
-                        }
+                        fractionProduct = _FractionProduct(n, d, nDigits[1], dDigits[1], fractionProduct);
                     }
                     else if (nDigits[0] == dDigits[1])
                     {
-                        var f1 = new Fraction(n, d);
-                        var f2 = new Fraction(nDigits[1], dDigits[0]);
-                        if (f1.Equivalent(f2))
-                        {
-                            fractionProduct = _FractionProduct(f1, fractionProduct);
-                        }
+                        fractionProduct = _FractionProduct(n, d, nDigits[1], dDigits[0], fractionProduct);
                     }
                     else if (nDigits[1] == dDigits[0])
                     {
-                        var f1 = new Fraction(n, d);
-                        var f2 = new Fraction(nDigits[0], dDigits[1]);
-                        if (f1.Equivalent(f2))
-                        {
-                            fractionProduct = _FractionProduct(f1, fractionProduct);
-                        }
+                        fractionProduct = _FractionProduct(n, d, nDigits[0], dDigits[1], fractionProduct);
                     }
                     else if (nDigits[1] == dDigits[1])
                     {
-                        var f1 = new Fraction(n, d);
-                        var f2 = new Fraction(nDigits[0], dDigits[0]);
-                        if (f1.Equivalent(f2))
-                        {
-                            fractionProduct = _FractionProduct(f1, fractionProduct);
-                        }
+                        fractionProduct = _FractionProduct(n, d, nDigits[0], dDigits[0], fractionProduct);
                     }
                 }
             }
@@ -74,18 +54,23 @@ If the product of these four fractions is given in its lowest common terms, find
             return fractionProduct?.Denominator ?? 0;
         }
 
-        private static Fraction _FractionProduct(Fraction fraction, Fraction fractionProduct)
+        private static Fraction _FractionProduct(int n, int d, int canceledN, int canceledD, Fraction productAccumulator)
         {
-            if (fractionProduct == null)
+            var f1 = new Fraction(n, d);
+            var f2 = new Fraction(canceledN, canceledD);
+            if (f1.Equivalent(f2))
             {
-                fractionProduct = fraction;
-            }
-            else
-            {
-                fractionProduct *= fraction;
+                if (productAccumulator == null)
+                {
+                    productAccumulator = f1;
+                }
+                else
+                {
+                    productAccumulator *= f1;
+                }
             }
 
-            return fractionProduct;
+            return productAccumulator;
         }
 
         public int AnalyticSolution()
