@@ -20,11 +20,11 @@ How many circular primes are there below one million?")
 
         public int BruteForceSolution()
         {
-            var count = 4;
+            var count = 13;
             var upperBounds = 1_000_000;
             var primes = Primes.PreCalculated(upperBounds);
             
-            for (var n = 10; n < upperBounds; n++)
+            for (var n = 100; n < upperBounds; n++)
             {
                 if(primes.Contains(n))
                 {
