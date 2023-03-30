@@ -1,11 +1,47 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using ProjectEulerCSharp.EulerData;
 
 namespace ProjectEulerCSharp.EulerMath
 {
     public static class Primes
     {
+        /// <summary>
+        /// Looks up pre-calculated primes in a file
+        /// </summary>
+        /// <param name="upperBounds"></param>
+        /// <returns></returns>
+        public static HashSet<int> PreCalculated(int upperBounds)
+        {
+            if (upperBounds is < 0 or > 1_000_000)
+            {
+                throw new ArgumentOutOfRangeException(nameof(upperBounds), "Primes must be > 0 and < million");
+            }
+
+            return Get.Resource("PrimesLessThanOneMillion.data", ParsePrimes);
+
+            HashSet<int> ParsePrimes(Stream stream)
+            {
+                var primes = new HashSet<int>();
+                using (var binReader = new BinaryReader(stream, Encoding.UTF8))
+                {
+                    while (binReader.BaseStream.Position != binReader.BaseStream.Length)
+                    {
+                        var n = binReader.ReadInt32();
+                        if (n > upperBounds)
+                        {
+                            break;
+                        }
+                        primes.Add(n);
+                    }
+                }
+                return primes;
+            }
+        }
+
         public static IEnumerable<int> Calculate(int upperBounds)
         {
             var sieve = _BuildSieve(upperBounds);

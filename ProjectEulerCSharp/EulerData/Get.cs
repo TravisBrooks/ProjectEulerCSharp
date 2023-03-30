@@ -33,5 +33,29 @@ namespace ProjectEulerCSharp.EulerData
                 }
             }
         }
+
+        /// <summary>
+        /// Helper method to work with embedded resource files without repeating a bunch of boilerplate code
+        /// </summary>
+        /// <typeparam name="TRet"></typeparam>
+        /// <param name="fileName">filename only, no path</param>
+        /// <param name="fnForFileStream">Do something to the resource file that is read in as a stream</param>
+        /// <returns>whatever fnForFileStream returns</returns>
+        /// <exception cref="Exception"></exception>
+        public static TRet Resource<TRet>(
+            string fileName,
+            Func<Stream, TRet> fnForFileStream)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            using (var stream = assembly.GetManifestResourceStream("ProjectEulerCSharp.EulerData." + fileName))
+            {
+                if (stream == null)
+                {
+                    throw new Exception($"Could not find embedded resource {fileName}!");
+                }
+
+                return fnForFileStream(stream);
+            }
+        }
     }
 }
