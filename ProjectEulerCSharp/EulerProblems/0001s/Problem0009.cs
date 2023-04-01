@@ -77,7 +77,7 @@ Find the product abc.")
 
         public int ExpectedSolution()
         {
-            return 31875000;
+            return 31_875_000;
         }
     }
 }

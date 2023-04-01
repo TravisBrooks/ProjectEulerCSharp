@@ -92,7 +92,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
             var maxProduct = 0;
             var width = grid.GetLength(1);
             var height = grid.GetLength(0);
-            for (int x = 0; x < width; x++)
+            for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
                 {
@@ -102,22 +102,22 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 
                     if (atLeast4SlotsRight)
                     {
-                        maxProduct = Math.Max(_RightProduct(x, y, grid), maxProduct);
+                        maxProduct = Math.Max(RightProduct(x, y, grid), maxProduct);
                     }
 
                     if (atLeast4SlotsDown)
                     {
-                        maxProduct = Math.Max(_DownProduct(x, y, grid), maxProduct);
+                        maxProduct = Math.Max(DownProduct(x, y, grid), maxProduct);
                     }
 
                     if (atLeast4SlotsRight && atLeast4SlotsDown)
                     {
-                        maxProduct = Math.Max(_DiagonalRightProduct(x, y, grid), maxProduct);
+                        maxProduct = Math.Max(DiagonalRightProduct(x, y, grid), maxProduct);
                     }
 
                     if (atLeast4SlotsLeft && atLeast4SlotsDown)
                     {
-                        maxProduct = Math.Max(_DiagonalLeftProduct(x, y, grid), maxProduct);
+                        maxProduct = Math.Max(DiagonalLeftProduct(x, y, grid), maxProduct);
                     }
                 }
             }
@@ -133,7 +133,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
         /// <param name="y"></param>
         /// <param name="grid"></param>
         /// <returns></returns>
-        private static int _RightProduct(int x, int y, int[,] grid)
+        private static int RightProduct(int x, int y, int[,] grid)
         {
             return grid[x, y] * grid[x, y + 1] * grid[x, y + 2] * grid[x, y + 3];
         }
@@ -148,7 +148,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
         /// <param name="y"></param>
         /// <param name="grid"></param>
         /// <returns></returns>
-        private static int _DownProduct(int x, int y, int[,] grid)
+        private static int DownProduct(int x, int y, int[,] grid)
         {
             return grid[x, y] * grid[x + 1, y] * grid[x + 2, y] * grid[x + 3, y];
         }
@@ -163,7 +163,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
         /// <param name="y"></param>
         /// <param name="grid"></param>
         /// <returns></returns>
-        private static int _DiagonalRightProduct(int x, int y, int[,] grid)
+        private static int DiagonalRightProduct(int x, int y, int[,] grid)
         {
             return grid[x, y] * grid[x + 1, y + 1] * grid[x + 2, y + 2] * grid[x + 3, y + 3];
         }
@@ -178,7 +178,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
         /// <param name="y"></param>
         /// <param name="grid"></param>
         /// <returns></returns>
-        private static int _DiagonalLeftProduct(int x, int y, int[,] grid)
+        private static int DiagonalLeftProduct(int x, int y, int[,] grid)
         {
             return grid[x, y] * grid[x + 1, y - 1] * grid[x + 2, y - 2] * grid[x + 3, y - 3];
         }

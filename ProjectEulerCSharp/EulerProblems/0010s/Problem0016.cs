@@ -42,7 +42,7 @@ What is the sum of the digits of the number 2^1000?")
             var sum = 0;
             foreach (var intChar in bigInt.ToString())
             {
-                int i = intChar.ToIntFast();
+                var i = intChar.ToIntFast();
                 sum += i;
             }
 

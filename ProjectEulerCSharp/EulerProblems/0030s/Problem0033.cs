@@ -34,19 +34,19 @@ If the product of these four fractions is given in its lowest common terms, find
                     var dDigits = d.GetDigits();
                     if (nDigits[0] == dDigits[0])
                     {
-                        fractionProduct = _FractionProduct(n, d, nDigits[1], dDigits[1], fractionProduct);
+                        fractionProduct = FractionProduct(n, d, nDigits[1], dDigits[1], fractionProduct);
                     }
                     else if (nDigits[0] == dDigits[1])
                     {
-                        fractionProduct = _FractionProduct(n, d, nDigits[1], dDigits[0], fractionProduct);
+                        fractionProduct = FractionProduct(n, d, nDigits[1], dDigits[0], fractionProduct);
                     }
                     else if (nDigits[1] == dDigits[0])
                     {
-                        fractionProduct = _FractionProduct(n, d, nDigits[0], dDigits[1], fractionProduct);
+                        fractionProduct = FractionProduct(n, d, nDigits[0], dDigits[1], fractionProduct);
                     }
                     else if (nDigits[1] == dDigits[1])
                     {
-                        fractionProduct = _FractionProduct(n, d, nDigits[0], dDigits[0], fractionProduct);
+                        fractionProduct = FractionProduct(n, d, nDigits[0], dDigits[0], fractionProduct);
                     }
                 }
             }
@@ -54,7 +54,7 @@ If the product of these four fractions is given in its lowest common terms, find
             return fractionProduct?.Denominator ?? 0;
         }
 
-        private static Fraction _FractionProduct(int n, int d, int canceledN, int canceledD, Fraction productAccumulator)
+        private static Fraction FractionProduct(int n, int d, int canceledN, int canceledD, Fraction productAccumulator)
         {
             var f1 = new Fraction(n, d);
             var f2 = new Fraction(canceledN, canceledD);

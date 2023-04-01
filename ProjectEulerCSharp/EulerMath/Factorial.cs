@@ -6,12 +6,12 @@ namespace ProjectEulerCSharp.EulerMath
 {
     public class Factorial
     {
-        private static readonly Dictionary<int, BigInteger> _factorials;
+        private static readonly Dictionary<int, BigInteger> Factorials;
 
         static Factorial()
         {
             // No reason to calculate this stuff, factorials are well known so just cache the ones I'm most likely to use.
-            _factorials = new Dictionary<int, BigInteger>
+            Factorials = new Dictionary<int, BigInteger>
             {
                 [0] = BigInteger.One,
                 [1] = BigInteger.One,
@@ -119,12 +119,12 @@ namespace ProjectEulerCSharp.EulerMath
 
         public static BigInteger Of(int n)
         {
-            if (n < 0 || !_factorials.ContainsKey(n))
+            if (n < 0 || !Factorials.ContainsKey(n))
             {
                 throw new ArgumentOutOfRangeException(nameof(n), "must be between 1 and 100");
             }
 
-            return _factorials[n];
+            return Factorials[n];
         }
     }
 }

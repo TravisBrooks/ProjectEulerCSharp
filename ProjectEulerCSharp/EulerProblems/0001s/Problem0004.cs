@@ -11,12 +11,6 @@ Find the largest palindrome made from the product of two 3-digit numbers.")
     // ReSharper disable once UnusedMember.Global
     public class Problem0004 : ISolution<int>
     {
-        /****************************************************************************************************
-         * Largest palindrome product
-         *
-         * A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
-         * Find the largest palindrome made from the product of two 3-digit numbers.
-         ****************************************************************************************************/
         public int BruteForceSolution()
         {
             var max = 0;
@@ -26,7 +20,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.")
                 for (var j = i; j < 1000; j++)
                 {
                     var prod = i * j;
-                    if (_IsPalindrome(prod) && prod > max)
+                    if (IsPalindrome(prod) && prod > max)
                     {
                         max = prod;
                     }
@@ -59,12 +53,12 @@ Find the largest palindrome made from the product of two 3-digit numbers.")
             return 906609;
         }
 
-        private static bool _IsPalindrome(int candidate)
+        private static bool IsPalindrome(int candidate)
         {
-            return candidate == _ReverseInt(candidate);
+            return candidate == ReverseInt(candidate);
         }
 
-        private static int _ReverseInt(int number)
+        private static int ReverseInt(int number)
         {
             var result = 0;
             while (number > 0)

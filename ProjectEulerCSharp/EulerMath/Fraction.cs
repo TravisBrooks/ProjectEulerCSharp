@@ -25,7 +25,7 @@ namespace ProjectEulerCSharp.EulerMath
             Numerator = Math.Abs(numerator);
             Denominator = Math.Abs(denominator);
             Sign = sign;
-            _approximateDecimalValue = new Lazy<decimal>(_ApproximateDecimalImpl);
+            _approximateDecimalValue = new Lazy<decimal>(ApproximateDecimalImpl);
             _gcd = new Lazy<int>(() => Numerator.GCD(Denominator));
         }
 
@@ -84,10 +84,10 @@ namespace ProjectEulerCSharp.EulerMath
                 recurring.SkipWhile(tpl => tpl.Numerator != n && tpl.Quotient != quotient)
                     .Select(tpl => tpl.Quotient)
                     .ToArray() 
-                : new int[]{};
+                : Array.Empty<int>();
         }
 
-        private decimal _ApproximateDecimalImpl()
+        private decimal ApproximateDecimalImpl()
         {
             decimal n = Numerator;
             decimal d = Denominator;

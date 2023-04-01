@@ -23,14 +23,14 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
 
         public int BruteForceSolution()
         {
-            int number = 0;
+            var number = 0;
             long maxChainLen = 0;
             var collatzCache = new Dictionary<long, long>
             {
                 [1] = 1
             };
 
-            for (int n = 1; n < 1_000_000; n++)
+            for (var n = 1; n < 1_000_000; n++)
             {
                 var len = CollatzLen(n, collatzCache);
                 if (len > maxChainLen)
@@ -44,9 +44,9 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
 
             static long CollatzLen(long n, IDictionary<long, long> cache)
             {
-                if (cache.ContainsKey(n))
+                if (cache.TryGetValue(n, out var value))
                 {
-                    return cache[n];
+                    return value;
                 }
 
                 if (n % 2 == 0)

@@ -23,7 +23,7 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.")
             // Lower bound starting at 10 so there are at least 2 digits to sum (last sentence of problem description).
             for (var n = 10; n < 41_000; n++)
             {
-                if (_IsCuriousNumber(n))
+                if (IsCuriousNumber(n))
                 {
                     sum += n;
                 }
@@ -31,7 +31,7 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.")
             return sum;
         }
 
-        private static bool _IsCuriousNumber(int n)
+        private static bool IsCuriousNumber(int n)
         {
             var factorials = new[]
             {

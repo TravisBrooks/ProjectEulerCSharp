@@ -44,7 +44,7 @@ namespace ProjectEulerCSharp.EulerMath
 
         public static IEnumerable<int> Calculate(int upperBounds)
         {
-            var sieve = _BuildSieve(upperBounds);
+            var sieve = BuildSieve(upperBounds);
             for (var i = 0; i < sieve.Length; i++)
             {
                 if (sieve[i])
@@ -62,7 +62,7 @@ namespace ProjectEulerCSharp.EulerMath
         /// <exception cref="ArgumentException"></exception>
         public static Func<int, bool> IsPrime(int upperBounds)
         {
-            var sieve = _BuildSieve(upperBounds);
+            var sieve = BuildSieve(upperBounds);
 
             bool IsPrimeImpl(int n)
             {
@@ -82,7 +82,7 @@ namespace ProjectEulerCSharp.EulerMath
             return IsPrimeImpl;
         }
 
-        private static BitArray _BuildSieve(int upperBounds)
+        private static BitArray BuildSieve(int upperBounds)
         {
             // The sieve is being treated as having a 1 based index
             var sieve = new BitArray(upperBounds + 1, true)

@@ -22,13 +22,13 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
         public int BruteForceSolution()
         {
-            var allAbundantNums = new HashSet<int> { 12 };
+            var allAbundantNumbers = new HashSet<int> { 12 };
             for (var i = 13; i <= 28123; i++)
             {
                 var sumOfDivisors = ProperDivisors.Of(i).Sum();
                 if (sumOfDivisors > i)
                 {
-                    allAbundantNums.Add(i);
+                    allAbundantNumbers.Add(i);
                 }
             }
 
@@ -36,7 +36,7 @@ Find the sum of all the positive integers which cannot be written as the sum of 
             var sum = Enumerable.Range(1, 23).Sum();
             for (var i = 25; i <= 28123; i++)
             {
-                if (!IsSumOfTwoAbundantNums(allAbundantNums, i))
+                if (!IsSumOfTwoAbundantNumbers(allAbundantNumbers, i))
                 {
                     sum += i;
                 }
@@ -45,11 +45,11 @@ Find the sum of all the positive integers which cannot be written as the sum of 
             return sum;
         }
 
-        private bool IsSumOfTwoAbundantNums(HashSet<int> allAbundantNums, int n)
+        private bool IsSumOfTwoAbundantNumbers(HashSet<int> allAbundantNumbers, int n)
         {
-            return allAbundantNums
+            return allAbundantNumbers
                 .Where(a => a < n)
-                .Any(a => allAbundantNums.Contains(n - a));
+                .Any(a => allAbundantNumbers.Contains(n - a));
         }
 
         public int AnalyticSolution()

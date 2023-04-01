@@ -48,7 +48,7 @@ What is the value of the first triangle number to have over five hundred divisor
             while (keepGoing)
             {
                 currentTriangle += loopCnt;
-                keepGoing = _DivisorCount(currentTriangle) <= 500;
+                keepGoing = DivisorCount(currentTriangle) <= 500;
                 loopCnt++;
             }
 
@@ -67,7 +67,7 @@ What is the value of the first triangle number to have over five hundred divisor
             return 76_576_500;
         }
 
-        private static int _DivisorCount(int currentTriangle)
+        private static int DivisorCount(int currentTriangle)
         {
             var cnt = 2;
             int currentDivisor;

@@ -29,11 +29,11 @@ How many circular primes are there below one million?")
                 if(primes.Contains(n))
                 {
                     var digits = n.GetDigits();
-                    var rotations = _RotateDigits(digits);
+                    var rotations = RotateDigits(digits);
                     var allPrime = true;
                     foreach (var rotation in rotations)
                     {
-                        var fromDigits = _FromDigits(rotation);
+                        var fromDigits = FromDigits(rotation);
                         if (!primes.Contains(fromDigits))
                         {
                             allPrime = false;
@@ -51,7 +51,7 @@ How many circular primes are there below one million?")
             return count;
         }
 
-        private static IEnumerable<int[]> _RotateDigits(int[] digits)
+        private static IEnumerable<int[]> RotateDigits(int[] digits)
         {
             if (digits.Length <= 1)
             {
@@ -69,7 +69,7 @@ How many circular primes are there below one million?")
         }
 
         private static readonly int[] PowersOf10 = { 1, 10, 100, 1000, 10_000, 100_000, 1_000_000 };
-        private static int _FromDigits(int[] digits)
+        private static int FromDigits(int[] digits)
         {
             var sum = 0;
             var i = 0;

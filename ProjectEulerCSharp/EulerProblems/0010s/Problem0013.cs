@@ -138,7 +138,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
             {
                 foreach (var numberStr in allNumbers)
                 {
-                    int columnDigit = numberStr[i].ToIntFast();
+                    var columnDigit = numberStr[i].ToIntFast();
                     carry += columnDigit;
                 }
 
@@ -156,7 +156,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
             return 5_537_376_230;
         }
 
-        private string[] AllTheNumbers()
+        private static string[] AllTheNumbers()
         {
             var bigStr = @"37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538

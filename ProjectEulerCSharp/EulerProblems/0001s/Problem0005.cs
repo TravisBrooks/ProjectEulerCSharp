@@ -14,12 +14,6 @@ What is the smallest positive number that is evenly divisible by all of the numb
         // This problem is kind of dumb to do brute force, its more of a pen and paper problem. I tried to come up with a few
         // optimizations to the brute force method below to reduce the search space but its still pretty slow.
 
-        /****************************************************************************************************
-         * Smallest multiple
-         *
-         * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
-         * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
-         ****************************************************************************************************/
         public int BruteForceSolution()
         {
             // reverse does slight optimization in divisor test, many numbers pass beginning of range but not many are divisible by 19 and 17
@@ -55,7 +49,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
         public int ExpectedSolution()
         {
-            return 232792560;
+            return 232_792_560;
         }
     }
 }
