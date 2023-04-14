@@ -13,12 +13,12 @@ using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp
 {
-    public class SolveAllEulerProblems
+    public class BaseTestRunner
     {
         private readonly Stopwatch _stopwatch;
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public SolveAllEulerProblems(ITestOutputHelper testOutputHelper)
+        public BaseTestRunner(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
             _stopwatch = new Stopwatch();
@@ -26,10 +26,7 @@ namespace ProjectEulerCSharp
             _ = Factorial.Of(10);
         }
 
-        [Theory]
-        [Trait("Category", "EulerProblems")]
-        [MemberData(nameof(AllSolutionInstances))]
-        public void EulerSolution<T>(ISolution<T> solutionInstance) where T : INumber<T>
+        protected void SolutionImpl<T>(ISolution<T> solutionInstance) where T : INumber<T>
         {
             var analyticElapsed = default(TimeSpan);
             var analyticSolution = default(T);
@@ -103,11 +100,17 @@ namespace ProjectEulerCSharp
             }
         }
 
-        public static IEnumerable<object[]> AllSolutionInstances()
+        public static IEnumerable<object[]> DiscoverSolutionInstances(Type testRunnerType)
         {
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISolution<>)))
+                .Where(t => 
+                    t.GetInterfaces().Any(i => 
+                        i.IsGenericType &&
+                        i.GetGenericTypeDefinition() == typeof(ISolution<>))
+                    &&
+                    t.Namespace == testRunnerType.Namespace
+                    )
                 .OrderBy(t => t.Name)
                 .ToArray();
 
