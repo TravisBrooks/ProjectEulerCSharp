@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using ProjectEulerCSharp.EulerMath;
 using ProjectEulerCSharp.PrettyPrint;
-using Xunit;
 using Xunit.Abstractions;
 using Assert = XunitAssertMessages.AssertM;
 
