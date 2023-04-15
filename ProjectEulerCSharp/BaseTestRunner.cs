@@ -12,12 +12,15 @@ using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp
 {
+    /// <summary>
+    /// A class that abuses xUnit to get some nicely formatted solutions to Project Euler problems
+    /// </summary>
     public class BaseTestRunner
     {
         private readonly Stopwatch _stopwatch;
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public BaseTestRunner(ITestOutputHelper testOutputHelper)
+        protected BaseTestRunner(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
             _stopwatch = new Stopwatch();
@@ -25,6 +28,12 @@ namespace ProjectEulerCSharp
             _ = Factorial.Of(10);
         }
 
+        /// <summary>
+        /// For the given solutionInstance, runs the BruteForceSolution and if HaveImplementedAnalyticSolution runs AnalyticSolution.
+        /// It checks if the solutions match ExpectedSolution and collects timing, formatting the results into the ITestOutputHelper.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="solutionInstance"></param>
         protected void SolutionImpl<T>(ISolution<T> solutionInstance) where T : INumber<T>
         {
             var analyticElapsed = default(TimeSpan);
@@ -91,14 +100,20 @@ namespace ProjectEulerCSharp
 
             _testOutputHelper.WriteLine(eulerReport.PrettyPrintString());
 
-            Assert.Equal(expected, bruteForceSolution, "brute force solution was incorrect");
+            Assert.Equal(expected, bruteForceSolution, $"Brute force solution was incorrect, expected {expected} but found {bruteForceSolution}");
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
-                Assert.Equal(expected, analyticSolution, "analytic solution was incorrect");
+                Assert.Equal(expected, analyticSolution, $"Analytic force solution was incorrect, expected {expected} but found {analyticSolution}");
             }
         }
 
+        /// <summary>
+        /// Gets everything in the namespace of testRunnerType that implements ISolution, in a format that can used as an xUnit MemberData
+        /// to a Theory test
+        /// </summary>
+        /// <param name="testRunnerType"></param>
+        /// <returns></returns>
         public static IEnumerable<object[]> DiscoverSolutionInstances(Type testRunnerType)
         {
             var solutionTypes = Assembly.GetExecutingAssembly()
