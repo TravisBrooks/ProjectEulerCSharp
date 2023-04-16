@@ -91,7 +91,42 @@ namespace ProjectEulerCSharp.EulerMath
             return digits;
         }
 
+        public static int[] GetDigits(this long n)
+        {
+            if (n < 0)
+            {
+                n = -n;
+            }
+
+            if (n < 10)
+            {
+                return new[] { (int)n };
+            }
+            var digitCount = n.GetCountOfDigits();
+            var digits = new int[digitCount];
+            for (var i = digitCount - 1; i >= 0; i--)
+            {
+                if (n < 10)
+                {
+                    digits[i] = (int)n;
+                }
+                else
+                {
+                    var d = n % 10;
+                    digits[i] = (int)d;
+                    n /= 10;
+                }
+            }
+            return digits;
+        }
+
         public static int GetCountOfDigits(this int n)
+        {
+            // ye olde log trick
+            return (int)(Math.Floor(Math.Log10(n)) + 1);
+        }
+
+        public static int GetCountOfDigits(this long n)
         {
             // ye olde log trick
             return (int)(Math.Floor(Math.Log10(n)) + 1);
