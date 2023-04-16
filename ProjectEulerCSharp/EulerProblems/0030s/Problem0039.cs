@@ -18,25 +18,21 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
 
         public int BruteForceSolution()
         {
-            var allRightTriangles = new Dictionary<int, HashSet<RightTriangle>>();
+            //var allRightTriangles = new Dictionary<int, HashSet<RightTriangle>>();
+            var allRightTriangles = new Dictionary<int, int>();
 
             for (var a = 1; a < 997; a++)
             {
-                for (var b = 1; b < 997; b++)
+                for (var b = 1; a + b < 500; b++)
                 {
                     var maxSideLen = Math.Max(a, b);
                     for (var c = maxSideLen + 1; a + b + c <= 1000; c++)
                     {
                         if (IsRightTriangle(a, b, c))
                         {
-                            var t = new RightTriangle(a, b, c);
                             var perimeter = a + b + c;
-                            if (!allRightTriangles.ContainsKey(perimeter))
-                            {
-                                allRightTriangles[perimeter] = new HashSet<RightTriangle>();
-                            }
-
-                            allRightTriangles[perimeter].Add(t);
+                            allRightTriangles.TryAdd(perimeter, 0);
+                            allRightTriangles[perimeter]++;
                         }
                     }
                 }
@@ -47,9 +43,9 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
             foreach (var perimeter in allRightTriangles.Keys)
             {
                 var solutions = allRightTriangles[perimeter];
-                if (solutions.Count > maxSolutions)
+                if (solutions > maxSolutions)
                 {
-                    maxSolutions = solutions.Count;
+                    maxSolutions = solutions;
                     perimeterWithMaxSolutions = perimeter;
                 }
             }
@@ -61,8 +57,6 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
         {
             return a * a + b * b == c * c;
         }
-
-        private record RightTriangle(int A, int B, int C);
 
         public int AnalyticSolution()
         {
