@@ -18,7 +18,6 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
 
         public int BruteForceSolution()
         {
-            //var allRightTriangles = new Dictionary<int, HashSet<RightTriangle>>();
             var allRightTriangles = new Dictionary<int, int>();
 
             for (var a = 1; a < 997; a++)
@@ -42,10 +41,10 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
             var perimeterWithMaxSolutions = 0;
             foreach (var perimeter in allRightTriangles.Keys)
             {
-                var solutions = allRightTriangles[perimeter];
-                if (solutions > maxSolutions)
+                var solutionCount = allRightTriangles[perimeter];
+                if (solutionCount > maxSolutions)
                 {
-                    maxSolutions = solutions;
+                    maxSolutions = solutionCount;
                     perimeterWithMaxSolutions = perimeter;
                 }
             }
