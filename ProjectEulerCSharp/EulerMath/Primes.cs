@@ -14,7 +14,7 @@ namespace ProjectEulerCSharp.EulerMath
         /// </summary>
         /// <param name="upperBounds"></param>
         /// <returns></returns>
-        public static HashSet<int> PreCalculated(int upperBounds)
+        public static HashSet<int> PreCalculated(int upperBounds = 1_000_000)
         {
             if (upperBounds is < 0 or > 1_000_000)
             {
