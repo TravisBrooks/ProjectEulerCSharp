@@ -25,8 +25,9 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
                 // c must be greater than a+b, and a+b+c is at most 1000 so a+b must be less than 500
                 for (var b = 1; a + b < 500; b++)
                 {
-                    var c = (int)Math.Sqrt(a * a + b * b);
-                    if (IsRightTriangle(a, b, c))
+                    var abSquared = a * a + b * b;
+                    var c = (int)Math.Sqrt(abSquared);
+                    if (c * c == abSquared)
                     {
                         var perimeter = a + b + c;
                         allRightTriangles.TryAdd(perimeter, 0);
@@ -48,11 +49,6 @@ For which value of p ≤ 1000, is the number of solutions maximized?")
             }
 
             return perimeterWithMaxSolutions;
-        }
-
-        private static bool IsRightTriangle(int a, int b, int c)
-        {
-            return a * a + b * b == c * c;
         }
 
         public int AnalyticSolution()
