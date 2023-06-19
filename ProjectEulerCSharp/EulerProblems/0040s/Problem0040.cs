@@ -76,7 +76,7 @@ If dn represents the nth digit of the fractional part, find the value of the fol
             return answer;
         }
 
-        private int FindNthDigit(IEnumerable<ChampRow> champTable, int n)
+        private static int FindNthDigit(IEnumerable<ChampRow> champTable, int n)
         {
             var row = champTable.Single(r => r.DigitStart <= n && r.DigitEnd >= n);
             var howManyDigitsInRow = n - row.DigitStart + 1;

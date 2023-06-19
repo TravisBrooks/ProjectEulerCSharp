@@ -10,13 +10,13 @@
   <ItemGroup>
     <None Remove="EulerData\p022_names.txt" />
     <None Remove="EulerData\p067_triangle.txt" />
-    <None Remove="EulerData\PrimesLessThanOneMillion.data" />
+    <None Remove="EulerData\PrimesLessThanTenMillion.data" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="EulerData\p022_names.txt" />
     <EmbeddedResource Include="EulerData\p067_triangle.txt" />
-    <EmbeddedResource Include="EulerData\PrimesLessThanOneMillion.data" />
+    <EmbeddedResource Include="EulerData\PrimesLessThanTenMillion.data" />
   </ItemGroup>
 
   <ItemGroup>

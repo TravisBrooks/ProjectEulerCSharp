@@ -14,14 +14,14 @@ namespace ProjectEulerCSharp.EulerMath
         /// </summary>
         /// <param name="upperBounds"></param>
         /// <returns></returns>
-        public static HashSet<int> PreCalculated(int upperBounds = 1_000_000)
+        public static HashSet<int> PreCalculated(int upperBounds)
         {
-            if (upperBounds is < 0 or > 1_000_000)
+            if (upperBounds is < 0 or > 10_000_000)
             {
-                throw new ArgumentOutOfRangeException(nameof(upperBounds), "Primes must be > 0 and < million");
+                throw new ArgumentOutOfRangeException(nameof(upperBounds), "Primes must be > 0 and < 10 million");
             }
 
-            return Get.Resource("PrimesLessThanOneMillion.data", ParsePrimes);
+            return Get.Resource("PrimesLessThanTenMillion.data", ParsePrimes);
 
             HashSet<int> ParsePrimes(Stream stream)
             {
