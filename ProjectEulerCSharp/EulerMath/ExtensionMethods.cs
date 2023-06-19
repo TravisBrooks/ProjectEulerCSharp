@@ -7,6 +7,11 @@ namespace ProjectEulerCSharp.EulerMath
     {
         private static readonly int AsciiToIntegralDelta = 48;
 
+        /// <summary>
+        /// This is to convert '1', '2',... to 1,2, ... 
+        /// </summary>
+        /// <param name="intChar"></param>
+        /// <returns></returns>
         public static int ToIntFast(this char intChar)
         {
             return intChar - AsciiToIntegralDelta;
@@ -20,6 +25,28 @@ namespace ProjectEulerCSharp.EulerMath
             }
 
             return intChar.ToIntFast();
+        }
+
+        /// <summary>
+        /// 'A'=1, 'b'=2, etc
+        /// </summary>
+        /// <param name="someChar"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static int CharOrdinalPosition(this char someChar)
+        {
+            // uppercase
+            if (someChar > 64 && someChar < 91)
+            {
+                return someChar - 64;
+            }
+            // lowercase
+            if (someChar > 96 && someChar < 123)
+            {
+                return someChar - 96;
+            }
+            // not a letter
+            throw new ArgumentOutOfRangeException(nameof(someChar), "Can only return the ordinal position for a char that is an uppercase or lowercase of the English alphabet.");
         }
 
         public static char ToCharFast(this int singleDigit)

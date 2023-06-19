@@ -6,6 +6,18 @@ namespace ProjectEulerCSharp.EulerData
 {
     public static class Get
     {
+        public static string[] Resource(string fileName)
+        {
+            var words = EulerData.Get.Resource(
+                fileName: fileName,
+                fileStr =>
+                {
+                    var namesNoQuotes = fileStr.Replace("\"", string.Empty);
+                    return namesNoQuotes.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+                });
+            return words;
+        }
+
         /// <summary>
         /// Helper method to work with embedded resource files without repeating a bunch of boilerplate code
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems._0020s
 {
@@ -18,13 +19,7 @@ What is the total of all the name scores in the file?")
 
         public Problem0022()
         {
-            _names = EulerData.Get.Resource(
-                fileName: "p022_names.txt",
-                fileStr =>
-                {
-                    var namesNoQuotes = fileStr.Replace("\"", string.Empty);
-                    return namesNoQuotes.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-                });
+            _names = EulerData.Get.Resource(fileName: "p022_names.txt");
         }
 
         public bool HaveImplementedAnalyticSolution => false;
@@ -33,14 +28,9 @@ What is the total of all the name scores in the file?")
         {
             var answer = _names
                 .OrderBy(s => s)
-                .Select((s, idx) => s.Select(CharToInt).Sum() * (idx + 1)) // idx from Select is 0-based so have to add 1
+                .Select((s, idx) => s.Select(c => c.CharOrdinalPosition()).Sum() * (idx + 1)) // idx from Select is 0-based so have to add 1
                 .Sum();
             return answer;
-        }
-
-        private static int CharToInt(char someChar)
-        {
-            return someChar - 64;
         }
 
         public int AnalyticSolution()
