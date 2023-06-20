@@ -21,8 +21,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
         {
             var digits = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var answerArr = Permutations.Of(digits, PermutationAlgorithm.Lexicographic).Take(1_000_000).Last();
-            var answerStr = string.Join(string.Empty, answerArr);
-            var answer = long.Parse(answerStr);
+            var answer = answerArr.ToLong();
             return answer;
         }
 
@@ -52,8 +51,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
             {
                 answerDigits.AddRange(digits);
             }
-            var answerStr = string.Join(string.Empty, answerDigits);
-            return long.Parse(answerStr);
+            return answerDigits.ToArray().ToLong();
         }
 
         public long ExpectedSolution()

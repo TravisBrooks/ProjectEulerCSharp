@@ -147,6 +147,40 @@ namespace ProjectEulerCSharp.EulerMath
             return digits;
         }
 
+        public static long ToLong(this int[] digits)
+        {
+            return new ReadOnlySpan<int>(digits).ToLong();
+        }
+
+        public static long ToLong(this ReadOnlySpan<int> digits)
+        {
+            long total = 0;
+            long mult = 1;
+            for (var i = digits.Length - 1; i >= 0; i--)
+            {
+                total += digits[i] * mult;
+                mult *= 10;
+            }
+            return total;
+        }
+
+        public static int ToInt(this int[] digits)
+        {
+            return new ReadOnlySpan<int>(digits).ToInt();
+        }
+
+        public static int ToInt(this ReadOnlySpan<int> digits)
+        {
+            var total = 0;
+            var mult = 1;
+            for (var i = digits.Length - 1; i >= 0; i--)
+            {
+                total += digits[i] * mult;
+                mult *= 10;
+            }
+            return total;
+        }
+
         public static int GetCountOfDigits(this int n)
         {
             // ye olde log trick

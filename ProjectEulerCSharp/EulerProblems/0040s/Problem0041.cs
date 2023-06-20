@@ -23,8 +23,7 @@ What is the largest n-digit pandigital prime that exists?")
             var permutations = Permutations.Of(Enumerable.Range(1, 7).ToArray(), PermutationAlgorithm.Heap);
             foreach (var possiblePrimeArr in permutations)
             {
-                var numStr = string.Join(string.Empty, possiblePrimeArr);
-                var possiblePrime = int.Parse(numStr);
+                var possiblePrime = possiblePrimeArr.ToInt();
                 if (setOfPrimes.Contains(possiblePrime))
                 {
                     allFoundPrimes.Add(possiblePrime);
