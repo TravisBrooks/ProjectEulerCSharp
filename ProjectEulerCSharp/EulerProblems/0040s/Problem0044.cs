@@ -32,14 +32,14 @@ Find the pair of pentagonal numbers, Pj and Pk, for which their sum and differen
 
             for (var j = 0; j < upperBound; j++)
             {
-                var iPent = pentagonals[j];
+                var jPent = pentagonals[j];
                 for (var k = 0; k < j; k++)
                 {
-                    var jPent = pentagonals[k];
-                    var delta = iPent - jPent;
+                    var kPent = pentagonals[k];
+                    var delta = jPent - kPent;
                     if (pantagonalLookup.Contains(delta))
                     {
-                        if (pantagonalLookup.Contains(iPent + jPent))
+                        if (pantagonalLookup.Contains(jPent + kPent))
                         {
                             return delta;
                         }
