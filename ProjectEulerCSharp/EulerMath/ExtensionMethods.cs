@@ -215,5 +215,11 @@ namespace ProjectEulerCSharp.EulerMath
                 b = a1 % b;
             }
         }
+
+        public static bool IsInteger(this double d)
+        {
+            const double precision = 0.00001;
+            return Math.Abs(d - Math.Floor(d)) < precision;
+        }
     }
 }
