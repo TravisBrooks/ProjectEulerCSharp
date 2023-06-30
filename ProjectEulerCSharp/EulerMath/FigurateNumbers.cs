@@ -67,10 +67,26 @@ namespace ProjectEulerCSharp.EulerMath
             return h;
         }
 
-        //public static bool IsHexagonal(long maybePentagonal)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public static double InvertedHexagonal(long maybeHexagonal)
+        {
+            // This is just the inverted version of the pentagonal function. The steps I did to invert H(x) are:
+            //x = y(2y - 1)
+            //x = 2y ^ 2 - y
+            //2y ^ 2 - y - x = 0
+            // Then I looked up xe old quadratic equation, plugged in the numbers and came up with 
+            //y = (1 ± √(1 - (4 * 2 * -x)))/ (2 * 2)
+            //y = (1 ± √(1 - -8x))/ 4
+            //y = (1 ± √(1 + 8x))/ 4
+            var num = 1 + Math.Sqrt(1 + 8 * maybeHexagonal);
+            var n = num / 4;
+            return n;
+        }
+
+        public static bool IsHexagonal(long maybeHexagonal)
+        {
+            var n = InvertedHexagonal(maybeHexagonal);
+            return n.IsInteger();
+        }
 
     }
 }

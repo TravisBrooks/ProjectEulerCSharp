@@ -1,5 +1,4 @@
-﻿using System;
-using ProjectEulerCSharp.EulerMath;
+﻿using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems._0040s
 {
@@ -17,7 +16,7 @@ Find the next triangle number that is also pentagonal and hexagonal.")
     // ReSharper disable once UnusedMember.Global
     public class Problem0045 : ISolution<long>
     {
-        public bool HaveImplementedAnalyticSolution => false;
+        public bool HaveImplementedAnalyticSolution => true;
 
         public long BruteForceSolution()
         {
@@ -39,7 +38,19 @@ Find the next triangle number that is also pentagonal and hexagonal.")
 
         public long AnalyticSolution()
         {
-            throw new NotImplementedException();
+            var n = 144;
+            while (true)
+            {
+                var hn = FigurateNumbers.Hexagonal(n);
+                // Hexagonal numbers are also triangular so only need to check if its also pentagonal. I know, kinda weak analysis
+                // but it does run roughly twice as fast.
+                if (FigurateNumbers.IsPentagonal(hn))
+                {
+                    return hn;
+                }
+
+                n++;
+            }
         }
 
         public long ExpectedSolution()
