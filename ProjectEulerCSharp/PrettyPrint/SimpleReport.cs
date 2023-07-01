@@ -45,6 +45,11 @@ namespace ProjectEulerCSharp.PrettyPrint
                 throw new ArgumentException("There were characters in the text that would get escaped in xml test output, ruining the formatting of the report.");
             }
 
+            if ((text ?? string.Empty).Contains('\t'))
+            {
+                throw new ArgumentException("There were tab characters in the text that would get escaped to spaces in xml test output, this could ruin the formatting of the report.");
+            }
+
             _containers.Add(TextContainer.Build(text, TextMaxCharsPerLine));
         }
 
