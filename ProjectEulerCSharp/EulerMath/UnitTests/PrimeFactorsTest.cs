@@ -33,6 +33,10 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             {
                 new PrimeFactorsTestData(24, new[] { new PrimeFactor32(2, 3), new PrimeFactor32(3, 1) })
             };
+            yield return new object[]
+            {
+                new PrimeFactorsTestData(23, new[] { new PrimeFactor32(23, 1) })
+            };
         }
 
         public record PrimeFactorsTestData(int N, IEnumerable<PrimeFactor32> FactorsExpected);
