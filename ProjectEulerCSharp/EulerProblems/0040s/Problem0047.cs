@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems._0040s
@@ -22,30 +21,44 @@ Find the first four consecutive integers to have four distinct prime factors eac
     {
         public bool HaveImplementedAnalyticSolution => false;
 
-        // this takes ~4.5 seconds, which seems a bit too slow
         public int BruteForceSolution()
         {
-            var fourPrimeHistory = new List<int>();
+            // found the upperBounds after solving it with a larger upper bound
+            const int upperBounds = 135_000;
+            const int factorCount = 4;
             var n = 647;
-            while (true)
+            var primes = Primes.PreCalculated(upperBounds);
+            // The strategy here is to try and skip ahead as much as possible to examine the next 4 numbers
+            while (n <= upperBounds - 3)
             {
-                if (fourPrimeHistory.Count == 4)
+                var indexA = n + 3;
+                if(primes.Contains(indexA) || PrimeFactor32.Factors(indexA).Count != factorCount)
                 {
-                    return fourPrimeHistory[0];
+                    n += 4;
+                    continue;
+                }
+                var indexB = n + 2;
+                if (primes.Contains(indexB) || PrimeFactor32.Factors(indexB).Count != factorCount)
+                {
+                    n += 3;
+                    continue;
+                }
+                var indexC = n + 1;
+                if (primes.Contains(indexC) || PrimeFactor32.Factors(indexC).Count != factorCount)
+                {
+                    n += 2;
+                    continue;
+                }
+                if (primes.Contains(n) || PrimeFactor32.Factors(n).Count != factorCount)
+                {
+                    n++;
+                    continue;
                 }
 
-                var factors = PrimeFactor32.Factors(n);
-                if (factors.Count == 4)
-                {
-                    fourPrimeHistory.Add(n);
-                }
-                else
-                {
-                    fourPrimeHistory.Clear();
-                }
-
-                n++;
+                return n;
             }
+            // if we got to here something bad happened
+            return -1;
         }
 
         public int AnalyticSolution()
