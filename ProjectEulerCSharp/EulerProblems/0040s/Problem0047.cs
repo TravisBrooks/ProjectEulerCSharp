@@ -26,7 +26,8 @@ Find the first four consecutive integers to have four distinct prime factors eac
             // found the upperBounds after solving it with a larger upper bound
             const int upperBounds = 135_000;
             const int factorCount = 4;
-            var n = 647;
+            // 2 * 3 * 5 * 7 = 210, so thats the smallest number that can have 4 prime factors
+            var n = 210;
             var primes = Primes.PreCalculated(upperBounds);
             // The strategy here is to try and skip ahead as much as possible to examine the next 4 numbers
             while (n <= upperBounds - 3)
