@@ -104,7 +104,7 @@ namespace ProjectEulerCSharp
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
-                Assert.Equal(expected, analyticSolution, $"Analytic force solution was incorrect, expected {expected} but found {analyticSolution}");
+                Assert.Equal(expected, analyticSolution, $"Analytic solution was incorrect, expected {expected} but found {analyticSolution}");
             }
         }
 
