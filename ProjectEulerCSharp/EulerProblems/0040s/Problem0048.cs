@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Numerics;
 
 namespace ProjectEulerCSharp.EulerProblems._0040s
@@ -17,12 +18,9 @@ Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.")
         public ulong BruteForceSolution()
         {
             // If you have large integer support this problem is quite easy.
-            var acc = BigInteger.Parse("0");
-            for (var i = 1; i <= 1000; i++)
-            {
-                var bi = BigInteger.Pow(BigInteger.Parse(i.ToString()), i);
-                acc += bi;
-            }
+            var acc = Enumerable.Range(1, 1000)
+                .Select(i => BigInteger.Pow(BigInteger.Parse(i.ToString()), i))
+                .Aggregate((a, b) => a + b);
             var lastTen = acc.ToString()[^10..];
             return ulong.Parse(lastTen);
         }
