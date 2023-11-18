@@ -114,7 +114,7 @@ namespace ProjectEulerCSharp
         /// </summary>
         /// <param name="testRunnerType"></param>
         /// <returns></returns>
-        public static IEnumerable<object[]> DiscoverSolutionInstances(Type testRunnerType)
+        protected static IEnumerable<object[]> DiscoverSolutionInstances(Type testRunnerType)
         {
             var solutionTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()

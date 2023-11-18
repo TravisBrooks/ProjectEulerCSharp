@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using FluentAssertions;
 using Xunit;
 
@@ -161,20 +160,6 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
                         new[] { "foo", "bar" }
                     })
             };
-        }
-
-        private static string ArrayOfArrayToString<T>(IEnumerable<T[]> allPermutations)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine();
-            sb.AppendLine("{");
-            foreach (var permutations in allPermutations)
-            {
-                sb.AppendLine("     new []{" + string.Join(", ", permutations) + "},");
-            }
-
-            sb.AppendLine("}");
-            return sb.ToString();
         }
 
         public record PermutationTestData<T>(

@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace ProjectEulerCSharp.EulerMath
 {
-    public class Factorial
+    public static class Factorial
     {
         private static readonly Dictionary<int, BigInteger> Factorials;
 

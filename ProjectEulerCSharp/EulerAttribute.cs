@@ -3,15 +3,9 @@
 namespace ProjectEulerCSharp
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class EulerAttribute : Attribute
+    public class EulerAttribute(string title, string description) : Attribute
     {
-        public EulerAttribute(string title, string description)
-        {
-            Title = title;
-            Description = description;
-        }
-
-        public string Title { get; }
-        public string Description { get; }
+        public string Title { get; } = title;
+        public string Description { get; } = description;
     }
 }

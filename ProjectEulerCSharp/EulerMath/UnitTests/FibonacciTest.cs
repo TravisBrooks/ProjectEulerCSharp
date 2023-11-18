@@ -13,7 +13,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             var expected = new [] { 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 }
                 .Select(i => new BigInteger(i))
                 .ToList();
-            var actual = Fibonacci.Sequence().Take(expected.Count());
+            var actual = Fibonacci.Sequence().Take(expected.Count);
             Assert.Equal(expected, actual);
         }
     }

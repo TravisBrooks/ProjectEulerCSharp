@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         public void Divisors(ProperDivisorsTestData testData)
         {
             var (n, expectedDivisors) = testData;
-            var actualDivisors = ProperDivisors.Of(n).OrderBy(n => n).ToArray();
+            var actualDivisors = ProperDivisors.Of(n).OrderBy(num => num).ToArray();
             actualDivisors.Should().BeEquivalentTo(expectedDivisors);
         }
 

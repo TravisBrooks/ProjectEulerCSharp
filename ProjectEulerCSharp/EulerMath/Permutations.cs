@@ -135,7 +135,7 @@ namespace ProjectEulerCSharp.EulerMath
             where T : IComparable<T>
         {
             var n = anArray.Length;
-            var arrayOfT = anArray.OrderBy(_ => _).ToArray();
+            var arrayOfT = anArray.OrderBy(t => t).ToArray();
             yield return arrayOfT.ToArray();
             while (true)
             {

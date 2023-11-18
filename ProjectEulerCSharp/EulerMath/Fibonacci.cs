@@ -5,6 +5,10 @@ namespace ProjectEulerCSharp.EulerMath
 {
     public static class Fibonacci
     {
+        /// <summary>
+        /// All of the fibonacci numbers, at least until the memory runs out. You'll want to put a filter on this or else all your memory goes away.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<BigInteger> Sequence()
         {
             var first = BigInteger.One;
