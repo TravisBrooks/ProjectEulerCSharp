@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             var (n, expectedDigits) = testData;
             var actualDigits = n.GetDigits();
-            Assert.Equal(expectedDigits, actualDigits, "unexpected digits for " + n);
+            actualDigits.Should().Equal(expectedDigits);
         }
 
         public static IEnumerable<object[]> GetDigitsData()

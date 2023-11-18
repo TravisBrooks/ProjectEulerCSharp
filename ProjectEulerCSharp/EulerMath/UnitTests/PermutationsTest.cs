@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentAssertions;
 using Xunit;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
@@ -17,8 +17,8 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
             var copyOfOriginalArray = new T[anArray.Length];
             Array.Copy(anArray, copyOfOriginalArray, anArray.Length);
             var permutationsActual = Permutations.Of(anArray, permutationAlgorithm).ToArray();
-            Assert.Equal(permutationsExpected, permutationsActual, "Expected permutations:" + ArrayOfArrayToString(permutationsExpected) + "actual permutations: " + ArrayOfArrayToString(permutationsActual));
-            Assert.Equal(copyOfOriginalArray, anArray, $"The permutation algorithm should not mutate the array it was applied to, original: {{{string.Join(", ", copyOfOriginalArray)}}}, after the Permutation call: {{{string.Join(", ", anArray)}}}");
+            permutationsActual.Should().BeEquivalentTo(permutationsExpected);
+            anArray.Should().BeEquivalentTo(copyOfOriginalArray);
         }
 
         public static IEnumerable<object[]> PermutationData()

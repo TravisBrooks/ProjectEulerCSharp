@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             var (a, b, expectedGcd) = testData;
             var actualGcd = a.GCD(b);
-            Assert.Equal(expectedGcd, actualGcd, $"unexpected gcd for {a}, {b} actual gcd = {actualGcd}");
+            actualGcd.Should().Be(expectedGcd);
         }
 
         public static IEnumerable<object[]> GetGcdTestData()

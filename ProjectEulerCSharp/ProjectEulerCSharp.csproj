@@ -1,39 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-      <TargetFramework>net7.0</TargetFramework>
-      <IsPackable>false</IsPackable>
-      <Nullable>disable</Nullable>
-      <RunSettingsFilePath>$(MSBuildProjectDirectory)/RunOnlyProjectEulerTests.runsettings</RunSettingsFilePath>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>disable</Nullable>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)/RunOnlyProjectEulerTests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="EulerData\p022_names.txt" />
     <None Remove="EulerData\p042_words.txt" />
     <None Remove="EulerData\p067_triangle.txt" />
     <None Remove="EulerData\PrimesLessThanTenMillion.data" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="EulerData\p022_names.txt" />
     <EmbeddedResource Include="EulerData\p042_words.txt" />
     <EmbeddedResource Include="EulerData\p067_triangle.txt" />
     <EmbeddedResource Include="EulerData\PrimesLessThanTenMillion.data" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0-preview-20221221-03" />
-    <PackageReference Include="coverlet.collector" Version="3.2.0">
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="Xunit.AssertMessages" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="XunitXml.TestLogger" Version="3.0.78" />
+    <PackageReference Include="XunitXml.TestLogger" Version="3.1.17" />
   </ItemGroup>
-
 </Project>

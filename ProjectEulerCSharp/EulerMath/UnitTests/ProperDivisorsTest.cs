@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using Xunit;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
@@ -13,7 +13,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             var (n, expectedDivisors) = testData;
             var actualDivisors = ProperDivisors.Of(n).OrderBy(n => n).ToArray();
-            Assert.Equal(expectedDivisors.OrderBy(n => n), actualDivisors, $"unexpected divisors for {n}");
+            actualDivisors.Should().BeEquivalentTo(expectedDivisors);
         }
 
         public static IEnumerable<object[]> ProperDivisorsData()

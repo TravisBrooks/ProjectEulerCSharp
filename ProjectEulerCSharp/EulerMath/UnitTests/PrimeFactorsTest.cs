@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp.EulerMath.UnitTests
 {
@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerMath.UnitTests
         {
             var (n, factorsExpected) = testData;
             var factorsActual = PrimeFactor32.Factors(n);
-            Assert.Equal(factorsExpected, factorsActual, "unexpected factors for " + n);
+            factorsActual.Should().Equal(factorsExpected);
         }
 
         public static IEnumerable<object[]> PrimeFactorData()

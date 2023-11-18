@@ -5,10 +5,10 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
+using FluentAssertions;
 using ProjectEulerCSharp.EulerMath;
 using ProjectEulerCSharp.PrettyPrint;
 using Xunit.Abstractions;
-using Assert = XunitAssertMessages.AssertM;
 
 namespace ProjectEulerCSharp
 {
@@ -100,11 +100,11 @@ namespace ProjectEulerCSharp
 
             _testOutputHelper.WriteLine(eulerReport.PrettyPrintString());
 
-            Assert.Equal(expected, bruteForceSolution, $"Brute force solution was incorrect, expected {expected} but found {bruteForceSolution}");
+            bruteForceSolution.Should().Be(expected, $"Brute force solution was incorrect, expected {expected} but found {bruteForceSolution}");
 
             if (solutionInstance.HaveImplementedAnalyticSolution)
             {
-                Assert.Equal(expected, analyticSolution, $"Analytic solution was incorrect, expected {expected} but found {analyticSolution}");
+                analyticSolution.Should().Be(expected, $"Analytic solution was incorrect, expected {expected} but found {analyticSolution}");
             }
         }
 
