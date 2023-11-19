@@ -17,7 +17,7 @@ And on leap years, twenty-nine.
 
 How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0019 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

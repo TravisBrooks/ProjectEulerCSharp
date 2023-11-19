@@ -10,7 +10,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
 
 How many such routes are there through a 20×20 grid?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0015 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => true;

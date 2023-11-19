@@ -13,7 +13,7 @@ It can be seen that P4 + p7 = 22 + 70 = 92 = P8. However, their difference, 70 -
 
 Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal and D = |Pk - Pj| is minimised; what is the value of D?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0044 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => true;

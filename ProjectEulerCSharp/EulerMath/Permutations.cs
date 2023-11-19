@@ -7,7 +7,7 @@ namespace ProjectEulerCSharp.EulerMath
     public static class Permutations
     {
         /// <summary>
-        ///     All permutations of the given array, the order the permutations appear varies by algorithm.
+        /// All permutations of the given array, the order the permutations appear varies by algorithm.
         /// </summary>
         /// <typeparam name="T">Must be IComparable to support LexicographicPermutationAlgorithm</typeparam>
         /// <param name="anArray"></param>

@@ -6,7 +6,7 @@
 
 Find the sum of all the multiples of 3 or 5 below 1000.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0001 : ISolution<int>
     {
         public int BruteForceSolution()

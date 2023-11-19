@@ -18,7 +18,7 @@ e.g. |11|=11 and |-4|=4
 
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0027 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

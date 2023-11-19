@@ -14,7 +14,7 @@ The longest sum of consecutive primes below one-thousand that adds to a prime, c
 
 Which prime, below one-million, can be written as the sum of the most consecutive primes?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0050 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

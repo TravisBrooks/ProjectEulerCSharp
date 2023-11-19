@@ -13,7 +13,7 @@ It can be verified that T285 = P165 = H143 = 40755.
 
 Find the next triangle number that is also pentagonal and hexagonal.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0045 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => true;

@@ -8,7 +8,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 
 Find the largest palindrome made from the product of two 3-digit numbers.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0004 : ISolution<int>
     {
         public int BruteForceSolution()

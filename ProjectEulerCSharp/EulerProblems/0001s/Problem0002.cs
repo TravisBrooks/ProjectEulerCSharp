@@ -11,7 +11,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 
 By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0002 : ISolution<long>
     {
         public long BruteForceSolution()

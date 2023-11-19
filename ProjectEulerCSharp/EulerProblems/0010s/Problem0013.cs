@@ -108,7 +108,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0013 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => true;

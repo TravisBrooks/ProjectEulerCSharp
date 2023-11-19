@@ -11,7 +11,7 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 
 Find the product abc.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0009 : ISolution<int>
     {
         /****************************************************************************************************

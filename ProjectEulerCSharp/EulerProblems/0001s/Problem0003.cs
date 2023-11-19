@@ -10,7 +10,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 
 What is the largest prime factor of the number 600851475143 ?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0003 : ISolution<int>
     {
         public int BruteForceSolution()

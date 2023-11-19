@@ -21,7 +21,7 @@ Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be see
 
 Find the value of d less-than 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0026 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

@@ -8,7 +8,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0005 : ISolution<int>
     {
         // This problem is kind of dumb to do brute force, its more of a pen and paper problem. I tried to come up with a few

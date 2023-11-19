@@ -31,7 +31,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?")
     ]
 
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0008 : ISolution<long>
     {
         public long BruteForceSolution()

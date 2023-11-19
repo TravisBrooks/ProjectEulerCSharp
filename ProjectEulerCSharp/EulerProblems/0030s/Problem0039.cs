@@ -11,7 +11,7 @@ namespace ProjectEulerCSharp.EulerProblems._0030s
 
 For which value of p ≤ 1000, is the number of solutions maximized?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0039 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

@@ -13,7 +13,7 @@ There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes, ex
 
 What 12-digit number do you form by concatenating the three terms in this sequence?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0049 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => false;

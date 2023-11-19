@@ -12,7 +12,7 @@ namespace ProjectEulerCSharp.EulerProblems._0020s
 
 What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0024 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => true;

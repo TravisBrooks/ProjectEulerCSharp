@@ -11,7 +11,7 @@ Find the sum of all numbers which are equal to the sum of the factorial of their
 
 Note: As 1! = 1 and 2! = 2 are not sums they are not included.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0034 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

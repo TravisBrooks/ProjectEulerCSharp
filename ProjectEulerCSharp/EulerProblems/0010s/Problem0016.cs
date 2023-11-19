@@ -10,7 +10,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
 
 What is the sum of the digits of the number 2^1000?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0016 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => true;

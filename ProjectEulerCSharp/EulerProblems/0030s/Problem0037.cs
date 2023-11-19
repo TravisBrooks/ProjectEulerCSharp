@@ -12,7 +12,7 @@ Find the sum of the only eleven primes that are both truncatable from left to ri
 
 NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0037 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

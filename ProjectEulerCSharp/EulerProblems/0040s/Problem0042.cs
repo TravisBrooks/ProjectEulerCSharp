@@ -14,7 +14,7 @@ By converting each letter in a word to a number corresponding to its alphabetica
 
 Using p042_words.txt , a 16K text file containing nearly two-thousand common English words, how many are triangle words?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0042 : ISolution<int>
     {
         private readonly string[] _words;

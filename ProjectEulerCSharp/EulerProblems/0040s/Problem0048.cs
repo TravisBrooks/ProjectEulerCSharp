@@ -9,7 +9,7 @@ namespace ProjectEulerCSharp.EulerProblems._0040s
 
 Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0048 : ISolution<long>
     {
         public bool HaveImplementedAnalyticSolution => true;

@@ -13,7 +13,7 @@ There are exactly four non-trivial examples of this type of fraction, less than 
 
 If the product of these four fractions is given in its lowest common terms, find the value of the denominator.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0033 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

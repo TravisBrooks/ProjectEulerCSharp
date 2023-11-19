@@ -10,7 +10,7 @@ namespace ProjectEulerCSharp.EulerProblems._0040s
 
 What is the largest n-digit pandigital prime that exists?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0041 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

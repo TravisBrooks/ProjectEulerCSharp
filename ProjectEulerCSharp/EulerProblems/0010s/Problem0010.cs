@@ -10,7 +10,7 @@ namespace ProjectEulerCSharp.EulerProblems._0010s
 
 Find the sum of all the primes below two million.")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0010 : ISolution<long>
     {
         /****************************************************************************************************

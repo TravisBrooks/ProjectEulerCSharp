@@ -12,7 +12,7 @@ For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800, and the sum of the d
 
 Find the sum of the digits in the number 100!")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0020 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

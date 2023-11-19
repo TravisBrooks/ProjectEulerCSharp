@@ -20,7 +20,7 @@ It turns out that the conjecture was false.
 
 What is the smallest odd composite that cannot be written as the sum of a prime and twice a square?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0046 : ISolution<int>
     {
         public bool HaveImplementedAnalyticSolution => false;

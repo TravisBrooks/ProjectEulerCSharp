@@ -9,7 +9,7 @@ namespace ProjectEulerCSharp.EulerProblems._0001s
 
 What is the 10_001st prime number?")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0007 : ISolution<int>
     {
         public int BruteForceSolution()

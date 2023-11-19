@@ -8,7 +8,7 @@ Find the sum of all numbers, less than one million, which are palindromic in bas
 
 (Please note that the palindromic number, in either base, may not include leading zeros.)")
     ]
-    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once UnusedType.Global
     public class Problem0036 : ISolution<uint>
     {
         public bool HaveImplementedAnalyticSolution => true;
