@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using ProjectEulerCSharp.EulerMath;
 
 namespace ProjectEulerCSharp.EulerProblems._0050s
 {
@@ -18,65 +17,31 @@ Find the smallest positive integer, x, such that 2x, 3x, 4x, 5x, and 6x, contain
 
         public int BruteForceSolution()
         {
-            for (var i = 1; i <= 1_000_000; i++)
+            for (var i = 100_000; i < 1_000_000; i++)
             {
-                var digits1 = i.GetDigits();
-                var digits2 = (i * 2).GetDigits();
-                if (digits1.Length != digits2.Length)
+                var digits1 = DigitCount(i);
+                if (!digits1.SequenceEqual(DigitCount(i * 2)) ||
+                    !digits1.SequenceEqual(DigitCount(i * 3)) ||
+                    !digits1.SequenceEqual(DigitCount(i * 4)) ||
+                    !digits1.SequenceEqual(DigitCount(i * 5)) ||
+                    !digits1.SequenceEqual(DigitCount(i * 6)))
                 {
                     continue;
                 }
-                var digits3 = (i * 3).GetDigits();
-                if (digits1.Length != digits3.Length)
-                {
-                    continue;
-                }
-                var digits4 = (i * 4).GetDigits();
-                if (digits1.Length != digits4.Length)
-                {
-                    continue;
-                }
-                var digits5 = (i * 5).GetDigits();
-                if (digits1.Length != digits5.Length)
-                {
-                    continue;
-                }
-                var digits6 = (i * 6).GetDigits();
-                if (digits1.Length != digits6.Length)
-                {
-                    continue;
-                }
-                Array.Sort(digits1);
-                Array.Sort(digits2);
-                if (!digits1.SequenceEqual(digits2))
-                {
-                    continue;
-                }
-                Array.Sort(digits3);
-                if (!digits1.SequenceEqual(digits3))
-                {
-                    continue;
-                }
-                Array.Sort(digits4);
-                if (!digits1.SequenceEqual(digits4))
-                {
-                    continue;
-                }
-                Array.Sort(digits5);
-                if (!digits1.SequenceEqual(digits5))
-                {
-                    continue;
-                }
-                Array.Sort(digits6);
-                if (!digits1.SequenceEqual(digits6))
-                {
-                    continue;
-                }
-
                 return i;
             }
-
             return -1;
+        }
+
+        private int[] DigitCount(int number)
+        {
+            var counts = new int[10];
+            while (number > 0)
+            {
+                counts[number % 10]++;
+                number /= 10;
+            }
+            return counts;
         }
 
         public int AnalyticSolution()
