@@ -23,14 +23,10 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
 
         public int BruteForceSolution()
         {
-            var number = 0;
+            var collatzCache = new Dictionary<long, long> { [1] = 1 };
             long maxChainLen = 0;
-            var collatzCache = new Dictionary<long, long>
-            {
-                [1] = 1
-            };
-
-            for (var n = 1; n < 1_000_000; n++)
+            var number = 0;
+            for (var n = 10_000; n < 1_000_000; n++)
             {
                 var len = CollatzLen(n, collatzCache);
                 if (len > maxChainLen)
@@ -41,28 +37,28 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
             }
 
             return number;
+        }
 
-            static long CollatzLen(long n, IDictionary<long, long> cache)
+        private static long CollatzLen(long n, IDictionary<long, long> cache)
+        {
+            if (cache.TryGetValue(n, out var value))
             {
-                if (cache.TryGetValue(n, out var value))
-                {
-                    return value;
-                }
-
-                if (n % 2 == 0)
-                {
-                    cache[n] = 1 + CollatzLen(n / 2, cache);
-                }
-                else
-                {
-                    // This mult by 3 can get big if it keeps making odd numbers, thats why it needs to be a long instead of int
-                    // 56991483520 : the biggest cache key value
-                    //  2147483647 : Int32.MaxValue
-                    cache[n] = 1 + CollatzLen(3 * n + 1, cache);
-                }
-
-                return cache[n];
+                return value;
             }
+
+            if (n % 2 == 0)
+            {
+                cache[n] = 1 + CollatzLen(n / 2, cache);
+            }
+            else
+            {
+                // This mult by 3 can get big if it keeps making odd numbers, that's why it needs to be a long instead of int
+                // 56991483520 : the biggest cache key value
+                //  2147483647 : Int32.MaxValue
+                cache[n] = 1 + CollatzLen(3 * n + 1, cache);
+            }
+
+            return cache[n];
         }
 
         public int AnalyticSolution()
@@ -72,7 +68,7 @@ NOTE: Once the chain starts the terms are allowed to go above one million")
 
         public int ExpectedSolution()
         {
-            return 837799;
+            return 837_799;
         }
     }
 }

@@ -52,19 +52,19 @@ Find the sum of all 0 to 9 pandigital numbers with this property.")
 
         private static bool HasRatherInterestingProperty(ReadOnlySpan<int> panDigits)
         {
-            if (panDigits.Slice(1, 3).ToInt() % 2 == 0)
+            if (panDigits.Slice(7, 3).ToInt() % 17 == 0)
             {
-                if (panDigits.Slice(2, 3).ToInt() % 3 == 0)
+                if (panDigits.Slice(6, 3).ToInt() % 13 == 0)
                 {
-                    if (panDigits.Slice(3, 3).ToInt() % 5 == 0)
+                    if (panDigits.Slice(5, 3).ToInt() % 11 == 0)
                     {
                         if (panDigits.Slice(4, 3).ToInt() % 7 == 0)
                         {
-                            if (panDigits.Slice(5, 3).ToInt() % 11 == 0)
+                            if (panDigits.Slice(3, 3).ToInt() % 5 == 0)
                             {
-                                if (panDigits.Slice(6, 3).ToInt() % 13 == 0)
+                                if (panDigits.Slice(2, 3).ToInt() % 3 == 0)
                                 {
-                                    if (panDigits.Slice(7, 3).ToInt() % 17 == 0)
+                                    if (panDigits.Slice(1, 3).ToInt() % 2 == 0)
                                     {
                                         return true;
                                     }

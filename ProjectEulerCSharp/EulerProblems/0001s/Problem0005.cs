@@ -11,19 +11,16 @@ What is the smallest positive number that is evenly divisible by all of the numb
     // ReSharper disable once UnusedType.Global
     public class Problem0005 : ISolution<int>
     {
-        // This problem is kind of dumb to do brute force, its more of a pen and paper problem. I tried to come up with a few
-        // optimizations to the brute force method below to reduce the search space but its still pretty slow.
-
         public int BruteForceSolution()
         {
             // reverse does slight optimization in divisor test, many numbers pass beginning of range but not many are divisible by 19 and 17
-            var divisors = new[] { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            var divisors = new[] { 20, 19, 18, 17, 16, 15, 14, 13, 12, 11 };
             // initial guess is product of all primes less than 20
-            var guess = 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19;
+            var guess = 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 20;
             // Lets increment the guess until it is evenly divisible by 20, then we can increment it by 20 in loop below saving us from testing a bunch of numbers.
             while (guess % 20 != 0)
             {
-                guess += 1;
+                guess += 2;
             }
 
             while (true)
