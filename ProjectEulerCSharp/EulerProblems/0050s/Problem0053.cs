@@ -43,11 +43,8 @@ How many, not necessarily distinct, values of (n r) for 1 ≤ n ≤ 100, are gre
 
         private static BigInteger Combinatoric(int n, int r)
         {
-            var nFact = Factorial.Of(n);
-            var rFact = Factorial.Of(r);
-            var nMinusRfact = Factorial.Of(n - r);
-            var sln = BigInteger.Divide(nFact, BigInteger.Multiply(rFact, nMinusRfact));
-            return sln;
+            var ans = Factorial.Of(n) / (Factorial.Of(r) * Factorial.Of(n - r));
+            return ans;
         }
 
         public int AnalyticSolution()
