@@ -40,7 +40,8 @@ namespace ProjectEulerCSharp.PrettyPrint
 
         public void AddContainer(string text)
         {
-            if (!string.Equals(text, SecurityElement.Escape(text)))
+            var escapedTxt = SecurityElement.Escape(text);
+            if (!string.Equals(text, escapedTxt))
             {
                 throw new ArgumentException("There were characters in the text that would get escaped in xml test output, ruining the formatting of the report.");
             }
