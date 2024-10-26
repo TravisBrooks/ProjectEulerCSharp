@@ -147,7 +147,14 @@ namespace ProjectEulerCSharp.EulerMath
             return digits;
         }
 
-        public static long ToLong(this int[] digits)
+        public static long Reverse(this long n)
+        {
+	        var digits = n.GetDigits();
+	        Array.Reverse(digits);
+	        return digits.ToLong();
+        }
+
+		public static long ToLong(this int[] digits)
         {
             return new ReadOnlySpan<int>(digits).ToLong();
         }
@@ -164,7 +171,14 @@ namespace ProjectEulerCSharp.EulerMath
             return total;
         }
 
-        public static int ToInt(this int[] digits)
+        public static int Reverse(this int n)
+        {
+	        var digits = n.GetDigits();
+	        Array.Reverse(digits);
+	        return digits.ToInt();
+        }
+
+		public static int ToInt(this int[] digits)
         {
             return new ReadOnlySpan<int>(digits).ToInt();
         }
