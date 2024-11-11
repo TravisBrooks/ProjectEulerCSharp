@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace ProjectEulerCSharp.EulerMath
 {
@@ -88,6 +90,41 @@ namespace ProjectEulerCSharp.EulerMath
 
             return arr;
         }
+
+        /// <summary>
+        /// An experiment to see how hard/easy it is to use the new generic math. Took a little getting used to but wasn't that
+        /// bad, but the performance was quite bad. Will need to do further experiments before attempting to use generic math more.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="n"></param>
+        /// <returns>digits in n (currently in reverse order)</returns>
+		public static IEnumerable<T> GetDigitsGen<T>(this T n) where T : IBinaryInteger<T>
+		{
+	        if (n < T.Zero)
+	        {
+		        n = -n;
+	        }
+
+	        if (n == T.Zero)
+	        {
+		        yield return n;
+		        yield break;
+	        }
+
+			var ten = T.CreateChecked(10);
+	        while (n > T.Zero)
+	        {
+		        if (n < ten)
+		        {
+			        yield return n;
+                    yield break;
+		        }
+
+		        var d = n % ten;
+		        n /= ten;
+		        yield return d;
+	        }
+		}
 
         public static int[] GetDigits(this int n)
         {
