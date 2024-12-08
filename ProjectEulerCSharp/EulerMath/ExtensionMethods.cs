@@ -135,7 +135,7 @@ namespace ProjectEulerCSharp.EulerMath
 
             if (n < 10)
             {
-                return new[] { n };
+                return [n];
             }
             var digitCount = n.GetCountOfDigits();
             var digits = new int[digitCount];
@@ -164,7 +164,7 @@ namespace ProjectEulerCSharp.EulerMath
 
             if (n < 10)
             {
-                return new[] { (int)n };
+                return [(int)n];
             }
             var digitCount = n.GetCountOfDigits();
             var digits = new int[digitCount];
@@ -184,7 +184,36 @@ namespace ProjectEulerCSharp.EulerMath
             return digits;
         }
 
-        public static long Reverse(this long n)
+        public static int[] GetDigits(this BigInteger n)
+        {
+	        if (n < 0)
+	        {
+		        n = -n;
+	        }
+
+	        if (n < 10)
+	        {
+		        return [(int)n];
+	        }
+	        var digitCount = n.GetCountOfDigits();
+	        var digits = new int[digitCount];
+	        for (var i = digitCount - 1; i >= 0; i--)
+	        {
+		        if (n < 10)
+		        {
+			        digits[i] = (int)n;
+		        }
+		        else
+		        {
+			        var d = (int)(n % 10);
+			        digits[i] = d;
+			        n /= 10;
+		        }
+	        }
+	        return digits;
+        }
+
+		public static long Reverse(this long n)
         {
 	        var digits = n.GetDigits();
 	        Array.Reverse(digits);
@@ -244,13 +273,19 @@ namespace ProjectEulerCSharp.EulerMath
             return (int)(Math.Floor(Math.Log10(n)) + 1);
         }
 
-        /// <summary>
-        /// Greatest common divisor
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static int GCD(this int a, int b)
+        public static int GetCountOfDigits(this BigInteger n)
+        {
+	        // ye olde log trick
+	        return (int)(Math.Floor(BigInteger.Log10(n)) + 1);
+        }
+
+		/// <summary>
+		/// Greatest common divisor
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
+		public static int GCD(this int a, int b)
         {
             // TODO: if I need a gcd for more than just int convert this to use IBinaryInteger<T>
             // this is just Euclidean Algorithm for GCD
