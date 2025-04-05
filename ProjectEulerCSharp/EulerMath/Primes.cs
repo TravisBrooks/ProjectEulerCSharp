@@ -9,12 +9,58 @@ namespace ProjectEulerCSharp.EulerMath
 {
     public static class Primes
     {
+		/// <summary>
+		/// For numbers that are too big to make a sieve for
+		/// </summary>
+		/// <param name="n">number to check for primality</param>
+		/// <returns></returns>
+		public static bool IsProbablyPrime(long n)
+        {
+	        if (n % 2 == 0)
+	        {
+		        return false;
+	        }
+
+	        for (var i = 3; i < Math.Sqrt(n) + 1; i+=2)
+	        {
+		        if (n % i == 0)
+		        {
+                    return false;
+				}
+	        }
+
+	        return true;
+        }
+
         /// <summary>
-        /// Looks up pre-calculated primes in a file
+        /// For numbers that are too big to make a sieve for
         /// </summary>
-        /// <param name="upperBounds"></param>
+        /// <param name="n">number to check for primality</param>
         /// <returns></returns>
-        public static HashSet<int> PreCalculated(int upperBounds)
+        public static bool IsProbablyPrime(int n)
+        {
+	        if (n % 2 == 0)
+	        {
+		        return false;
+	        }
+
+	        for (var i = 3; i < Math.Sqrt(n) + 1; i += 2)
+	        {
+		        if (n % i == 0)
+		        {
+			        return false;
+		        }
+	        }
+
+	        return true;
+        }
+
+		/// <summary>
+		/// Looks up pre-calculated primes in a file
+		/// </summary>
+		/// <param name="upperBounds"></param>
+		/// <returns></returns>
+		public static HashSet<int> PreCalculated(int upperBounds)
         {
             if (upperBounds is < 0 or > 10_000_000)
             {
