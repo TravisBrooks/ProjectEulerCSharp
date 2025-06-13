@@ -6,6 +6,7 @@
     <RunSettingsFilePath>$(MSBuildProjectDirectory)/RunOnlyProjectEulerTests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="EulerData\0059_cipher.txt" />
     <None Remove="EulerData\p022_names.txt" />
     <None Remove="EulerData\p042_words.txt" />
     <None Remove="EulerData\p054_poker.txt" />
@@ -13,6 +14,7 @@
     <None Remove="EulerData\PrimesLessThanTenMillion.data" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EulerData\0059_cipher.txt" />
     <EmbeddedResource Include="EulerData\p054_poker.txt" />
     <EmbeddedResource Include="EulerData\p022_names.txt" />
     <EmbeddedResource Include="EulerData\p042_words.txt" />
