@@ -33,7 +33,7 @@ Find the lowest sum for a set of five primes for which any two primes concatenat
 						var goodPrimes = new HashSet<int> { prime, otherPrime };
 						foreach (var anotherPrime in primesInRange.SkipWhile(p => p <= otherPrime))
 						{
-							if (AllConcatsArePrime(goodPrimes, anotherPrime, primeSet))
+							if (ConcatAllNumbersArePrime(goodPrimes, anotherPrime, primeSet))
 							{
 								goodPrimes.Add(anotherPrime);
 								if (goodPrimes.Count == 5)
@@ -49,7 +49,7 @@ Find the lowest sum for a set of five primes for which any two primes concatenat
 			return -1; // if we get here, we didn't find a solution
 		}
 
-		private static bool AllConcatsArePrime(HashSet<int> primesToConcat, long primeToConcat, HashSet<int> primeSet)
+		private static bool ConcatAllNumbersArePrime(HashSet<int> primesToConcat, long primeToConcat, HashSet<int> primeSet)
 		{
 			foreach (var lhsPrime in primesToConcat)
 			{
@@ -75,7 +75,7 @@ Find the lowest sum for a set of five primes for which any two primes concatenat
 				}
 				else
 				{
-					// use an approximate primality test for large numbers
+					// use an approximate primality test for numbers larger than MaxCalculatedPrime
 					if (!Primes.IsProbablyPrime(longOne))
 					{
 						return false;
@@ -86,7 +86,7 @@ Find the lowest sum for a set of five primes for which any two primes concatenat
 				{
 					return primeSet.Contains((int)longTwo);
 				}
-				// use an approximate primality test for large numbers
+				// use an approximate primality test for numbers larger than MaxCalculatedPrime
 				return Primes.IsProbablyPrime(longTwo);
 			}
 		}
