@@ -11,7 +11,7 @@ namespace ProjectEulerCSharp.EulerProblems._0040s
         {
         }
 
-        [Theory(DisplayName = "Solutions 040s")]
+        [Theory(DisplayName = "Solutions 0040s")]
         [Trait("Category", "EulerProblems")]
         [MemberData(nameof(SolutionInstances))]
         public void Solution<T>(ISolution<T> solutionInstance) where T : INumber<T>

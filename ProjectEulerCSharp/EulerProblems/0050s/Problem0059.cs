@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -20,13 +21,19 @@ Your task has been made easy, as the encryption key consists of three lower case
 	// ReSharper disable once UnusedType.Global
 	public class Problem0059 : ISolution<int>
 	{
+		private List<char> _fileData;
+
+		public Problem0059()
+		{
+			_fileData = EulerData.Get.Resource("0059_cipher.txt")
+									.Select(s => (char)int.Parse(s))
+									.ToList();
+		}
+
 		public bool HaveImplementedAnalyticSolution => false;
 		
 		public int BruteForceSolution()
 		{
-			var fileData = EulerData.Get.Resource("0059_cipher.txt")
-										.Select(s => (char)int.Parse(s))
-										.ToList();
 			var chars = Enumerable.Range('a', 26).Select(c => (char)c).ToArray();
 			foreach (var a in chars)
 			{
@@ -36,9 +43,9 @@ Your task has been made easy, as the encryption key consists of three lower case
 					{
 						var key = new[] { a, b, c };
 						var decrypted = new StringBuilder();
-						for (var i = 0; i < fileData.Count; i++)
+						for (var i = 0; i < _fileData.Count; i++)
 						{
-							decrypted.Append((char)(fileData[i] ^ key[i % key.Length]));
+							decrypted.Append((char)(_fileData[i] ^ key[i % key.Length]));
 						}
 						var decryptedString = decrypted.ToString();
 						// see https://en.wikipedia.org/wiki/Most_common_words_in_English, I picked the most common words with more than 2 chars

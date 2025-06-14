@@ -3,7 +3,7 @@ using System.Numerics;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace ProjectEulerCSharp.EulerProblems._0020s
+namespace ProjectEulerCSharp.EulerProblems._0060s
 {
     public class TestRunner : BaseTestRunner
     {
@@ -11,7 +11,7 @@ namespace ProjectEulerCSharp.EulerProblems._0020s
         {
         }
 
-        [Theory(DisplayName = "Solutions 0020s")]
+        [Theory(DisplayName = "Solutions 0060s")]
         [Trait("Category", "EulerProblems")]
         [MemberData(nameof(SolutionInstances))]
         public void Solution<T>(ISolution<T> solutionInstance) where T : INumber<T>

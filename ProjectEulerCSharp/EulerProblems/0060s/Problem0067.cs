@@ -1,7 +1,7 @@
 ﻿using System;
 using ProjectEulerCSharp.EulerMath;
 
-namespace ProjectEulerCSharp.EulerProblems
+namespace ProjectEulerCSharp.EulerProblems._0060s
 {
     [Euler(
         title: "Problem 67: Maximum path sum Part II",
@@ -19,7 +19,7 @@ Find the maximum total from top to bottom in triangle.txt (file embedded as /Eul
 NOTE: This is a much more difficult version of Problem 18. It is not possible to try every route to solve this problem, as there are 299 altogether! If you could check one trillion (1012) routes every second it would take over twenty billion years to check them all. There is an efficient algorithm to solve it. ;o)")
     ]
     // ReSharper disable once UnusedType.Global
-    public class Problem0067 : ISolution<int>
+	internal class Problem0067 : ISolution<int>
     {
         private readonly int[][] _triangleData;
 
