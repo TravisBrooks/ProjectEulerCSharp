@@ -6,7 +6,7 @@ using ProjectEulerCSharp.EulerMath;
 namespace ProjectEulerCSharp.EulerProblems._0060s
 {
 	[Euler(
-			title: "Problem 62: Cubic permutations",
+			title: "Problem 63: Powerful Digit Counts",
 			description: @"The 5-digit number, 16807, is a fifth power: 27^5 = 16807. Similarly, the 9-digit number, 134217728 = 8^9,, is a ninth power.
 
 How many n-digit positive integers exist which are also an nth power?"
