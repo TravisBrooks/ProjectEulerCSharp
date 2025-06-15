@@ -275,8 +275,8 @@ namespace ProjectEulerCSharp.EulerMath
 
         public static int GetCountOfDigits(this BigInteger n)
         {
-	        // ye olde log trick
-	        return (int)(Math.Floor(BigInteger.Log10(n)) + 1);
+			// Surprise! BigInteger gives you flaky results with log10, something something approximations...
+			return n.ToString().Length;
         }
 
 		/// <summary>

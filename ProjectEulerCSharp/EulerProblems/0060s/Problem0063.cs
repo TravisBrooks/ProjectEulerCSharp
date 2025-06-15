@@ -22,7 +22,7 @@ How many n-digit positive integers exist which are also an nth power?"
 			var cnt = 0;
 			for(var p = 1; p <= 25; p++)
 			{
-				for(var n = 1; n <= 9; n++)
+				for(var n = 1; n <= 10; n++)
 				{
 					// have to use BigInteger because n^p can be larger than long.MaxValue
 					var nToP = BigInteger.Pow(new BigInteger(n), p);
